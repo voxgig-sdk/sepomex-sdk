@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "state": {
+      "STATE00": {
+        "cities_count": "s46",
+        "id": "STATE00",
+        "municipality_key": "s48",
+        "name": "s49",
+        "state": {},
+        "state_id": "STATE01",
+        "zip_code": "s4c"
+      },
+      "STATE01": {
+        "cities_count": "s8c",
+        "id": "STATE01",
+        "municipality_key": "s8e",
+        "name": "s8f",
+        "state": {},
+        "state_id": "STATE01",
+        "zip_code": "s92"
+      },
+      "STATE02": {
+        "cities_count": "sd2",
+        "id": "STATE02",
+        "municipality_key": "sd4",
+        "name": "sd5",
+        "state": {},
+        "state_id": "STATE01",
+        "zip_code": "sd8"
+      }
+    }
+  },
+  "new": {
+    "state": {
+      "state_ref01": {
+        "cities_count": "s118",
+        "municipality_key": "s11a",
+        "name": "s11b",
+        "state": {},
+        "state_id": "STATE01",
+        "zip_code": "s11e"
+      }
+    }
+  }
+}

@@ -1,0 +1,179 @@
+# Entity: zip_code
+
+main: kit: entity: zip_code: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "c_cp"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "c_cve_ciudad"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "c_estado"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "c_mnpio"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "c_oficina"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "c_tipo_asenta"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "d_asenta"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "d_ciudad"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "d_codigo"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "d_cp"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "d_estado"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "d_mnpio"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "d_tipo_asenta"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "d_zona"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "id_asenta_cpcon"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "zip_code"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "monterrey"
+                kind: "query"
+                name: "city"
+                orig: "city"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "punta contry"
+                kind: "query"
+                name: "colony"
+                orig: "colony"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 15
+                kind: "query"
+                name: "per_page"
+                orig: "per_page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "nuevo leon"
+                kind: "query"
+                name: "state"
+                orig: "state"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "67173"
+                kind: "query"
+                name: "zip_code"
+                orig: "zip_code"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/zip_codes"
+          parts: [
+            "zip_codes"
+          ]
+          select: {
+            exist: [
+              "city"
+              "colony"
+              "page"
+              "per_page"
+              "state"
+              "zip_code"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

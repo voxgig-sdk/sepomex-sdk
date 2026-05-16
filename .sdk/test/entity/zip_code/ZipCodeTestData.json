@@ -1,0 +1,81 @@
+{
+  "existing": {
+    "zip_code": {
+      "ZIP_CODE00": {
+        "c_cp": "sa0",
+        "c_cve_ciudad": "sa1",
+        "c_estado": "sa2",
+        "c_mnpio": "sa3",
+        "c_oficina": "sa4",
+        "c_tipo_asenta": "sa5",
+        "d_asenta": "sa6",
+        "d_ciudad": "sa7",
+        "d_codigo": "sa8",
+        "d_cp": "sa9",
+        "d_estado": "saa",
+        "d_mnpio": "sab",
+        "d_tipo_asenta": "sac",
+        "d_zona": "sad",
+        "id": "ZIP_CODE00",
+        "id_asenta_cpcon": "saf"
+      },
+      "ZIP_CODE01": {
+        "c_cp": "s140",
+        "c_cve_ciudad": "s141",
+        "c_estado": "s142",
+        "c_mnpio": "s143",
+        "c_oficina": "s144",
+        "c_tipo_asenta": "s145",
+        "d_asenta": "s146",
+        "d_ciudad": "s147",
+        "d_codigo": "s148",
+        "d_cp": "s149",
+        "d_estado": "s14a",
+        "d_mnpio": "s14b",
+        "d_tipo_asenta": "s14c",
+        "d_zona": "s14d",
+        "id": "ZIP_CODE01",
+        "id_asenta_cpcon": "s14f"
+      },
+      "ZIP_CODE02": {
+        "c_cp": "s1e0",
+        "c_cve_ciudad": "s1e1",
+        "c_estado": "s1e2",
+        "c_mnpio": "s1e3",
+        "c_oficina": "s1e4",
+        "c_tipo_asenta": "s1e5",
+        "d_asenta": "s1e6",
+        "d_ciudad": "s1e7",
+        "d_codigo": "s1e8",
+        "d_cp": "s1e9",
+        "d_estado": "s1ea",
+        "d_mnpio": "s1eb",
+        "d_tipo_asenta": "s1ec",
+        "d_zona": "s1ed",
+        "id": "ZIP_CODE02",
+        "id_asenta_cpcon": "s1ef"
+      }
+    }
+  },
+  "new": {
+    "zip_code": {
+      "zip_code_ref01": {
+        "c_cp": "s280",
+        "c_cve_ciudad": "s281",
+        "c_estado": "s282",
+        "c_mnpio": "s283",
+        "c_oficina": "s284",
+        "c_tipo_asenta": "s285",
+        "d_asenta": "s286",
+        "d_ciudad": "s287",
+        "d_codigo": "s288",
+        "d_cp": "s289",
+        "d_estado": "s28a",
+        "d_mnpio": "s28b",
+        "d_tipo_asenta": "s28c",
+        "d_zona": "s28d",
+        "id_asenta_cpcon": "s28f"
+      }
+    }
+  }
+}

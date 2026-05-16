@@ -1,0 +1,48 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 4
+  metrics: count: path: 8
+  metrics: count: method: 8
+
+  entity: city: {
+    path: "/cities": {
+      op: list: method: *GET
+    }
+    path: "/cities/{id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.city`")|top
+    }
+  }
+
+  entity: municipality: {
+    path: "/municipalities": {
+      op: list: method: *GET
+    }
+    path: "/municipalities/{id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.municipality`")|top
+    }
+  }
+
+  entity: state: {
+    path: "/states": {
+      op: list: method: *GET
+    }
+    path: "/states/{id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.state`")|top
+    }
+    path: "/states/{id}/municipalities": {
+      action: "municipality": {}
+      op: list: method: *GET
+    }
+  }
+
+  entity: zip_code: {
+    path: "/zip_codes": {
+      op: list: method: *GET
+    }
+  }
+
+}

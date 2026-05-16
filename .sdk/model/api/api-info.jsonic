@@ -1,0 +1,28 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Icalia Labs"
+        url: "https://github.com/IcaliaLabs/sepomex"
+      }
+      description: "REST API mapping current zip codes in Mexico, provides CSV or Excel files from official site. This API provides access to Mexican postal codes (SEPOMEX database) with 145,481 records including zip codes, states, municipalities, and cities."
+      license: {
+        name: "MIT"
+        url: "https://opensource.org/licenses/MIT"
+      }
+      servers: [
+        {
+          description: "Production server"
+          url: "https://sepomex.icalialabs.com/api/v1"
+        }
+      ]
+      title: "Sepomex"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

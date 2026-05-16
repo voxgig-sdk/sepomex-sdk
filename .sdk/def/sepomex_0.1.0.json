@@ -1,0 +1,693 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Sepomex",
+    "description": "REST API mapping current zip codes in Mexico, provides CSV or Excel files from official site. This API provides access to Mexican postal codes (SEPOMEX database) with 145,481 records including zip codes, states, municipalities, and cities.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Icalia Labs",
+      "url": "https://github.com/IcaliaLabs/sepomex"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sepomex.icalialabs.com/api/v1",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/zip_codes": {
+      "get": {
+        "summary": "Get zip codes",
+        "description": "Retrieve a list of zip codes with optional filtering by city, state, colony, or zip code. Results are paginated with 15 items per page by default (max 200).",
+        "operationId": "getZipCodes",
+        "tags": [
+          "Zip Codes"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Number of items per page (max 200)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 15,
+              "minimum": 1,
+              "maximum": 200
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "Filter by city name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "monterrey"
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "Filter by state name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "nuevo leon"
+          },
+          {
+            "name": "colony",
+            "in": "query",
+            "description": "Filter by colony name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "punta contry"
+          },
+          {
+            "name": "zip_code",
+            "in": "query",
+            "description": "Filter by zip code",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "67173"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with zip codes list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "zip_codes": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ZipCode"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/PaginationMeta"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/states": {
+      "get": {
+        "summary": "Get all states",
+        "description": "Retrieve a paginated list of all states in Mexico",
+        "operationId": "getStates",
+        "tags": [
+          "States"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Number of items per page (max 200)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 15,
+              "minimum": 1,
+              "maximum": 200
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with states list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "states": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/State"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/PaginationMeta"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/states/{id}": {
+      "get": {
+        "summary": "Get state by ID",
+        "description": "Retrieve a specific state by its ID",
+        "operationId": "getStateById",
+        "tags": [
+          "States"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "State ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with state details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "state": {
+                      "$ref": "#/components/schemas/State"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "State not found"
+          }
+        }
+      }
+    },
+    "/states/{id}/municipalities": {
+      "get": {
+        "summary": "Get municipalities by state",
+        "description": "Retrieve all municipalities for a specific state",
+        "operationId": "getMunicipalitiesByState",
+        "tags": [
+          "States",
+          "Municipalities"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "State ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with municipalities list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "municipalities": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Municipality"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "State not found"
+          }
+        }
+      }
+    },
+    "/municipalities": {
+      "get": {
+        "summary": "Get all municipalities",
+        "description": "Retrieve a paginated list of all municipalities in Mexico",
+        "operationId": "getMunicipalities",
+        "tags": [
+          "Municipalities"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Number of items per page (max 200)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 15,
+              "minimum": 1,
+              "maximum": 200
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with municipalities list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "municipalities": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Municipality"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/PaginationMeta"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/municipalities/{id}": {
+      "get": {
+        "summary": "Get municipality by ID",
+        "description": "Retrieve a specific municipality by its ID",
+        "operationId": "getMunicipalityById",
+        "tags": [
+          "Municipalities"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Municipality ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with municipality details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "municipality": {
+                      "$ref": "#/components/schemas/Municipality"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Municipality not found"
+          }
+        }
+      }
+    },
+    "/cities": {
+      "get": {
+        "summary": "Get all cities",
+        "description": "Retrieve a paginated list of all cities in Mexico",
+        "operationId": "getCities",
+        "tags": [
+          "Cities"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Number of items per page (max 200)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 15,
+              "minimum": 1,
+              "maximum": 200
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with cities list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "cities": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/City"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/PaginationMeta"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cities/{id}": {
+      "get": {
+        "summary": "Get city by ID",
+        "description": "Retrieve a specific city by its ID",
+        "operationId": "getCityById",
+        "tags": [
+          "Cities"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "City ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with city details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "city": {
+                      "$ref": "#/components/schemas/City"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "City not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ZipCode": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the zip code record",
+            "example": 1
+          },
+          "d_codigo": {
+            "type": "string",
+            "description": "Zip code",
+            "example": "01000"
+          },
+          "d_asenta": {
+            "type": "string",
+            "description": "Settlement name (colony)",
+            "example": "San Ángel"
+          },
+          "d_tipo_asenta": {
+            "type": "string",
+            "description": "Settlement type",
+            "example": "Colonia"
+          },
+          "d_mnpio": {
+            "type": "string",
+            "description": "Municipality name",
+            "example": "Álvaro Obregón"
+          },
+          "d_estado": {
+            "type": "string",
+            "description": "State name",
+            "example": "Ciudad de México"
+          },
+          "d_ciudad": {
+            "type": "string",
+            "description": "City name",
+            "example": "Ciudad de México"
+          },
+          "d_cp": {
+            "type": "string",
+            "description": "Postal code",
+            "example": "01001"
+          },
+          "c_estado": {
+            "type": "string",
+            "description": "State code",
+            "example": "09"
+          },
+          "c_oficina": {
+            "type": "string",
+            "description": "Office code",
+            "example": "01001"
+          },
+          "c_cp": {
+            "type": "string",
+            "nullable": true,
+            "description": "Postal code field"
+          },
+          "c_tipo_asenta": {
+            "type": "string",
+            "description": "Settlement type code",
+            "example": "09"
+          },
+          "c_mnpio": {
+            "type": "string",
+            "description": "Municipality code",
+            "example": "010"
+          },
+          "id_asenta_cpcons": {
+            "type": "string",
+            "description": "Settlement ID",
+            "example": "0001"
+          },
+          "d_zona": {
+            "type": "string",
+            "description": "Zone type (Urban/Rural)",
+            "example": "Urbano"
+          },
+          "c_cve_ciudad": {
+            "type": "string",
+            "description": "City key",
+            "example": "01"
+          }
+        }
+      },
+      "State": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the state",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "State name",
+            "example": "Ciudad de México"
+          },
+          "cities_count": {
+            "type": "integer",
+            "description": "Number of cities in the state",
+            "example": 16
+          }
+        }
+      },
+      "Municipality": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the municipality",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Municipality name",
+            "example": "Álvaro Obregón"
+          },
+          "municipality_key": {
+            "type": "string",
+            "description": "Municipality key code",
+            "example": "010"
+          },
+          "zip_code": {
+            "type": "string",
+            "description": "Representative zip code for the municipality",
+            "example": "01001"
+          },
+          "state_id": {
+            "type": "integer",
+            "description": "ID of the state this municipality belongs to",
+            "example": 1
+          }
+        }
+      },
+      "City": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the city",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "City name",
+            "example": "Ciudad de México"
+          },
+          "state_id": {
+            "type": "integer",
+            "description": "ID of the state this city belongs to",
+            "example": 1
+          }
+        }
+      },
+      "PaginationMeta": {
+        "type": "object",
+        "properties": {
+          "pagination": {
+            "type": "object",
+            "properties": {
+              "per_page": {
+                "type": "integer",
+                "description": "Number of items per page",
+                "example": 15
+              },
+              "total_pages": {
+                "type": "integer",
+                "description": "Total number of pages",
+                "example": 9728
+              },
+              "total_objects": {
+                "type": "integer",
+                "description": "Total number of objects across all pages",
+                "example": 145906
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "first": {
+                    "type": "string",
+                    "description": "URL for the first page",
+                    "example": "/zip_code?page=1"
+                  },
+                  "last": {
+                    "type": "string",
+                    "description": "URL for the last page",
+                    "example": "/zip_code?page=9728"
+                  },
+                  "prev": {
+                    "type": "string",
+                    "description": "URL for the previous page",
+                    "example": "/zip_code?page=1",
+                    "nullable": true
+                  },
+                  "next": {
+                    "type": "string",
+                    "description": "URL for the next page",
+                    "example": "/zip_code?page=2",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Zip Codes",
+      "description": "Operations related to Mexican zip codes (145,481 records)"
+    },
+    {
+      "name": "States",
+      "description": "Operations related to Mexican states (32 states)"
+    },
+    {
+      "name": "Municipalities",
+      "description": "Operations related to Mexican municipalities (2,318 municipalities)"
+    },
+    {
+      "name": "Cities",
+      "description": "Operations related to Mexican cities (669 cities)"
+    }
+  ]
+}

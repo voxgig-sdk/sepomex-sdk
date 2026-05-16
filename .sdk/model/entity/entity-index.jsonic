@@ -1,0 +1,6 @@
+# Entity Models
+
+@"city.jsonic"
+@"municipality.jsonic"
+@"state.jsonic"
+@"zip_code.jsonic"

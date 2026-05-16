@@ -1,0 +1,22 @@
+# BasicZipCodeFlow
+
+main: kit: flow: BasicZipCodeFlow:
+{
+  entity: "zip_code",
+  kind: "basic",
+  name: "BasicZipCodeFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "zip_code_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicZipCodeFlow"
+}

@@ -1,0 +1,151 @@
+package sdktest
+
+import (
+	"encoding/json"
+	"os"
+	"path/filepath"
+	"runtime"
+	"strings"
+	"testing"
+	"time"
+
+	sdk "github.com/voxgig-sdk/sepomex-sdk"
+	"github.com/voxgig-sdk/sepomex-sdk/core"
+
+	vs "github.com/voxgig/struct"
+)
+
+func TestZipCodeEntity(t *testing.T) {
+	t.Run("instance", func(t *testing.T) {
+		testsdk := sdk.TestSDK(nil, nil)
+		ent := testsdk.ZipCode(nil)
+		if ent == nil {
+			t.Fatal("expected non-nil ZipCodeEntity")
+		}
+	})
+
+	t.Run("basic", func(t *testing.T) {
+		setup := zip_codeBasicSetup(nil)
+		// Per-op sdk-test-control.json skip — basic test exercises a flow
+		// with multiple ops; skipping any op skips the whole flow.
+		_mode := "unit"
+		if setup.live {
+			_mode = "live"
+		}
+		for _, _op := range []string{"list"} {
+			if _shouldSkip, _reason := isControlSkipped("entityOp", "zip_code." + _op, _mode); _shouldSkip {
+				if _reason == "" {
+					_reason = "skipped via sdk-test-control.json"
+				}
+				t.Skip(_reason)
+				return
+			}
+		}
+		// The basic flow consumes synthetic IDs from the fixture. In live mode
+		// without an *_ENTID env override, those IDs hit the live API and 4xx.
+		if setup.syntheticOnly {
+			t.Skip("live entity test uses synthetic IDs from fixture — set SEPOMEX_TEST_ZIP_CODE_ENTID JSON to run live")
+			return
+		}
+		client := setup.client
+
+		// Bootstrap entity data from existing test data (no create step in flow).
+		zipCodeRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.zip_code", setup.data)))
+		var zipCodeRef01Data map[string]any
+		if len(zipCodeRef01DataRaw) > 0 {
+			zipCodeRef01Data = core.ToMapAny(zipCodeRef01DataRaw[0][1])
+		}
+		// Discard guards against Go's unused-var check when the flow's steps
+		// happen not to consume the bootstrap data (e.g. list-only flows).
+		_ = zipCodeRef01Data
+
+		// LIST
+		zipCodeRef01Ent := client.ZipCode(nil)
+		zipCodeRef01Match := map[string]any{}
+
+		zipCodeRef01ListResult, err := zipCodeRef01Ent.List(zipCodeRef01Match, nil)
+		if err != nil {
+			t.Fatalf("list failed: %v", err)
+		}
+		_, zipCodeRef01ListOk := zipCodeRef01ListResult.([]any)
+		if !zipCodeRef01ListOk {
+			t.Fatalf("expected list result to be an array, got %T", zipCodeRef01ListResult)
+		}
+
+	})
+}
+
+func zip_codeBasicSetup(extra map[string]any) *entityTestSetup {
+	loadEnvLocal()
+
+	_, filename, _, _ := runtime.Caller(0)
+	dir := filepath.Dir(filename)
+
+	entityDataFile := filepath.Join(dir, "..", "..", ".sdk", "test", "entity", "zip_code", "ZipCodeTestData.json")
+
+	entityDataSource, err := os.ReadFile(entityDataFile)
+	if err != nil {
+		panic("failed to read zip_code test data: " + err.Error())
+	}
+
+	var entityData map[string]any
+	if err := json.Unmarshal(entityDataSource, &entityData); err != nil {
+		panic("failed to parse zip_code test data: " + err.Error())
+	}
+
+	options := map[string]any{}
+	options["entity"] = entityData["existing"]
+
+	client := sdk.TestSDK(options, extra)
+
+	// Generate idmap via transform, matching TS pattern.
+	idmap := vs.Transform(
+		[]any{"zip_code01", "zip_code02", "zip_code03"},
+		map[string]any{
+			"`$PACK`": []any{"", map[string]any{
+				"`$KEY`": "`$COPY`",
+				"`$VAL`": []any{"`$FORMAT`", "upper", "`$COPY`"},
+			}},
+		},
+	)
+
+	// Detect ENTID env override before envOverride consumes it. When live
+	// mode is on without a real override, the basic test runs against synthetic
+	// IDs from the fixture and 4xx's. Surface this so the test can skip.
+	entidEnvRaw := os.Getenv("SEPOMEX_TEST_ZIP_CODE_ENTID")
+	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
+
+	env := envOverride(map[string]any{
+		"SEPOMEX_TEST_ZIP_CODE_ENTID": idmap,
+		"SEPOMEX_TEST_LIVE":      "FALSE",
+		"SEPOMEX_TEST_EXPLAIN":   "FALSE",
+		"SEPOMEX_APIKEY":         "NONE",
+	})
+
+	idmapResolved := core.ToMapAny(env["SEPOMEX_TEST_ZIP_CODE_ENTID"])
+	if idmapResolved == nil {
+		idmapResolved = core.ToMapAny(idmap)
+	}
+
+	if env["SEPOMEX_TEST_LIVE"] == "TRUE" {
+		mergedOpts := vs.Merge([]any{
+			map[string]any{
+				"apikey": env["SEPOMEX_APIKEY"],
+			},
+			extra,
+		})
+		client = sdk.NewSepomexSDK(core.ToMapAny(mergedOpts))
+	}
+
+	live := env["SEPOMEX_TEST_LIVE"] == "TRUE"
+	return &entityTestSetup{
+		client:        client,
+		data:          entityData,
+		idmap:         idmapResolved,
+		env:           env,
+		explain:       env["SEPOMEX_TEST_EXPLAIN"] == "TRUE",
+		live:          live,
+		syntheticOnly: live && !idmapOverridden,
+		now:           time.Now().UnixMilli(),
+	}
+}
