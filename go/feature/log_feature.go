@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/sepomex-sdk/core"
+	"github.com/voxgig-sdk/sepomex-sdk/go/core"
 )
 
 type LogFeature struct {

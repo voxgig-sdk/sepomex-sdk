@@ -1,10 +1,10 @@
 package voxgigsepomexsdk
 
 import (
-	"github.com/voxgig-sdk/sepomex-sdk/core"
-	"github.com/voxgig-sdk/sepomex-sdk/entity"
-	"github.com/voxgig-sdk/sepomex-sdk/feature"
-	_ "github.com/voxgig-sdk/sepomex-sdk/utility"
+	"github.com/voxgig-sdk/sepomex-sdk/go/core"
+	"github.com/voxgig-sdk/sepomex-sdk/go/entity"
+	"github.com/voxgig-sdk/sepomex-sdk/go/feature"
+	_ "github.com/voxgig-sdk/sepomex-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

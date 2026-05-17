@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/sepomex-sdk/core"
+	"github.com/voxgig-sdk/sepomex-sdk/go/core"
 )
 
 type BaseFeature struct {

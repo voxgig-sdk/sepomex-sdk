@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/sepomex-sdk/core"
+	"github.com/voxgig-sdk/sepomex-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/sepomex-sdk/go/utility/struct"
 )
 
 type MunicipalityEntity struct {

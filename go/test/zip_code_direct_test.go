@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/sepomex-sdk"
-	"github.com/voxgig-sdk/sepomex-sdk/core"
+	sdk "github.com/voxgig-sdk/sepomex-sdk/go"
+	"github.com/voxgig-sdk/sepomex-sdk/go/core"
 )
 
 func TestZipCodeDirect(t *testing.T) {

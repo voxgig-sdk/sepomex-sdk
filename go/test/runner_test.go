@@ -12,9 +12,9 @@ import (
 	"sync"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/sepomex-sdk"
+	sdk "github.com/voxgig-sdk/sepomex-sdk/go"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/sepomex-sdk/go/utility/struct"
 )
 
 var envLocalOnce sync.Once

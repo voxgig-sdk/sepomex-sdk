@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/sepomex-sdk"
-	"github.com/voxgig-sdk/sepomex-sdk/core"
+	sdk "github.com/voxgig-sdk/sepomex-sdk/go"
+	"github.com/voxgig-sdk/sepomex-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/sepomex-sdk/go/utility/struct"
 )
 
 func TestMunicipalityEntity(t *testing.T) {

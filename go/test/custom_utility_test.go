@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/sepomex-sdk"
+	sdk "github.com/voxgig-sdk/sepomex-sdk/go"
 )
 
 func TestCustomUtility(t *testing.T) {
