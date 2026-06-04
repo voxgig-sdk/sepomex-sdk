@@ -31,9 +31,7 @@ loading a specific record.
 ```ruby
 require_relative "Sepomex_sdk"
 
-client = SepomexSDK.new({
-  "apikey" => ENV["SEPOMEX_APIKEY"],
-})
+client = SepomexSDK.new({})
 ```
 
 ### 2. List citys
@@ -135,7 +133,6 @@ Create a `.env.local` file at the project root:
 
 ```
 SEPOMEX_TEST_LIVE=TRUE
-SEPOMEX_APIKEY=<your-key>
 ```
 
 Then run:
@@ -158,7 +155,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |

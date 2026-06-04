@@ -21,7 +21,20 @@
           }
         ],
         "title": "Sepomex",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Look up Mexican postal (CP) codes, states, municipalities and cities from the SEPOMEX dataset",
+        "homepage": "https://sepomex.icalialabs.com/api/v1",
+        "docs_url": "https://github.com/IcaliaLabs/sepomex",
+        "license_short": "MIT License (code); SEPOMEX data is published by the Mexican postal service.",
+        "license_md": "- Project code is released under the MIT License by Icalia Labs.\n- The underlying postal-code data originates from SEPOMEX (Servicio Postal Mexicano); confirm any reuse against current SEPOMEX terms.\n- No attribution requirements are documented in the API itself, but crediting Icalia Labs and SEPOMEX is courteous.",
+        "about_md": "Sepomex is a free REST API maintained by [Icalia Labs](https://github.com/IcaliaLabs/sepomex) that exposes the Mexican postal-code dataset (SEPOMEX) — roughly 145,000 records covering every Mexican zip code, the city/colony it belongs to, the municipality and the state.\n\nWhat you get from the API:\n\n- Lookup zip codes by city, state, colony or the postal code itself (`/zip_codes`).\n- Browse the full list of Mexican states, each with a count of cities (`/states`).\n- Browse municipalities with their official key and parent state (`/municipalities`).\n- Browse cities linked to their parent state (`/cities`).\n\nResponses are paginated: the default page size is 15 records and the maximum is 200 per page, with `first`/`last`/`next`/`previous` links included in the response metadata.\n\nThe service is unauthenticated and the base URL is `https://sepomex.icalialabs.com/api/v1`. It is a community-run deployment built on Ruby on Rails + PostgreSQL, so endpoint availability can vary — consider caching results or self-hosting from the GitHub repository for production workloads.",
+        "entity_desc": {
+          "city": "A Mexican city (locality) tied to a parent state, exposed via `/cities` and `/cities/{id}`.",
+          "municipality": "A Mexican municipio with its official key and parent state, exposed via `/municipalities` and `/municipalities/{id}`.",
+          "state": "A Mexican state (entidad federativa), including a count of associated cities, exposed via `/states` and `/states/{id}`.",
+          "zip_code": "A Mexican postal code record (colonia / asentamiento) queryable by city, state, colony or code via `/zip_codes`."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -29,7 +42,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "city": {

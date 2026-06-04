@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from sepomex_sdk import SepomexSDK
 
-client = SepomexSDK({
-    "apikey": os.environ.get("SEPOMEX_APIKEY"),
-})
+client = SepomexSDK({})
 ```
 
 ### 2. List citys
@@ -130,7 +127,6 @@ Create a `.env.local` file at the project root:
 
 ```
 SEPOMEX_TEST_LIVE=TRUE
-SEPOMEX_APIKEY=<your-key>
 ```
 
 Then run:
@@ -154,7 +150,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

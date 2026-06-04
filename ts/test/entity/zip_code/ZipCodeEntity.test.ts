@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'SEPOMEX_TEST_ZIP_CODE_ENTID': idmap,
     'SEPOMEX_TEST_LIVE': 'FALSE',
     'SEPOMEX_TEST_EXPLAIN': 'FALSE',
-    'SEPOMEX_APIKEY': 'NONE',
   })
 
   idmap = env['SEPOMEX_TEST_ZIP_CODE_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new SepomexSDK(merge([
       {
-        apikey: env.SEPOMEX_APIKEY,
       },
       extra
     ]))

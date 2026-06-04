@@ -123,14 +123,12 @@ function city_direct_setup($mockres)
     $env = Runner::env_override([
         "SEPOMEX_TEST_CITY_ENTID" => [],
         "SEPOMEX_TEST_LIVE" => "FALSE",
-        "SEPOMEX_APIKEY" => "NONE",
     ]);
 
     $live = $env["SEPOMEX_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["SEPOMEX_APIKEY"],
         ];
         $client = new SepomexSDK($merged_opts);
         return [

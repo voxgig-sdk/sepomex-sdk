@@ -93,14 +93,12 @@ func zip_codeDirectSetup(mockres any) *zip_codeDirectSetupResult {
 	env := envOverride(map[string]any{
 		"SEPOMEX_TEST_ZIP_CODE_ENTID": map[string]any{},
 		"SEPOMEX_TEST_LIVE":    "FALSE",
-		"SEPOMEX_APIKEY":       "NONE",
 	})
 
 	live := env["SEPOMEX_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["SEPOMEX_APIKEY"],
 		}
 		client := sdk.NewSepomexSDK(mergedOpts)
 
