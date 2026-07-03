@@ -10,7 +10,7 @@ The PHP SDK for the Sepomex API — an entity-oriented client using PHP conventi
 
 ## Install
 ```bash
-composer require voxgig/sepomex-sdk
+composer require voxgig-sdk/sepomex
 ```
 
 

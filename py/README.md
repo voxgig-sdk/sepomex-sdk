@@ -10,7 +10,7 @@ The Python SDK for the Sepomex API — an entity-oriented client following Pytho
 
 ## Install
 ```bash
-pip install sepomex-sdk
+pip install voxgig-sdk-sepomex
 ```
 
 Or install from source:

@@ -10,13 +10,13 @@ The Ruby SDK for the Sepomex API — an entity-oriented client using idiomatic R
 
 ## Install
 ```bash
-gem install sepomex-sdk
+gem install voxgig-sdk-sepomex
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "sepomex-sdk"
+gem "voxgig-sdk-sepomex"
 ```
 
 Then run:

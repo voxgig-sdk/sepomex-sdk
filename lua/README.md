@@ -10,7 +10,7 @@ The Lua SDK for the Sepomex API — an entity-oriented client using Lua conventi
 
 ## Install
 ```bash
-luarocks install sepomex-sdk
+luarocks install voxgig-sdk-sepomex
 ```
 
 If the module is not yet published, add the source directory to

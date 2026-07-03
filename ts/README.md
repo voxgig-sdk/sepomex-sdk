@@ -10,7 +10,7 @@ The TypeScript SDK for the Sepomex API — a type-safe, entity-oriented client w
 
 ## Install
 ```bash
-npm install sepomex
+npm install @voxgig-sdk/sepomex
 ```
 ## Tutorial: your first API call
 
