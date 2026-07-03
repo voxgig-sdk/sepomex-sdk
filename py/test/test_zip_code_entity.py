@@ -92,6 +92,7 @@ def _zip_code_basic_setup(extra):
         "SEPOMEX_TEST_ZIP_CODE_ENTID": idmap,
         "SEPOMEX_TEST_LIVE": "FALSE",
         "SEPOMEX_TEST_EXPLAIN": "FALSE",
+        "SEPOMEX_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ def _zip_code_basic_setup(extra):
     if env.get("SEPOMEX_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("SEPOMEX_APIKEY"),
             },
             extra or {},
         ])

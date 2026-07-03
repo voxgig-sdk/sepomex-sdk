@@ -61,12 +61,14 @@ def _zip_code_direct_setup(mockres):
     env = runner.env_override({
         "SEPOMEX_TEST_ZIP_CODE_ENTID": {},
         "SEPOMEX_TEST_LIVE": "FALSE",
+        "SEPOMEX_APIKEY": "NONE",
     })
 
     live = env.get("SEPOMEX_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("SEPOMEX_APIKEY"),
         }
         client = SepomexSDK(merged_opts)
         return {

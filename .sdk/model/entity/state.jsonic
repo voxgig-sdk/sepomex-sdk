@@ -149,7 +149,7 @@ main: kit: entity: state: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.state`"
           }
         }
       ]

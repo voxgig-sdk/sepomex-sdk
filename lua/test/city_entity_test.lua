@@ -102,6 +102,7 @@ function city_basic_setup(extra)
     ["SEPOMEX_TEST_CITY_ENTID"] = idmap,
     ["SEPOMEX_TEST_LIVE"] = "FALSE",
     ["SEPOMEX_TEST_EXPLAIN"] = "FALSE",
+    ["SEPOMEX_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -113,6 +114,7 @@ function city_basic_setup(extra)
   if env["SEPOMEX_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["SEPOMEX_APIKEY"],
       },
       extra or {},
     })
