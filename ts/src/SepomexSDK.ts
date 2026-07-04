@@ -5,6 +5,8 @@ import { MunicipalityEntity } from './entity/MunicipalityEntity'
 import { StateEntity } from './entity/StateEntity'
 import { ZipCodeEntity } from './entity/ZipCodeEntity'
 
+export type * from './SepomexTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -205,24 +207,56 @@ class SepomexSDK {
 
 
 
+  _city?: CityEntity
+
+  // Idiomatic facade: `client.city.list()` / `client.city.load({ id })`.
+  get city(): CityEntity {
+    return (this._city ??= new CityEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.city` instead. */
   City(data?: any) {
     const self = this
     return new CityEntity(self,data)
   }
 
 
+  _municipality?: MunicipalityEntity
+
+  // Idiomatic facade: `client.municipality.list()` / `client.municipality.load({ id })`.
+  get municipality(): MunicipalityEntity {
+    return (this._municipality ??= new MunicipalityEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.municipality` instead. */
   Municipality(data?: any) {
     const self = this
     return new MunicipalityEntity(self,data)
   }
 
 
+  _state?: StateEntity
+
+  // Idiomatic facade: `client.state.list()` / `client.state.load({ id })`.
+  get state(): StateEntity {
+    return (this._state ??= new StateEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.state` instead. */
   State(data?: any) {
     const self = this
     return new StateEntity(self,data)
   }
 
 
+  _zip_code?: ZipCodeEntity
+
+  // Idiomatic facade: `client.zip_code.list()` / `client.zip_code.load({ id })`.
+  get zip_code(): ZipCodeEntity {
+    return (this._zip_code ??= new ZipCodeEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.zip_code` instead. */
   ZipCode(data?: any) {
     const self = this
     return new ZipCodeEntity(self,data)

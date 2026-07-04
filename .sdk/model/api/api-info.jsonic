@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         name: "Icalia Labs"
         url: "https://github.com/IcaliaLabs/sepomex"

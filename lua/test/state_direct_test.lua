@@ -117,14 +117,12 @@ function state_direct_setup(mockres)
   local env = runner.env_override({
     ["SEPOMEX_TEST_STATE_ENTID"] = {},
     ["SEPOMEX_TEST_LIVE"] = "FALSE",
-    ["SEPOMEX_APIKEY"] = "NONE",
   })
 
   local live = env["SEPOMEX_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["SEPOMEX_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

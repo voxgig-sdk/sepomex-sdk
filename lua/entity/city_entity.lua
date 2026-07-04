@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch CityLoadMatch
+---@param ctrl? table
+---@return City
+---@return string? err
 function CityEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch CityListMatch
+---@param ctrl? table
+---@return City[]
+---@return string? err
 function CityEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

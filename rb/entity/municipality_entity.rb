@@ -45,6 +45,7 @@ class MunicipalityEntity
     end
   end
 
+  # @return [Municipality, Hash] the current Municipality data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class MunicipalityEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Municipality fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Municipality.
+  #
+  # @param reqmatch [MunicipalityLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Municipality, Hash] the loaded Municipality; raises SepomexError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class MunicipalityEntity
 
 
   
+  # List Municipality items matching the given filter.
+  #
+  # @param reqmatch [MunicipalityListMatch, Hash, nil] match filter (any subset of Municipality fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Municipality>, Array] the matching Municipality items; raises SepomexError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

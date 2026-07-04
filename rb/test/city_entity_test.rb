@@ -43,16 +43,14 @@ class CityEntityTest < Minitest::Test
     city_ref01_ent = client.City(nil)
     city_ref01_match = {}
 
-    city_ref01_list_result, err = city_ref01_ent.list(city_ref01_match, nil)
-    assert_nil err
+    city_ref01_list_result = city_ref01_ent.list(city_ref01_match, nil)
     assert city_ref01_list_result.is_a?(Array)
 
     # LOAD
     city_ref01_match_dt0 = {
       "id" => city_ref01_data["id"],
     }
-    city_ref01_data_dt0_loaded, err = city_ref01_ent.load(city_ref01_match_dt0, nil)
-    assert_nil err
+    city_ref01_data_dt0_loaded = city_ref01_ent.load(city_ref01_match_dt0, nil)
     city_ref01_data_dt0_load_result = Helpers.to_map(city_ref01_data_dt0_loaded)
     assert !city_ref01_data_dt0_load_result.nil?
     assert_equal city_ref01_data_dt0_load_result["id"], city_ref01_data["id"]
@@ -93,7 +91,6 @@ def city_basic_setup(extra)
     "SEPOMEX_TEST_CITY_ENTID" => idmap,
     "SEPOMEX_TEST_LIVE" => "FALSE",
     "SEPOMEX_TEST_EXPLAIN" => "FALSE",
-    "SEPOMEX_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def city_basic_setup(extra)
   if env["SEPOMEX_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SEPOMEX_APIKEY"],
       },
       extra || {},
     ])

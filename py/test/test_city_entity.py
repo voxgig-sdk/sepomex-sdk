@@ -50,16 +50,14 @@ class TestCityEntity:
         city_ref01_ent = client.City(None)
         city_ref01_match = {}
 
-        city_ref01_list_result, err = city_ref01_ent.list(city_ref01_match, None)
-        assert err is None
+        city_ref01_list_result = city_ref01_ent.list(city_ref01_match, None)
         assert isinstance(city_ref01_list_result, list)
 
         # LOAD
         city_ref01_match_dt0 = {
             "id": city_ref01_data["id"],
         }
-        city_ref01_data_dt0_loaded, err = city_ref01_ent.load(city_ref01_match_dt0, None)
-        assert err is None
+        city_ref01_data_dt0_loaded = city_ref01_ent.load(city_ref01_match_dt0, None)
         city_ref01_data_dt0_load_result = helpers.to_map(city_ref01_data_dt0_loaded)
         assert city_ref01_data_dt0_load_result is not None
         assert city_ref01_data_dt0_load_result["id"] == city_ref01_data["id"]
@@ -102,7 +100,6 @@ def _city_basic_setup(extra):
         "SEPOMEX_TEST_CITY_ENTID": idmap,
         "SEPOMEX_TEST_LIVE": "FALSE",
         "SEPOMEX_TEST_EXPLAIN": "FALSE",
-        "SEPOMEX_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _city_basic_setup(extra):
     if env.get("SEPOMEX_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SEPOMEX_APIKEY"),
             },
             extra or {},
         ])

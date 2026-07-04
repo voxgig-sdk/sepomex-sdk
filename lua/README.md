@@ -9,12 +9,9 @@ The Lua SDK for the Sepomex API — an entity-oriented client using Lua conventi
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-sepomex
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/sepomex-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("sepomex_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("SEPOMEX_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List citys
 
 ```lua
-local result, err = client:City():list()
+local result, err = client:city():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -53,7 +48,7 @@ end
 ### 3. Load a city
 
 ```lua
-local result, err = client:City():load({ id = "example_id" })
+local result, err = client:city():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -101,7 +96,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Sepomex():load({ id = "test01" })
+local result, err = client:city():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -135,7 +130,6 @@ Create a `.env.local` file at the project root:
 
 ```
 SEPOMEX_TEST_LIVE=TRUE
-SEPOMEX_APIKEY=<your-key>
 ```
 
 Then run:
@@ -158,7 +152,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -297,7 +290,7 @@ API path: `/zip_codes`
 
 ### City
 
-Create an instance: `const city = client.City()`
+Create an instance: `const city = client.city`
 
 #### Operations
 
@@ -318,19 +311,19 @@ Create an instance: `const city = client.City()`
 #### Example: Load
 
 ```ts
-const city = await client.City().load({ id: 'city_id' })
+const city = await client.city.load({ id: 'city_id' })
 ```
 
 #### Example: List
 
 ```ts
-const citys = await client.City().list()
+const citys = await client.city.list()
 ```
 
 
 ### Municipality
 
-Create an instance: `const municipality = client.Municipality()`
+Create an instance: `const municipality = client.municipality`
 
 #### Operations
 
@@ -353,19 +346,19 @@ Create an instance: `const municipality = client.Municipality()`
 #### Example: Load
 
 ```ts
-const municipality = await client.Municipality().load({ id: 'municipality_id' })
+const municipality = await client.municipality.load({ id: 'municipality_id' })
 ```
 
 #### Example: List
 
 ```ts
-const municipalitys = await client.Municipality().list()
+const municipalitys = await client.municipality.list()
 ```
 
 
 ### State
 
-Create an instance: `const state = client.State()`
+Create an instance: `const state = client.state`
 
 #### Operations
 
@@ -389,19 +382,19 @@ Create an instance: `const state = client.State()`
 #### Example: Load
 
 ```ts
-const state = await client.State().load({ id: 'state_id' })
+const state = await client.state.load({ id: 'state_id' })
 ```
 
 #### Example: List
 
 ```ts
-const states = await client.State().list()
+const states = await client.state.list()
 ```
 
 
 ### ZipCode
 
-Create an instance: `const zip_code = client.ZipCode()`
+Create an instance: `const zip_code = client.zip_code`
 
 #### Operations
 
@@ -433,7 +426,7 @@ Create an instance: `const zip_code = client.ZipCode()`
 #### Example: List
 
 ```ts
-const zip_codes = await client.ZipCode().list()
+const zip_codes = await client.zip_code.list()
 ```
 
 
@@ -508,11 +501,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local city = client:city()
+city:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- city:data_get() now returns the loaded city data
+-- city:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

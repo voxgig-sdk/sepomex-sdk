@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -96,7 +95,7 @@ same parameters as `direct()`.
 ## CityEntity
 
 ```lua
-local city = client:City(nil)
+local city = client:city(nil)
 ```
 
 ### Fields
@@ -115,7 +114,7 @@ local city = client:City(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:City():list()
+local results, err = client:city():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -123,7 +122,7 @@ local results, err = client:City():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:City():load({ id = "city_id" })
+local result, err = client:city():load({ id = "city_id" })
 ```
 
 ### Common Methods
@@ -159,7 +158,7 @@ Return the entity name.
 ## MunicipalityEntity
 
 ```lua
-local municipality = client:Municipality(nil)
+local municipality = client:municipality(nil)
 ```
 
 ### Fields
@@ -180,7 +179,7 @@ local municipality = client:Municipality(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Municipality():list()
+local results, err = client:municipality():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -188,7 +187,7 @@ local results, err = client:Municipality():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Municipality():load({ id = "municipality_id" })
+local result, err = client:municipality():load({ id = "municipality_id" })
 ```
 
 ### Common Methods
@@ -224,7 +223,7 @@ Return the entity name.
 ## StateEntity
 
 ```lua
-local state = client:State(nil)
+local state = client:state(nil)
 ```
 
 ### Fields
@@ -246,7 +245,7 @@ local state = client:State(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:State():list()
+local results, err = client:state():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -254,7 +253,7 @@ local results, err = client:State():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:State():load({ id = "state_id" })
+local result, err = client:state():load({ id = "state_id" })
 ```
 
 ### Common Methods
@@ -290,7 +289,7 @@ Return the entity name.
 ## ZipCodeEntity
 
 ```lua
-local zip_code = client:ZipCode(nil)
+local zip_code = client:zip_code(nil)
 ```
 
 ### Fields
@@ -321,7 +320,7 @@ local zip_code = client:ZipCode(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:ZipCode():list()
+local results, err = client:zip_code():list()
 ```
 
 ### Common Methods

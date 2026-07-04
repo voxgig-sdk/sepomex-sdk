@@ -194,14 +194,12 @@ func stateDirectSetup(mockres any) *stateDirectSetupResult {
 	env := envOverride(map[string]any{
 		"SEPOMEX_TEST_STATE_ENTID": map[string]any{},
 		"SEPOMEX_TEST_LIVE":    "FALSE",
-		"SEPOMEX_APIKEY":       "NONE",
 	})
 
 	live := env["SEPOMEX_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["SEPOMEX_APIKEY"],
 		}
 		client := sdk.NewSepomexSDK(mergedOpts)
 

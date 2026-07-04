@@ -50,16 +50,14 @@ class StateEntityTest extends TestCase
         $state_ref01_ent = $client->State(null);
         $state_ref01_match = [];
 
-        [$state_ref01_list_result, $err] = $state_ref01_ent->list($state_ref01_match, null);
-        $this->assertNull($err);
+        $state_ref01_list_result = $state_ref01_ent->list($state_ref01_match, null);
         $this->assertIsArray($state_ref01_list_result);
 
         // LOAD
         $state_ref01_match_dt0 = [
             "id" => $state_ref01_data["id"],
         ];
-        [$state_ref01_data_dt0_loaded, $err] = $state_ref01_ent->load($state_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $state_ref01_data_dt0_loaded = $state_ref01_ent->load($state_ref01_match_dt0, null);
         $state_ref01_data_dt0_load_result = Helpers::to_map($state_ref01_data_dt0_loaded);
         $this->assertNotNull($state_ref01_data_dt0_load_result);
         $this->assertEquals($state_ref01_data_dt0_load_result["id"], $state_ref01_data["id"]);
@@ -96,7 +94,6 @@ function state_basic_setup($extra)
         "SEPOMEX_TEST_STATE_ENTID" => $idmap,
         "SEPOMEX_TEST_LIVE" => "FALSE",
         "SEPOMEX_TEST_EXPLAIN" => "FALSE",
-        "SEPOMEX_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function state_basic_setup($extra)
     if ($env["SEPOMEX_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SEPOMEX_APIKEY"],
             ],
             $extra ?? [],
         ]);

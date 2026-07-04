@@ -85,6 +85,27 @@ func (e *CityEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an City; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *CityEntity) DataTyped(data ...City) City {
+	if len(data) > 0 {
+		return typedFrom[City](e.Data(asMap(data[0])))
+	}
+	return typedFrom[City](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through City (all fields
+// optional at the wire level).
+func (e *CityEntity) MatchTyped(match ...City) City {
+	if len(match) > 0 {
+		return typedFrom[City](e.Match(asMap(match[0])))
+	}
+	return typedFrom[City](e.Match())
+}
+
 
 func (e *CityEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *CityEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, er
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// CityLoadMatch and returns an City. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *CityEntity) LoadTyped(reqmatch CityLoadMatch, ctrl map[string]any) (City, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return City{}, err
+	}
+	return typedFrom[City](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *CityEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, er
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// CityListMatch and returns []City. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *CityEntity) ListTyped(reqmatch CityListMatch, ctrl map[string]any) ([]City, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[City](res), nil
 }
 
 

@@ -245,21 +245,33 @@ func (sdk *SepomexSDK) Direct(fetchargs map[string]any) (map[string]any, error) 
 }
 
 
+// City returns a City entity bound to this client.
+// Idiomatic usage: client.City(nil).List(nil, nil) or
+// client.City(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SepomexSDK) City(data map[string]any) SepomexEntity {
 	return NewCityEntityFunc(sdk, data)
 }
 
 
+// Municipality returns a Municipality entity bound to this client.
+// Idiomatic usage: client.Municipality(nil).List(nil, nil) or
+// client.Municipality(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SepomexSDK) Municipality(data map[string]any) SepomexEntity {
 	return NewMunicipalityEntityFunc(sdk, data)
 }
 
 
+// State returns a State entity bound to this client.
+// Idiomatic usage: client.State(nil).List(nil, nil) or
+// client.State(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SepomexSDK) State(data map[string]any) SepomexEntity {
 	return NewStateEntityFunc(sdk, data)
 }
 
 
+// ZipCode returns a ZipCode entity bound to this client.
+// Idiomatic usage: client.ZipCode(nil).List(nil, nil) or
+// client.ZipCode(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SepomexSDK) ZipCode(data map[string]any) SepomexEntity {
 	return NewZipCodeEntityFunc(sdk, data)
 }

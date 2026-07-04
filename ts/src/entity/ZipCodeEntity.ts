@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  ZipCode,
+  ZipCodeListMatch,
+} from '../SepomexTypes'
 
 // TODO: needs Entity superclass
-class ZipCodeEntity extends SepomexEntityBase {
+class ZipCodeEntity extends SepomexEntityBase<ZipCode> {
 
   constructor(client: SepomexSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class ZipCodeEntity extends SepomexEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: ZipCodeListMatch, ctrl?: Control): Promise<ZipCode[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class ZipCodeEntity extends SepomexEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<ZipCode[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

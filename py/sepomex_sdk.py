@@ -144,16 +144,23 @@ class SepomexSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class SepomexSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,30 +212,74 @@ class SepomexSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def city(self):
+        """Idiomatic facade: client.city.list() / client.city.load({"id": ...})."""
+        from entity.city_entity import CityEntity
+        cached = getattr(self, "_city", None)
+        if cached is None:
+            cached = CityEntity(self, None)
+            self._city = cached
+        return cached
 
     def City(self, data=None):
+        # Deprecated: use client.city instead.
         from entity.city_entity import CityEntity
         return CityEntity(self, data)
 
 
+    @property
+    def municipality(self):
+        """Idiomatic facade: client.municipality.list() / client.municipality.load({"id": ...})."""
+        from entity.municipality_entity import MunicipalityEntity
+        cached = getattr(self, "_municipality", None)
+        if cached is None:
+            cached = MunicipalityEntity(self, None)
+            self._municipality = cached
+        return cached
+
     def Municipality(self, data=None):
+        # Deprecated: use client.municipality instead.
         from entity.municipality_entity import MunicipalityEntity
         return MunicipalityEntity(self, data)
 
 
+    @property
+    def state(self):
+        """Idiomatic facade: client.state.list() / client.state.load({"id": ...})."""
+        from entity.state_entity import StateEntity
+        cached = getattr(self, "_state", None)
+        if cached is None:
+            cached = StateEntity(self, None)
+            self._state = cached
+        return cached
+
     def State(self, data=None):
+        # Deprecated: use client.state instead.
         from entity.state_entity import StateEntity
         return StateEntity(self, data)
 
 
+    @property
+    def zip_code(self):
+        """Idiomatic facade: client.zip_code.list() / client.zip_code.load({"id": ...})."""
+        from entity.zip_code_entity import ZipCodeEntity
+        cached = getattr(self, "_zip_code", None)
+        if cached is None:
+            cached = ZipCodeEntity(self, None)
+            self._zip_code = cached
+        return cached
+
     def ZipCode(self, data=None):
+        # Deprecated: use client.zip_code instead.
         from entity.zip_code_entity import ZipCodeEntity
         return ZipCodeEntity(self, data)
 

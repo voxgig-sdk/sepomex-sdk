@@ -43,8 +43,7 @@ class ZipCodeEntityTest < Minitest::Test
     zip_code_ref01_ent = client.ZipCode(nil)
     zip_code_ref01_match = {}
 
-    zip_code_ref01_list_result, err = zip_code_ref01_ent.list(zip_code_ref01_match, nil)
-    assert_nil err
+    zip_code_ref01_list_result = zip_code_ref01_ent.list(zip_code_ref01_match, nil)
     assert zip_code_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def zip_code_basic_setup(extra)
     "SEPOMEX_TEST_ZIP_CODE_ENTID" => idmap,
     "SEPOMEX_TEST_LIVE" => "FALSE",
     "SEPOMEX_TEST_EXPLAIN" => "FALSE",
-    "SEPOMEX_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def zip_code_basic_setup(extra)
   if env["SEPOMEX_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SEPOMEX_APIKEY"],
       },
       extra || {},
     ])

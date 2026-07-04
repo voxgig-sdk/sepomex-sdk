@@ -9,9 +9,10 @@ The PHP SDK for the Sepomex API — an entity-oriented client using PHP conventi
 
 
 ## Install
-```bash
-composer require voxgig-sdk/sepomex
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/sepomex-sdk/releases](https://github.com/voxgig-sdk/sepomex-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,31 +26,34 @@ loading a specific record.
 <?php
 require_once 'sepomex_sdk.php';
 
-$client = new SepomexSDK([
-    "apikey" => getenv("SEPOMEX_APIKEY"),
-]);
+$client = new SepomexSDK();
 ```
 
 ### 2. List citys
 
 ```php
-[$result, $err] = $client->City()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->city()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
 ### 3. Load a city
 
 ```php
-[$result, $err] = $client->City()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->city()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -60,28 +64,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -95,7 +102,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = SepomexSDK::test();
 
-[$result, $err] = $client->Sepomex()->load(["id" => "test01"]);
+$result = $client->city()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -130,7 +137,6 @@ Create a `.env.local` file at the project root:
 
 ```
 SEPOMEX_TEST_LIVE=TRUE
-SEPOMEX_APIKEY=<your-key>
 ```
 
 Then run:
@@ -153,7 +159,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -202,8 +207,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -292,7 +301,7 @@ API path: `/zip_codes`
 
 ### City
 
-Create an instance: `const city = client.City()`
+Create an instance: `const city = client.city`
 
 #### Operations
 
@@ -313,19 +322,19 @@ Create an instance: `const city = client.City()`
 #### Example: Load
 
 ```ts
-const city = await client.City().load({ id: 'city_id' })
+const city = await client.city.load({ id: 'city_id' })
 ```
 
 #### Example: List
 
 ```ts
-const citys = await client.City().list()
+const citys = await client.city.list()
 ```
 
 
 ### Municipality
 
-Create an instance: `const municipality = client.Municipality()`
+Create an instance: `const municipality = client.municipality`
 
 #### Operations
 
@@ -348,19 +357,19 @@ Create an instance: `const municipality = client.Municipality()`
 #### Example: Load
 
 ```ts
-const municipality = await client.Municipality().load({ id: 'municipality_id' })
+const municipality = await client.municipality.load({ id: 'municipality_id' })
 ```
 
 #### Example: List
 
 ```ts
-const municipalitys = await client.Municipality().list()
+const municipalitys = await client.municipality.list()
 ```
 
 
 ### State
 
-Create an instance: `const state = client.State()`
+Create an instance: `const state = client.state`
 
 #### Operations
 
@@ -384,19 +393,19 @@ Create an instance: `const state = client.State()`
 #### Example: Load
 
 ```ts
-const state = await client.State().load({ id: 'state_id' })
+const state = await client.state.load({ id: 'state_id' })
 ```
 
 #### Example: List
 
 ```ts
-const states = await client.State().list()
+const states = await client.state.list()
 ```
 
 
 ### ZipCode
 
-Create an instance: `const zip_code = client.ZipCode()`
+Create an instance: `const zip_code = client.zip_code`
 
 #### Operations
 
@@ -428,7 +437,7 @@ Create an instance: `const zip_code = client.ZipCode()`
 #### Example: List
 
 ```ts
-const zip_codes = await client.ZipCode().list()
+const zip_codes = await client.zip_code.list()
 ```
 
 
@@ -503,11 +512,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$city = $client->city();
+$city->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $city->dataGet() now returns the loaded city data
+// $city->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

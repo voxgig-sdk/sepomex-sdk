@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch ZipCodeListMatch
+---@param ctrl? table
+---@return ZipCode[]
+---@return string? err
 function ZipCodeEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

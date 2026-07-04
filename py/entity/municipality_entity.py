@@ -1,7 +1,14 @@
 # Sepomex SDK Municipality entity
 
+from __future__ import annotations
+
 from utility.voxgig_struct import voxgig_struct as vs
 from core import helpers
+from sepomex_types import (
+    Municipality,
+    MunicipalityLoadMatch,
+    MunicipalityListMatch,
+)
 
 
 class MunicipalityEntity:
@@ -44,7 +51,7 @@ class MunicipalityEntity:
             self._data = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetData")
 
-    def data_get(self):
+    def data_get(self) -> Municipality:
         self._utility.feature_hook(self._entctx, "GetData")
         return vs.clone(self._data)
 
@@ -53,12 +60,12 @@ class MunicipalityEntity:
             self._match = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetMatch")
 
-    def match_get(self):
+    def match_get(self) -> Municipality:
         self._utility.feature_hook(self._entctx, "GetMatch")
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch, ctrl=None):
+    def load(self, reqmatch: MunicipalityLoadMatch, ctrl=None) -> Municipality:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "load",
@@ -80,7 +87,7 @@ class MunicipalityEntity:
 
 
     
-    def list(self, reqmatch, ctrl=None):
+    def list(self, reqmatch: MunicipalityListMatch, ctrl=None) -> list[Municipality]:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "list",

@@ -50,16 +50,14 @@ class TestMunicipalityEntity:
         municipality_ref01_ent = client.Municipality(None)
         municipality_ref01_match = {}
 
-        municipality_ref01_list_result, err = municipality_ref01_ent.list(municipality_ref01_match, None)
-        assert err is None
+        municipality_ref01_list_result = municipality_ref01_ent.list(municipality_ref01_match, None)
         assert isinstance(municipality_ref01_list_result, list)
 
         # LOAD
         municipality_ref01_match_dt0 = {
             "id": municipality_ref01_data["id"],
         }
-        municipality_ref01_data_dt0_loaded, err = municipality_ref01_ent.load(municipality_ref01_match_dt0, None)
-        assert err is None
+        municipality_ref01_data_dt0_loaded = municipality_ref01_ent.load(municipality_ref01_match_dt0, None)
         municipality_ref01_data_dt0_load_result = helpers.to_map(municipality_ref01_data_dt0_loaded)
         assert municipality_ref01_data_dt0_load_result is not None
         assert municipality_ref01_data_dt0_load_result["id"] == municipality_ref01_data["id"]
@@ -102,7 +100,6 @@ def _municipality_basic_setup(extra):
         "SEPOMEX_TEST_MUNICIPALITY_ENTID": idmap,
         "SEPOMEX_TEST_LIVE": "FALSE",
         "SEPOMEX_TEST_EXPLAIN": "FALSE",
-        "SEPOMEX_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _municipality_basic_setup(extra):
     if env.get("SEPOMEX_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SEPOMEX_APIKEY"),
             },
             extra or {},
         ])

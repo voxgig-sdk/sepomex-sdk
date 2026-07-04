@@ -45,6 +45,7 @@ class ZipCodeEntity
     end
   end
 
+  # @return [ZipCode, Hash] the current ZipCode data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class ZipCodeEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of ZipCode fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class ZipCodeEntity
   
 
   
+  # List ZipCode items matching the given filter.
+  #
+  # @param reqmatch [ZipCodeListMatch, Hash, nil] match filter (any subset of ZipCode fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<ZipCode>, Array] the matching ZipCode items; raises SepomexError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

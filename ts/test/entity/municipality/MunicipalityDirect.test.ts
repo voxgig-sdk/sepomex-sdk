@@ -136,14 +136,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'SEPOMEX_TEST_MUNICIPALITY_ENTID': {},
     'SEPOMEX_TEST_LIVE': 'FALSE',
-    'SEPOMEX_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.SEPOMEX_TEST_LIVE
 
   if (live) {
     const client = new SepomexSDK({
-      apikey: env.SEPOMEX_APIKEY,
     })
 
     let idmap: any = env['SEPOMEX_TEST_MUNICIPALITY_ENTID']
