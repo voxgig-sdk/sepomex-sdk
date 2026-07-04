@@ -97,7 +97,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## CityEntity
 
 ```php
-$city = $client->city();
+$city = $client->City();
 ```
 
 ### Fields
@@ -116,7 +116,7 @@ $city = $client->city();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->city()->list([]);
+$results = $client->City()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -124,7 +124,7 @@ $results = $client->city()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->city()->load(["id" => "city_id"]);
+$result = $client->City()->load(["id" => "city_id"]);
 ```
 
 ### Common Methods
@@ -160,7 +160,7 @@ Return the entity name.
 ## MunicipalityEntity
 
 ```php
-$municipality = $client->municipality();
+$municipality = $client->Municipality();
 ```
 
 ### Fields
@@ -181,7 +181,7 @@ $municipality = $client->municipality();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->municipality()->list([]);
+$results = $client->Municipality()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -189,7 +189,7 @@ $results = $client->municipality()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->municipality()->load(["id" => "municipality_id"]);
+$result = $client->Municipality()->load(["id" => "municipality_id"]);
 ```
 
 ### Common Methods
@@ -225,7 +225,7 @@ Return the entity name.
 ## StateEntity
 
 ```php
-$state = $client->state();
+$state = $client->State();
 ```
 
 ### Fields
@@ -247,7 +247,7 @@ $state = $client->state();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->state()->list([]);
+$results = $client->State()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -255,7 +255,7 @@ $results = $client->state()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->state()->load(["id" => "state_id"]);
+$result = $client->State()->load(["id" => "state_id"]);
 ```
 
 ### Common Methods
@@ -291,7 +291,7 @@ Return the entity name.
 ## ZipCodeEntity
 
 ```php
-$zip_code = $client->zip_code();
+$zip_code = $client->ZipCode();
 ```
 
 ### Fields
@@ -322,7 +322,7 @@ $zip_code = $client->zip_code();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->zip_code()->list([]);
+$results = $client->ZipCode()->list([]);
 ```
 
 ### Common Methods

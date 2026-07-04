@@ -31,24 +31,28 @@ from sepomex_sdk import SepomexSDK
 client = SepomexSDK()
 ```
 
-### 2. List citys
+### 2. List city records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.city.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    citys = client.City().list({})
+    for city in citys:
+        print(city)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load a city
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.city.load({"id": "example_id"})
-    print(result)
+    city = client.City().load({"id": "example_id"})
+    print(city)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -96,8 +100,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = SepomexSDK.test()
 
-result = client.city.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+city = client.City().load({"id": "test01"})
+# city contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -292,7 +297,7 @@ API path: `/zip_codes`
 
 ### City
 
-Create an instance: `const city = client.city`
+Create an instance: `city = client.City()`
 
 #### Operations
 
@@ -312,20 +317,20 @@ Create an instance: `const city = client.city`
 
 #### Example: Load
 
-```ts
-const city = await client.city.load({ id: 'city_id' })
+```python
+city = client.City().load({"id": "city_id"})
 ```
 
 #### Example: List
 
-```ts
-const citys = await client.city.list()
+```python
+citys = client.City().list({})
 ```
 
 
 ### Municipality
 
-Create an instance: `const municipality = client.municipality`
+Create an instance: `municipality = client.Municipality()`
 
 #### Operations
 
@@ -347,20 +352,20 @@ Create an instance: `const municipality = client.municipality`
 
 #### Example: Load
 
-```ts
-const municipality = await client.municipality.load({ id: 'municipality_id' })
+```python
+municipality = client.Municipality().load({"id": "municipality_id"})
 ```
 
 #### Example: List
 
-```ts
-const municipalitys = await client.municipality.list()
+```python
+municipalitys = client.Municipality().list({})
 ```
 
 
 ### State
 
-Create an instance: `const state = client.state`
+Create an instance: `state = client.State()`
 
 #### Operations
 
@@ -383,20 +388,20 @@ Create an instance: `const state = client.state`
 
 #### Example: Load
 
-```ts
-const state = await client.state.load({ id: 'state_id' })
+```python
+state = client.State().load({"id": "state_id"})
 ```
 
 #### Example: List
 
-```ts
-const states = await client.state.list()
+```python
+states = client.State().list({})
 ```
 
 
 ### ZipCode
 
-Create an instance: `const zip_code = client.zip_code`
+Create an instance: `zip_code = client.ZipCode()`
 
 #### Operations
 
@@ -427,8 +432,8 @@ Create an instance: `const zip_code = client.zip_code`
 
 #### Example: List
 
-```ts
-const zip_codes = await client.zip_code.list()
+```python
+zip_codes = client.ZipCode().list({})
 ```
 
 
@@ -502,7 +507,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-city = client.city
+city = client.City()
 city.load({"id": "example_id"})
 
 # city.data_get() now returns the loaded city data

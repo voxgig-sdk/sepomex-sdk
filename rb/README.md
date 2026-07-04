@@ -28,16 +28,14 @@ require_relative "Sepomex_sdk"
 client = SepomexSDK.new
 ```
 
-### 2. List citys
+### 2. List city records
 
 ```ruby
 begin
-  result = client.city.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of City records — iterate directly.
+  citys = client.City.list
+  citys.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,8 +46,9 @@ end
 
 ```ruby
 begin
-  result = client.city.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare City record (raises on error).
+  city = client.City.load({ "id" => "example_id" })
+  puts city
 rescue => err
   warn "load failed: #{err}"
 end
@@ -96,13 +95,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = SepomexSDK.test
+client = SepomexSDK.test({
+  "entity" => { "city" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.city.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+city = client.City.load({ "id" => "test01" })
+puts city
 ```
 
 ### Use a custom fetch function
@@ -296,7 +299,7 @@ API path: `/zip_codes`
 
 ### City
 
-Create an instance: `const city = client.city`
+Create an instance: `city = client.City`
 
 #### Operations
 
@@ -316,20 +319,22 @@ Create an instance: `const city = client.city`
 
 #### Example: Load
 
-```ts
-const city = await client.city.load({ id: 'city_id' })
+```ruby
+# load returns the bare City record (raises on error).
+city = client.City.load({ "id" => "city_id" })
 ```
 
 #### Example: List
 
-```ts
-const citys = await client.city.list()
+```ruby
+# list returns an Array of City records (raises on error).
+citys = client.City.list
 ```
 
 
 ### Municipality
 
-Create an instance: `const municipality = client.municipality`
+Create an instance: `municipality = client.Municipality`
 
 #### Operations
 
@@ -351,20 +356,22 @@ Create an instance: `const municipality = client.municipality`
 
 #### Example: Load
 
-```ts
-const municipality = await client.municipality.load({ id: 'municipality_id' })
+```ruby
+# load returns the bare Municipality record (raises on error).
+municipality = client.Municipality.load({ "id" => "municipality_id" })
 ```
 
 #### Example: List
 
-```ts
-const municipalitys = await client.municipality.list()
+```ruby
+# list returns an Array of Municipality records (raises on error).
+municipalitys = client.Municipality.list
 ```
 
 
 ### State
 
-Create an instance: `const state = client.state`
+Create an instance: `state = client.State`
 
 #### Operations
 
@@ -387,20 +394,22 @@ Create an instance: `const state = client.state`
 
 #### Example: Load
 
-```ts
-const state = await client.state.load({ id: 'state_id' })
+```ruby
+# load returns the bare State record (raises on error).
+state = client.State.load({ "id" => "state_id" })
 ```
 
 #### Example: List
 
-```ts
-const states = await client.state.list()
+```ruby
+# list returns an Array of State records (raises on error).
+states = client.State.list
 ```
 
 
 ### ZipCode
 
-Create an instance: `const zip_code = client.zip_code`
+Create an instance: `zip_code = client.ZipCode`
 
 #### Operations
 
@@ -431,8 +440,9 @@ Create an instance: `const zip_code = client.zip_code`
 
 #### Example: List
 
-```ts
-const zip_codes = await client.zip_code.list()
+```ruby
+# list returns an Array of ZipCode records (raises on error).
+zip_codes = client.ZipCode.list
 ```
 
 
@@ -507,7 +517,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-city = client.city
+city = client.City
 city.load({ "id" => "example_id" })
 
 # city.data_get now returns the loaded city data

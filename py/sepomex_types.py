@@ -4,116 +4,109 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class City:
-    city: Optional[dict] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
-    state_id: Optional[int] = None
+class City(TypedDict, total=False):
+    city: dict
+    id: int
+    name: str
+    state_id: int
 
 
-@dataclass
-class CityLoadMatch:
+class CityLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class CityListMatch:
-    city: Optional[dict] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
-    state_id: Optional[int] = None
+class CityListMatch(TypedDict, total=False):
+    city: dict
+    id: int
+    name: str
+    state_id: int
 
 
-@dataclass
-class Municipality:
-    id: Optional[int] = None
-    municipality: Optional[dict] = None
-    municipality_key: Optional[str] = None
-    name: Optional[str] = None
-    state_id: Optional[int] = None
-    zip_code: Optional[str] = None
+class Municipality(TypedDict, total=False):
+    id: int
+    municipality: dict
+    municipality_key: str
+    name: str
+    state_id: int
+    zip_code: str
 
 
-@dataclass
-class MunicipalityLoadMatch:
+class MunicipalityLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class MunicipalityListMatch:
-    id: Optional[int] = None
-    municipality: Optional[dict] = None
-    municipality_key: Optional[str] = None
-    name: Optional[str] = None
-    state_id: Optional[int] = None
-    zip_code: Optional[str] = None
+class MunicipalityListMatch(TypedDict, total=False):
+    id: int
+    municipality: dict
+    municipality_key: str
+    name: str
+    state_id: int
+    zip_code: str
 
 
-@dataclass
-class State:
-    cities_count: Optional[int] = None
-    id: Optional[int] = None
-    municipality_key: Optional[str] = None
-    name: Optional[str] = None
-    state: Optional[dict] = None
-    state_id: Optional[int] = None
-    zip_code: Optional[str] = None
+class State(TypedDict, total=False):
+    cities_count: int
+    id: int
+    municipality_key: str
+    name: str
+    state: dict
+    state_id: int
+    zip_code: str
 
 
-@dataclass
-class StateLoadMatch:
+class StateLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class StateListMatch:
+class StateListMatch(TypedDict):
     id: int
 
 
-@dataclass
-class ZipCode:
-    c_cp: Optional[str] = None
-    c_cve_ciudad: Optional[str] = None
-    c_estado: Optional[str] = None
-    c_mnpio: Optional[str] = None
-    c_oficina: Optional[str] = None
-    c_tipo_asenta: Optional[str] = None
-    d_asenta: Optional[str] = None
-    d_ciudad: Optional[str] = None
-    d_codigo: Optional[str] = None
-    d_cp: Optional[str] = None
-    d_estado: Optional[str] = None
-    d_mnpio: Optional[str] = None
-    d_tipo_asenta: Optional[str] = None
-    d_zona: Optional[str] = None
-    id: Optional[int] = None
-    id_asenta_cpcon: Optional[str] = None
+class ZipCode(TypedDict, total=False):
+    c_cp: str
+    c_cve_ciudad: str
+    c_estado: str
+    c_mnpio: str
+    c_oficina: str
+    c_tipo_asenta: str
+    d_asenta: str
+    d_ciudad: str
+    d_codigo: str
+    d_cp: str
+    d_estado: str
+    d_mnpio: str
+    d_tipo_asenta: str
+    d_zona: str
+    id: int
+    id_asenta_cpcon: str
 
 
-@dataclass
-class ZipCodeListMatch:
-    c_cp: Optional[str] = None
-    c_cve_ciudad: Optional[str] = None
-    c_estado: Optional[str] = None
-    c_mnpio: Optional[str] = None
-    c_oficina: Optional[str] = None
-    c_tipo_asenta: Optional[str] = None
-    d_asenta: Optional[str] = None
-    d_ciudad: Optional[str] = None
-    d_codigo: Optional[str] = None
-    d_cp: Optional[str] = None
-    d_estado: Optional[str] = None
-    d_mnpio: Optional[str] = None
-    d_tipo_asenta: Optional[str] = None
-    d_zona: Optional[str] = None
-    id: Optional[int] = None
-    id_asenta_cpcon: Optional[str] = None
-
+class ZipCodeListMatch(TypedDict, total=False):
+    c_cp: str
+    c_cve_ciudad: str
+    c_estado: str
+    c_mnpio: str
+    c_oficina: str
+    c_tipo_asenta: str
+    d_asenta: str
+    d_ciudad: str
+    d_codigo: str
+    d_cp: str
+    d_estado: str
+    d_mnpio: str
+    d_tipo_asenta: str
+    d_zona: str
+    id: int
+    id_asenta_cpcon: str

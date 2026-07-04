@@ -28,25 +28,28 @@ import { SepomexSDK } from '@voxgig-sdk/sepomex'
 const client = new SepomexSDK()
 ```
 
-### 2. List citys
+### 2. List city records
+
+`list()` resolves to an array of City objects — iterate it directly:
 
 ```ts
-const result = await client.city.list()
+const citys = await client.City().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const city of citys) {
+  console.log(city)
 }
 ```
 
 ### 3. Load a city
 
-```ts
-const result = await client.city.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const city = await client.City().load({ id: 'example_id' })
+  console.log(city)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -64,6 +67,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -92,9 +98,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = SepomexSDK.test()
 
-const result = await client.city.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const city = await client.City().load({ id: 'test01' })
+// city is a bare entity populated with mock response data
+console.log(city)
 ```
 
 You can also use the instance method:
@@ -109,7 +115,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.city
+const entity = client.City()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -207,29 +213,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): SepomexSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -337,7 +344,7 @@ API path: `/zip_codes`
 
 ### City
 
-Create an instance: `const city = client.city`
+Create an instance: `const city = client.City()`
 
 #### Operations
 
@@ -358,19 +365,19 @@ Create an instance: `const city = client.city`
 #### Example: Load
 
 ```ts
-const city = await client.city.load({ id: 'city_id' })
+const city = await client.City().load({ id: 'city_id' })
 ```
 
 #### Example: List
 
 ```ts
-const citys = await client.city.list()
+const citys = await client.City().list()
 ```
 
 
 ### Municipality
 
-Create an instance: `const municipality = client.municipality`
+Create an instance: `const municipality = client.Municipality()`
 
 #### Operations
 
@@ -393,19 +400,19 @@ Create an instance: `const municipality = client.municipality`
 #### Example: Load
 
 ```ts
-const municipality = await client.municipality.load({ id: 'municipality_id' })
+const municipality = await client.Municipality().load({ id: 'municipality_id' })
 ```
 
 #### Example: List
 
 ```ts
-const municipalitys = await client.municipality.list()
+const municipalitys = await client.Municipality().list()
 ```
 
 
 ### State
 
-Create an instance: `const state = client.state`
+Create an instance: `const state = client.State()`
 
 #### Operations
 
@@ -429,19 +436,19 @@ Create an instance: `const state = client.state`
 #### Example: Load
 
 ```ts
-const state = await client.state.load({ id: 'state_id' })
+const state = await client.State().load({ id: 'state_id' })
 ```
 
 #### Example: List
 
 ```ts
-const states = await client.state.list()
+const states = await client.State().list()
 ```
 
 
 ### ZipCode
 
-Create an instance: `const zip_code = client.zip_code`
+Create an instance: `const zip_code = client.ZipCode()`
 
 #### Operations
 
@@ -473,7 +480,7 @@ Create an instance: `const zip_code = client.zip_code`
 #### Example: List
 
 ```ts
-const zip_codes = await client.zip_code.list()
+const zip_codes = await client.ZipCode().list()
 ```
 
 
@@ -544,7 +551,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const city = client.city
+const city = client.City()
 await city.load({ id: "example_id" })
 
 // city.data() now returns the loaded city data

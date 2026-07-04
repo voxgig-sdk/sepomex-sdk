@@ -31,26 +31,26 @@ local sdk = require("sepomex_sdk")
 local client = sdk.new()
 ```
 
-### 2. List citys
+### 2. List city records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:city():list()
+local citys, err = client:City():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(citys) do
+  print(item["id"], item["name"])
 end
 ```
 
 ### 3. Load a city
 
 ```lua
-local result, err = client:city():load({ id = "example_id" })
+local city, err = client:City():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(city)
 ```
 
 
@@ -96,8 +96,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:city():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:City():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -200,17 +200,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local city, err = client:City():load({ id = "example_id" })
+    if err then error(err) end
+    -- city is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -290,7 +295,7 @@ API path: `/zip_codes`
 
 ### City
 
-Create an instance: `const city = client.city`
+Create an instance: `local city = client:City(nil)`
 
 #### Operations
 
@@ -310,20 +315,20 @@ Create an instance: `const city = client.city`
 
 #### Example: Load
 
-```ts
-const city = await client.city.load({ id: 'city_id' })
+```lua
+local city, err = client:City():load({ id = "city_id" })
 ```
 
 #### Example: List
 
-```ts
-const citys = await client.city.list()
+```lua
+local citys, err = client:City():list()
 ```
 
 
 ### Municipality
 
-Create an instance: `const municipality = client.municipality`
+Create an instance: `local municipality = client:Municipality(nil)`
 
 #### Operations
 
@@ -345,20 +350,20 @@ Create an instance: `const municipality = client.municipality`
 
 #### Example: Load
 
-```ts
-const municipality = await client.municipality.load({ id: 'municipality_id' })
+```lua
+local municipality, err = client:Municipality():load({ id = "municipality_id" })
 ```
 
 #### Example: List
 
-```ts
-const municipalitys = await client.municipality.list()
+```lua
+local municipalitys, err = client:Municipality():list()
 ```
 
 
 ### State
 
-Create an instance: `const state = client.state`
+Create an instance: `local state = client:State(nil)`
 
 #### Operations
 
@@ -381,20 +386,20 @@ Create an instance: `const state = client.state`
 
 #### Example: Load
 
-```ts
-const state = await client.state.load({ id: 'state_id' })
+```lua
+local state, err = client:State():load({ id = "state_id" })
 ```
 
 #### Example: List
 
-```ts
-const states = await client.state.list()
+```lua
+local states, err = client:State():list()
 ```
 
 
 ### ZipCode
 
-Create an instance: `const zip_code = client.zip_code`
+Create an instance: `local zip_code = client:ZipCode(nil)`
 
 #### Operations
 
@@ -425,8 +430,8 @@ Create an instance: `const zip_code = client.zip_code`
 
 #### Example: List
 
-```ts
-const zip_codes = await client.zip_code.list()
+```lua
+local zip_codes, err = client:ZipCode():list()
 ```
 
 
@@ -501,7 +506,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local city = client:city()
+local city = client:City()
 city:load({ id = "example_id" })
 
 -- city:data_get() now returns the loaded city data

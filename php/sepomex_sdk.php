@@ -233,10 +233,10 @@ class SepomexSDK
 
     private $_city = null;
 
-    // Idiomatic facade: $client->city()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias City() (PHP method
-    // names are case-insensitive).
-    public function city($data = null)
+    // Canonical facade: $client->City()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->city()
+    // resolves here too.
+    public function City($data = null)
     {
         require_once __DIR__ . '/entity/city_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class SepomexSDK
 
     private $_municipality = null;
 
-    // Idiomatic facade: $client->municipality()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Municipality() (PHP method
-    // names are case-insensitive).
-    public function municipality($data = null)
+    // Canonical facade: $client->Municipality()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->municipality()
+    // resolves here too.
+    public function Municipality($data = null)
     {
         require_once __DIR__ . '/entity/municipality_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class SepomexSDK
 
     private $_state = null;
 
-    // Idiomatic facade: $client->state()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias State() (PHP method
-    // names are case-insensitive).
-    public function state($data = null)
+    // Canonical facade: $client->State()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->state()
+    // resolves here too.
+    public function State($data = null)
     {
         require_once __DIR__ . '/entity/state_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class SepomexSDK
 
     private $_zip_code = null;
 
-    // Idiomatic facade: $client->zip_code()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias ZipCode() (PHP method
-    // names are case-insensitive).
-    public function zip_code($data = null)
+    // Canonical facade: $client->ZipCode()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->zip_code()
+    // resolves here too.
+    public function ZipCode($data = null)
     {
         require_once __DIR__ . '/entity/zip_code_entity.php';
         if ($data === null) {

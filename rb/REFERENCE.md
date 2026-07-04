@@ -98,7 +98,7 @@ same parameters as `direct()`. Raises on error.
 ## CityEntity
 
 ```ruby
-city = client.city
+city = client.City
 ```
 
 ### Fields
@@ -117,7 +117,7 @@ city = client.city
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.city.list(nil)
+results = client.City.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -125,7 +125,7 @@ results = client.city.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.city.load({ "id" => "city_id" })
+result = client.City.load({ "id" => "city_id" })
 ```
 
 ### Common Methods
@@ -161,7 +161,7 @@ Return the entity name.
 ## MunicipalityEntity
 
 ```ruby
-municipality = client.municipality
+municipality = client.Municipality
 ```
 
 ### Fields
@@ -182,7 +182,7 @@ municipality = client.municipality
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.municipality.list(nil)
+results = client.Municipality.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -190,7 +190,7 @@ results = client.municipality.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.municipality.load({ "id" => "municipality_id" })
+result = client.Municipality.load({ "id" => "municipality_id" })
 ```
 
 ### Common Methods
@@ -226,7 +226,7 @@ Return the entity name.
 ## StateEntity
 
 ```ruby
-state = client.state
+state = client.State
 ```
 
 ### Fields
@@ -248,7 +248,7 @@ state = client.state
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.state.list(nil)
+results = client.State.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -256,7 +256,7 @@ results = client.state.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.state.load({ "id" => "state_id" })
+result = client.State.load({ "id" => "state_id" })
 ```
 
 ### Common Methods
@@ -292,7 +292,7 @@ Return the entity name.
 ## ZipCodeEntity
 
 ```ruby
-zip_code = client.zip_code
+zip_code = client.ZipCode
 ```
 
 ### Fields
@@ -323,7 +323,7 @@ zip_code = client.zip_code
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.zip_code.list(nil)
+results = client.ZipCode.list(nil)
 ```
 
 ### Common Methods

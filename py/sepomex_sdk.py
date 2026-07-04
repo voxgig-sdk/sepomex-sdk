@@ -220,73 +220,33 @@ class SepomexSDK:
         }
 
 
-    @property
-    def city(self):
-        """Idiomatic facade: client.city.list() / client.city.load({"id": ...})."""
-        from entity.city_entity import CityEntity
-        cached = getattr(self, "_city", None)
-        if cached is None:
-            cached = CityEntity(self, None)
-            self._city = cached
-        return cached
-
-    def City(self, data=None):
-        # Deprecated: use client.city instead.
+    def City(self, data=None) -> "CityEntity":
+        """Entity factory: client.City().list({}) / client.City().load({"id": ...})."""
         from entity.city_entity import CityEntity
         return CityEntity(self, data)
 
 
-    @property
-    def municipality(self):
-        """Idiomatic facade: client.municipality.list() / client.municipality.load({"id": ...})."""
-        from entity.municipality_entity import MunicipalityEntity
-        cached = getattr(self, "_municipality", None)
-        if cached is None:
-            cached = MunicipalityEntity(self, None)
-            self._municipality = cached
-        return cached
-
-    def Municipality(self, data=None):
-        # Deprecated: use client.municipality instead.
+    def Municipality(self, data=None) -> "MunicipalityEntity":
+        """Entity factory: client.Municipality().list({}) / client.Municipality().load({"id": ...})."""
         from entity.municipality_entity import MunicipalityEntity
         return MunicipalityEntity(self, data)
 
 
-    @property
-    def state(self):
-        """Idiomatic facade: client.state.list() / client.state.load({"id": ...})."""
-        from entity.state_entity import StateEntity
-        cached = getattr(self, "_state", None)
-        if cached is None:
-            cached = StateEntity(self, None)
-            self._state = cached
-        return cached
-
-    def State(self, data=None):
-        # Deprecated: use client.state instead.
+    def State(self, data=None) -> "StateEntity":
+        """Entity factory: client.State().list({}) / client.State().load({"id": ...})."""
         from entity.state_entity import StateEntity
         return StateEntity(self, data)
 
 
-    @property
-    def zip_code(self):
-        """Idiomatic facade: client.zip_code.list() / client.zip_code.load({"id": ...})."""
-        from entity.zip_code_entity import ZipCodeEntity
-        cached = getattr(self, "_zip_code", None)
-        if cached is None:
-            cached = ZipCodeEntity(self, None)
-            self._zip_code = cached
-        return cached
-
-    def ZipCode(self, data=None):
-        # Deprecated: use client.zip_code instead.
+    def ZipCode(self, data=None) -> "ZipCodeEntity":
+        """Entity factory: client.ZipCode().list({}) / client.ZipCode().load({"id": ...})."""
         from entity.zip_code_entity import ZipCodeEntity
         return ZipCodeEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "SepomexSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -306,3 +266,12 @@ class SepomexSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.city_entity import CityEntity
+    from entity.municipality_entity import MunicipalityEntity
+    from entity.state_entity import StateEntity
+    from entity.zip_code_entity import ZipCodeEntity

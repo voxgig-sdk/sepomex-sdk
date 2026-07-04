@@ -92,7 +92,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## CityEntity
 
 ```python
-city = client.city
+city = client.City()
 ```
 
 ### Fields
@@ -111,7 +111,9 @@ city = client.city
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.city.list({})
+results = client.City().list({})
+for city in results:
+    print(city)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -119,7 +121,7 @@ results = client.city.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.city.load({"id": "city_id"})
+result = client.City().load({"id": "city_id"})
 ```
 
 ### Common Methods
@@ -154,7 +156,7 @@ Return the entity name.
 ## MunicipalityEntity
 
 ```python
-municipality = client.municipality
+municipality = client.Municipality()
 ```
 
 ### Fields
@@ -175,7 +177,9 @@ municipality = client.municipality
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.municipality.list({})
+results = client.Municipality().list({})
+for municipality in results:
+    print(municipality)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -183,7 +187,7 @@ results = client.municipality.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.municipality.load({"id": "municipality_id"})
+result = client.Municipality().load({"id": "municipality_id"})
 ```
 
 ### Common Methods
@@ -218,7 +222,7 @@ Return the entity name.
 ## StateEntity
 
 ```python
-state = client.state
+state = client.State()
 ```
 
 ### Fields
@@ -240,7 +244,9 @@ state = client.state
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.state.list({})
+results = client.State().list({})
+for state in results:
+    print(state)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -248,7 +254,7 @@ results = client.state.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.state.load({"id": "state_id"})
+result = client.State().load({"id": "state_id"})
 ```
 
 ### Common Methods
@@ -283,7 +289,7 @@ Return the entity name.
 ## ZipCodeEntity
 
 ```python
-zip_code = client.zip_code
+zip_code = client.ZipCode()
 ```
 
 ### Fields
@@ -314,7 +320,9 @@ zip_code = client.zip_code
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.zip_code.list({})
+results = client.ZipCode().list({})
+for zip_code in results:
+    print(zip_code)
 ```
 
 ### Common Methods

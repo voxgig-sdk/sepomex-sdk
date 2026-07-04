@@ -145,7 +145,7 @@ Alias for `SepomexSDK.test()`.
 ## CityEntity
 
 ```ts
-const city = client.city
+const city = client.City()
 ```
 
 ### Fields
@@ -164,7 +164,7 @@ const city = client.city
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.city.list()
+const results = await client.City().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -172,7 +172,7 @@ const results = await client.city.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.city.load({ id: 'city_id' })
+const result = await client.City().load({ id: 'city_id' })
 ```
 
 ### Common Methods
@@ -206,7 +206,7 @@ Return a copy of the entity options.
 ## MunicipalityEntity
 
 ```ts
-const municipality = client.municipality
+const municipality = client.Municipality()
 ```
 
 ### Fields
@@ -227,7 +227,7 @@ const municipality = client.municipality
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.municipality.list()
+const results = await client.Municipality().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -235,7 +235,7 @@ const results = await client.municipality.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.municipality.load({ id: 'municipality_id' })
+const result = await client.Municipality().load({ id: 'municipality_id' })
 ```
 
 ### Common Methods
@@ -269,7 +269,7 @@ Return a copy of the entity options.
 ## StateEntity
 
 ```ts
-const state = client.state
+const state = client.State()
 ```
 
 ### Fields
@@ -291,7 +291,7 @@ const state = client.state
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.state.list()
+const results = await client.State().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -299,7 +299,7 @@ const results = await client.state.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.state.load({ id: 'state_id' })
+const result = await client.State().load({ id: 'state_id' })
 ```
 
 ### Common Methods
@@ -333,7 +333,7 @@ Return a copy of the entity options.
 ## ZipCodeEntity
 
 ```ts
-const zip_code = client.zip_code
+const zip_code = client.ZipCode()
 ```
 
 ### Fields
@@ -364,7 +364,7 @@ const zip_code = client.zip_code
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.zip_code.list()
+const results = await client.ZipCode().list()
 ```
 
 ### Common Methods

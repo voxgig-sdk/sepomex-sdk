@@ -29,18 +29,16 @@ require_once 'sepomex_sdk.php';
 $client = new SepomexSDK();
 ```
 
-### 2. List citys
+### 2. List city records
 
 ```php
 try {
-    $result = $client->city()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of City records — iterate directly.
+    $citys = $client->City()->list();
+    foreach ($citys as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -49,9 +47,10 @@ try {
 
 ```php
 try {
-    $result = $client->city()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare City record (throws on error).
+    $city = $client->City()->load(["id" => "example_id"]);
+    print_r($city);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -97,13 +96,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = SepomexSDK::test();
+$client = SepomexSDK::test([
+    "entity" => ["city" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->city()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$city = $client->City()->load(["id" => "test01"]);
+print_r($city);
 ```
 
 ### Use a custom fetch function
@@ -301,7 +304,7 @@ API path: `/zip_codes`
 
 ### City
 
-Create an instance: `const city = client.city`
+Create an instance: `$city = $client->City();`
 
 #### Operations
 
@@ -321,20 +324,22 @@ Create an instance: `const city = client.city`
 
 #### Example: Load
 
-```ts
-const city = await client.city.load({ id: 'city_id' })
+```php
+// load() returns the bare City record (throws on error).
+$city = $client->City()->load(["id" => "city_id"]);
 ```
 
 #### Example: List
 
-```ts
-const citys = await client.city.list()
+```php
+// list() returns an array of City records (throws on error).
+$citys = $client->City()->list();
 ```
 
 
 ### Municipality
 
-Create an instance: `const municipality = client.municipality`
+Create an instance: `$municipality = $client->Municipality();`
 
 #### Operations
 
@@ -356,20 +361,22 @@ Create an instance: `const municipality = client.municipality`
 
 #### Example: Load
 
-```ts
-const municipality = await client.municipality.load({ id: 'municipality_id' })
+```php
+// load() returns the bare Municipality record (throws on error).
+$municipality = $client->Municipality()->load(["id" => "municipality_id"]);
 ```
 
 #### Example: List
 
-```ts
-const municipalitys = await client.municipality.list()
+```php
+// list() returns an array of Municipality records (throws on error).
+$municipalitys = $client->Municipality()->list();
 ```
 
 
 ### State
 
-Create an instance: `const state = client.state`
+Create an instance: `$state = $client->State();`
 
 #### Operations
 
@@ -392,20 +399,22 @@ Create an instance: `const state = client.state`
 
 #### Example: Load
 
-```ts
-const state = await client.state.load({ id: 'state_id' })
+```php
+// load() returns the bare State record (throws on error).
+$state = $client->State()->load(["id" => "state_id"]);
 ```
 
 #### Example: List
 
-```ts
-const states = await client.state.list()
+```php
+// list() returns an array of State records (throws on error).
+$states = $client->State()->list();
 ```
 
 
 ### ZipCode
 
-Create an instance: `const zip_code = client.zip_code`
+Create an instance: `$zip_code = $client->ZipCode();`
 
 #### Operations
 
@@ -436,8 +445,9 @@ Create an instance: `const zip_code = client.zip_code`
 
 #### Example: List
 
-```ts
-const zip_codes = await client.zip_code.list()
+```php
+// list() returns an array of ZipCode records (throws on error).
+$zip_codes = $client->ZipCode()->list();
 ```
 
 
@@ -512,7 +522,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$city = $client->city();
+$city = $client->City();
 $city->load(["id" => "example_id"]);
 
 // $city->dataGet() now returns the loaded city data
