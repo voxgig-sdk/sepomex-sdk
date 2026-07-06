@@ -16,7 +16,12 @@ export interface CityLoadMatch {
   id: number
 }
 
-export type CityListMatch = Partial<City>
+export interface CityListMatch {
+  city?: Record<string, any>
+  id?: number
+  name?: string
+  state_id?: number
+}
 
 export interface Municipality {
   id?: number
@@ -31,7 +36,14 @@ export interface MunicipalityLoadMatch {
   id: number
 }
 
-export type MunicipalityListMatch = Partial<Municipality>
+export interface MunicipalityListMatch {
+  id?: number
+  municipality?: Record<string, any>
+  municipality_key?: string
+  name?: string
+  state_id?: number
+  zip_code?: string
+}
 
 export interface State {
   cities_count?: number
@@ -70,5 +82,22 @@ export interface ZipCode {
   id_asenta_cpcon?: string
 }
 
-export type ZipCodeListMatch = Partial<ZipCode>
+export interface ZipCodeListMatch {
+  c_cp?: string
+  c_cve_ciudad?: string
+  c_estado?: string
+  c_mnpio?: string
+  c_oficina?: string
+  c_tipo_asenta?: string
+  d_asenta?: string
+  d_ciudad?: string
+  d_codigo?: string
+  d_cp?: string
+  d_estado?: string
+  d_mnpio?: string
+  d_tipo_asenta?: string
+  d_zona?: string
+  id?: number
+  id_asenta_cpcon?: string
+}
 

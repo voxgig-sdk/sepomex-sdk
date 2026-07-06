@@ -27,7 +27,7 @@ class CityLoadMatch
     public int $id;
 }
 
-/** Match filter for City#list (any subset of City fields). */
+/** Request payload for City#list. */
 class CityListMatch
 {
     public ?array $city = null;
@@ -53,7 +53,7 @@ class MunicipalityLoadMatch
     public int $id;
 }
 
-/** Match filter for Municipality#list (any subset of Municipality fields). */
+/** Request payload for Municipality#list. */
 class MunicipalityListMatch
 {
     public ?int $id = null;
@@ -109,7 +109,7 @@ class ZipCode
     public ?string $id_asenta_cpcon = null;
 }
 
-/** Match filter for ZipCode#list (any subset of ZipCode fields). */
+/** Request payload for ZipCode#list. */
 class ZipCodeListMatch
 {
     public ?string $c_cp = null;

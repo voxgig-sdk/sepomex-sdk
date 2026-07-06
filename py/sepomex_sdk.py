@@ -221,25 +221,25 @@ class SepomexSDK:
 
 
     def City(self, data=None) -> "CityEntity":
-        """Entity factory: client.City().list({}) / client.City().load({"id": ...})."""
+        """Entity factory: client.City().list() / client.City().load({"id": ...})."""
         from entity.city_entity import CityEntity
         return CityEntity(self, data)
 
 
     def Municipality(self, data=None) -> "MunicipalityEntity":
-        """Entity factory: client.Municipality().list({}) / client.Municipality().load({"id": ...})."""
+        """Entity factory: client.Municipality().list() / client.Municipality().load({"id": ...})."""
         from entity.municipality_entity import MunicipalityEntity
         return MunicipalityEntity(self, data)
 
 
     def State(self, data=None) -> "StateEntity":
-        """Entity factory: client.State().list({}) / client.State().load({"id": ...})."""
+        """Entity factory: client.State().list() / client.State().load({"id": ...})."""
         from entity.state_entity import StateEntity
         return StateEntity(self, data)
 
 
     def ZipCode(self, data=None) -> "ZipCodeEntity":
-        """Entity factory: client.ZipCode().list({}) / client.ZipCode().load({"id": ...})."""
+        """Entity factory: client.ZipCode().list() / client.ZipCode().load({"id": ...})."""
         from entity.zip_code_entity import ZipCodeEntity
         return ZipCodeEntity(self, data)
 

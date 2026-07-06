@@ -21,8 +21,7 @@ type CityLoadMatch struct {
 	Id int `json:"id"`
 }
 
-// CityListMatch mirrors the city fields as an all-optional match
-// filter (Go analog of Partial<City>).
+// CityListMatch is the typed request payload for City.ListTyped.
 type CityListMatch struct {
 	City *map[string]any `json:"city,omitempty"`
 	Id *int `json:"id,omitempty"`
@@ -45,8 +44,7 @@ type MunicipalityLoadMatch struct {
 	Id int `json:"id"`
 }
 
-// MunicipalityListMatch mirrors the municipality fields as an all-optional match
-// filter (Go analog of Partial<Municipality>).
+// MunicipalityListMatch is the typed request payload for Municipality.ListTyped.
 type MunicipalityListMatch struct {
 	Id *int `json:"id,omitempty"`
 	Municipality *map[string]any `json:"municipality,omitempty"`
@@ -97,8 +95,7 @@ type ZipCode struct {
 	IdAsentaCpcon *string `json:"id_asenta_cpcon,omitempty"`
 }
 
-// ZipCodeListMatch mirrors the zip_code fields as an all-optional match
-// filter (Go analog of Partial<ZipCode>).
+// ZipCodeListMatch is the typed request payload for ZipCode.ListTyped.
 type ZipCodeListMatch struct {
 	CCp *string `json:"c_cp,omitempty"`
 	CCveCiudad *string `json:"c_cve_ciudad,omitempty"`

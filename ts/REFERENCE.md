@@ -152,10 +152,10 @@ const city = client.City()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$OBJECT`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state_id` | ``$INTEGER`` | No |  |
+| `city` | `Record<string, any>` | No |  |
+| `id` | `number` | No |  |
+| `name` | `string` | No |  |
+| `state_id` | `number` | No |  |
 
 ### Operations
 
@@ -172,7 +172,7 @@ const results = await client.City().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.City().load({ id: 'city_id' })
+const result = await client.City().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -213,12 +213,12 @@ const municipality = client.Municipality()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `municipality` | ``$OBJECT`` | No |  |
-| `municipality_key` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state_id` | ``$INTEGER`` | No |  |
-| `zip_code` | ``$STRING`` | No |  |
+| `id` | `number` | No |  |
+| `municipality` | `Record<string, any>` | No |  |
+| `municipality_key` | `string` | No |  |
+| `name` | `string` | No |  |
+| `state_id` | `number` | No |  |
+| `zip_code` | `string` | No |  |
 
 ### Operations
 
@@ -235,7 +235,7 @@ const results = await client.Municipality().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Municipality().load({ id: 'municipality_id' })
+const result = await client.Municipality().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -276,13 +276,13 @@ const state = client.State()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cities_count` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `municipality_key` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state` | ``$OBJECT`` | No |  |
-| `state_id` | ``$INTEGER`` | No |  |
-| `zip_code` | ``$STRING`` | No |  |
+| `cities_count` | `number` | No |  |
+| `id` | `number` | No |  |
+| `municipality_key` | `string` | No |  |
+| `name` | `string` | No |  |
+| `state` | `Record<string, any>` | No |  |
+| `state_id` | `number` | No |  |
+| `zip_code` | `string` | No |  |
 
 ### Operations
 
@@ -299,7 +299,7 @@ const results = await client.State().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.State().load({ id: 'state_id' })
+const result = await client.State().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -340,22 +340,22 @@ const zip_code = client.ZipCode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `c_cp` | ``$STRING`` | No |  |
-| `c_cve_ciudad` | ``$STRING`` | No |  |
-| `c_estado` | ``$STRING`` | No |  |
-| `c_mnpio` | ``$STRING`` | No |  |
-| `c_oficina` | ``$STRING`` | No |  |
-| `c_tipo_asenta` | ``$STRING`` | No |  |
-| `d_asenta` | ``$STRING`` | No |  |
-| `d_ciudad` | ``$STRING`` | No |  |
-| `d_codigo` | ``$STRING`` | No |  |
-| `d_cp` | ``$STRING`` | No |  |
-| `d_estado` | ``$STRING`` | No |  |
-| `d_mnpio` | ``$STRING`` | No |  |
-| `d_tipo_asenta` | ``$STRING`` | No |  |
-| `d_zona` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `id_asenta_cpcon` | ``$STRING`` | No |  |
+| `c_cp` | `string` | No |  |
+| `c_cve_ciudad` | `string` | No |  |
+| `c_estado` | `string` | No |  |
+| `c_mnpio` | `string` | No |  |
+| `c_oficina` | `string` | No |  |
+| `c_tipo_asenta` | `string` | No |  |
+| `d_asenta` | `string` | No |  |
+| `d_ciudad` | `string` | No |  |
+| `d_codigo` | `string` | No |  |
+| `d_cp` | `string` | No |  |
+| `d_estado` | `string` | No |  |
+| `d_mnpio` | `string` | No |  |
+| `d_tipo_asenta` | `string` | No |  |
+| `d_zona` | `string` | No |  |
+| `id` | `number` | No |  |
+| `id_asenta_cpcon` | `string` | No |  |
 
 ### Operations
 

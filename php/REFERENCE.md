@@ -57,11 +57,11 @@ Create a new `StateEntity` instance. Pass `null` for no initial data.
 
 Create a new `ZipCodeEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): SepomexUtility`
 
 Return a copy of the SDK utility object.
 
@@ -104,19 +104,19 @@ $city = $client->City();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$OBJECT`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state_id` | ``$INTEGER`` | No |  |
+| `city` | `array` | No |  |
+| `id` | `int` | No |  |
+| `name` | `string` | No |  |
+| `state_id` | `int` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->City()->list([]);
+$results = $client->City()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -129,19 +129,19 @@ $result = $client->City()->load(["id" => "city_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -150,7 +150,7 @@ Set the entity match criteria.
 Create a new `CityEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -167,21 +167,21 @@ $municipality = $client->Municipality();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `municipality` | ``$OBJECT`` | No |  |
-| `municipality_key` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state_id` | ``$INTEGER`` | No |  |
-| `zip_code` | ``$STRING`` | No |  |
+| `id` | `int` | No |  |
+| `municipality` | `array` | No |  |
+| `municipality_key` | `string` | No |  |
+| `name` | `string` | No |  |
+| `state_id` | `int` | No |  |
+| `zip_code` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Municipality()->list([]);
+$results = $client->Municipality()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -194,19 +194,19 @@ $result = $client->Municipality()->load(["id" => "municipality_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -215,7 +215,7 @@ Set the entity match criteria.
 Create a new `MunicipalityEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -232,22 +232,22 @@ $state = $client->State();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cities_count` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `municipality_key` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state` | ``$OBJECT`` | No |  |
-| `state_id` | ``$INTEGER`` | No |  |
-| `zip_code` | ``$STRING`` | No |  |
+| `cities_count` | `int` | No |  |
+| `id` | `int` | No |  |
+| `municipality_key` | `string` | No |  |
+| `name` | `string` | No |  |
+| `state` | `array` | No |  |
+| `state_id` | `int` | No |  |
+| `zip_code` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->State()->list([]);
+$results = $client->State()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -260,19 +260,19 @@ $result = $client->State()->load(["id" => "state_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -281,7 +281,7 @@ Set the entity match criteria.
 Create a new `StateEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -298,48 +298,48 @@ $zip_code = $client->ZipCode();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `c_cp` | ``$STRING`` | No |  |
-| `c_cve_ciudad` | ``$STRING`` | No |  |
-| `c_estado` | ``$STRING`` | No |  |
-| `c_mnpio` | ``$STRING`` | No |  |
-| `c_oficina` | ``$STRING`` | No |  |
-| `c_tipo_asenta` | ``$STRING`` | No |  |
-| `d_asenta` | ``$STRING`` | No |  |
-| `d_ciudad` | ``$STRING`` | No |  |
-| `d_codigo` | ``$STRING`` | No |  |
-| `d_cp` | ``$STRING`` | No |  |
-| `d_estado` | ``$STRING`` | No |  |
-| `d_mnpio` | ``$STRING`` | No |  |
-| `d_tipo_asenta` | ``$STRING`` | No |  |
-| `d_zona` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `id_asenta_cpcon` | ``$STRING`` | No |  |
+| `c_cp` | `string` | No |  |
+| `c_cve_ciudad` | `string` | No |  |
+| `c_estado` | `string` | No |  |
+| `c_mnpio` | `string` | No |  |
+| `c_oficina` | `string` | No |  |
+| `c_tipo_asenta` | `string` | No |  |
+| `d_asenta` | `string` | No |  |
+| `d_ciudad` | `string` | No |  |
+| `d_codigo` | `string` | No |  |
+| `d_cp` | `string` | No |  |
+| `d_estado` | `string` | No |  |
+| `d_mnpio` | `string` | No |  |
+| `d_tipo_asenta` | `string` | No |  |
+| `d_zona` | `string` | No |  |
+| `id` | `int` | No |  |
+| `id_asenta_cpcon` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->ZipCode()->list([]);
+$results = $client->ZipCode()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -348,7 +348,7 @@ Set the entity match criteria.
 Create a new `ZipCodeEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

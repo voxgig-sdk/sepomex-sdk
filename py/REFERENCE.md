@@ -99,19 +99,19 @@ city = client.City()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$OBJECT`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state_id` | ``$INTEGER`` | No |  |
+| `city` | `dict` | No |  |
+| `id` | `int` | No |  |
+| `name` | `str` | No |  |
+| `state_id` | `int` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.City().list({})
+results = client.City().list()
 for city in results:
     print(city)
 ```
@@ -163,21 +163,21 @@ municipality = client.Municipality()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `municipality` | ``$OBJECT`` | No |  |
-| `municipality_key` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state_id` | ``$INTEGER`` | No |  |
-| `zip_code` | ``$STRING`` | No |  |
+| `id` | `int` | No |  |
+| `municipality` | `dict` | No |  |
+| `municipality_key` | `str` | No |  |
+| `name` | `str` | No |  |
+| `state_id` | `int` | No |  |
+| `zip_code` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Municipality().list({})
+results = client.Municipality().list()
 for municipality in results:
     print(municipality)
 ```
@@ -229,22 +229,22 @@ state = client.State()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cities_count` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `municipality_key` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state` | ``$OBJECT`` | No |  |
-| `state_id` | ``$INTEGER`` | No |  |
-| `zip_code` | ``$STRING`` | No |  |
+| `cities_count` | `int` | No |  |
+| `id` | `int` | No |  |
+| `municipality_key` | `str` | No |  |
+| `name` | `str` | No |  |
+| `state` | `dict` | No |  |
+| `state_id` | `int` | No |  |
+| `zip_code` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.State().list({})
+results = client.State().list()
 for state in results:
     print(state)
 ```
@@ -296,31 +296,31 @@ zip_code = client.ZipCode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `c_cp` | ``$STRING`` | No |  |
-| `c_cve_ciudad` | ``$STRING`` | No |  |
-| `c_estado` | ``$STRING`` | No |  |
-| `c_mnpio` | ``$STRING`` | No |  |
-| `c_oficina` | ``$STRING`` | No |  |
-| `c_tipo_asenta` | ``$STRING`` | No |  |
-| `d_asenta` | ``$STRING`` | No |  |
-| `d_ciudad` | ``$STRING`` | No |  |
-| `d_codigo` | ``$STRING`` | No |  |
-| `d_cp` | ``$STRING`` | No |  |
-| `d_estado` | ``$STRING`` | No |  |
-| `d_mnpio` | ``$STRING`` | No |  |
-| `d_tipo_asenta` | ``$STRING`` | No |  |
-| `d_zona` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `id_asenta_cpcon` | ``$STRING`` | No |  |
+| `c_cp` | `str` | No |  |
+| `c_cve_ciudad` | `str` | No |  |
+| `c_estado` | `str` | No |  |
+| `c_mnpio` | `str` | No |  |
+| `c_oficina` | `str` | No |  |
+| `c_tipo_asenta` | `str` | No |  |
+| `d_asenta` | `str` | No |  |
+| `d_ciudad` | `str` | No |  |
+| `d_codigo` | `str` | No |  |
+| `d_cp` | `str` | No |  |
+| `d_estado` | `str` | No |  |
+| `d_mnpio` | `str` | No |  |
+| `d_tipo_asenta` | `str` | No |  |
+| `d_zona` | `str` | No |  |
+| `id` | `int` | No |  |
+| `id_asenta_cpcon` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.ZipCode().list({})
+results = client.ZipCode().list()
 for zip_code in results:
     print(zip_code)
 ```

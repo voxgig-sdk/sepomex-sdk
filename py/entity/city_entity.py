@@ -65,8 +65,13 @@ class CityEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: CityLoadMatch, ctrl=None) -> City:
+    def load(self, reqmatch=None, ctrl=None) -> City:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.City().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class CityEntity:
 
 
     
-    def list(self, reqmatch: CityListMatch, ctrl=None) -> list[City]:
+    def list(self, reqmatch=None, ctrl=None) -> list[City]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.City().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

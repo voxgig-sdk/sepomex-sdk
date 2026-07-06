@@ -109,10 +109,10 @@ city := client.City(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$OBJECT`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state_id` | ``$INTEGER`` | No |  |
+| `city` | `map[string]any` | No |  |
+| `id` | `int` | No |  |
+| `name` | `string` | No |  |
+| `state_id` | `int` | No |  |
 
 ### Operations
 
@@ -166,12 +166,12 @@ municipality := client.Municipality(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `municipality` | ``$OBJECT`` | No |  |
-| `municipality_key` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state_id` | ``$INTEGER`` | No |  |
-| `zip_code` | ``$STRING`` | No |  |
+| `id` | `int` | No |  |
+| `municipality` | `map[string]any` | No |  |
+| `municipality_key` | `string` | No |  |
+| `name` | `string` | No |  |
+| `state_id` | `int` | No |  |
+| `zip_code` | `string` | No |  |
 
 ### Operations
 
@@ -225,13 +225,13 @@ state := client.State(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cities_count` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `municipality_key` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state` | ``$OBJECT`` | No |  |
-| `state_id` | ``$INTEGER`` | No |  |
-| `zip_code` | ``$STRING`` | No |  |
+| `cities_count` | `int` | No |  |
+| `id` | `int` | No |  |
+| `municipality_key` | `string` | No |  |
+| `name` | `string` | No |  |
+| `state` | `map[string]any` | No |  |
+| `state_id` | `int` | No |  |
+| `zip_code` | `string` | No |  |
 
 ### Operations
 
@@ -285,22 +285,22 @@ zip_code := client.ZipCode(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `c_cp` | ``$STRING`` | No |  |
-| `c_cve_ciudad` | ``$STRING`` | No |  |
-| `c_estado` | ``$STRING`` | No |  |
-| `c_mnpio` | ``$STRING`` | No |  |
-| `c_oficina` | ``$STRING`` | No |  |
-| `c_tipo_asenta` | ``$STRING`` | No |  |
-| `d_asenta` | ``$STRING`` | No |  |
-| `d_ciudad` | ``$STRING`` | No |  |
-| `d_codigo` | ``$STRING`` | No |  |
-| `d_cp` | ``$STRING`` | No |  |
-| `d_estado` | ``$STRING`` | No |  |
-| `d_mnpio` | ``$STRING`` | No |  |
-| `d_tipo_asenta` | ``$STRING`` | No |  |
-| `d_zona` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `id_asenta_cpcon` | ``$STRING`` | No |  |
+| `c_cp` | `string` | No |  |
+| `c_cve_ciudad` | `string` | No |  |
+| `c_estado` | `string` | No |  |
+| `c_mnpio` | `string` | No |  |
+| `c_oficina` | `string` | No |  |
+| `c_tipo_asenta` | `string` | No |  |
+| `d_asenta` | `string` | No |  |
+| `d_ciudad` | `string` | No |  |
+| `d_codigo` | `string` | No |  |
+| `d_cp` | `string` | No |  |
+| `d_estado` | `string` | No |  |
+| `d_mnpio` | `string` | No |  |
+| `d_tipo_asenta` | `string` | No |  |
+| `d_zona` | `string` | No |  |
+| `id` | `int` | No |  |
+| `id_asenta_cpcon` | `string` | No |  |
 
 ### Operations
 

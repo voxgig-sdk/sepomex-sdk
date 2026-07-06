@@ -38,7 +38,7 @@ CityLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for City#list (any subset of City fields).
+# Request payload for City#list.
 #
 # @!attribute [rw] city
 #   @return [Hash, nil]
@@ -97,7 +97,7 @@ MunicipalityLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Municipality#list (any subset of Municipality fields).
+# Request payload for Municipality#list.
 #
 # @!attribute [rw] id
 #   @return [Integer, nil]
@@ -246,7 +246,7 @@ ZipCode = Struct.new(
   keyword_init: true
 )
 
-# Match filter for ZipCode#list (any subset of ZipCode fields).
+# Request payload for ZipCode#list.
 #
 # @!attribute [rw] c_cp
 #   @return [String, nil]

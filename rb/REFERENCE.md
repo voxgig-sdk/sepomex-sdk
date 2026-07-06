@@ -8,7 +8,7 @@ Complete API reference for the Sepomex Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'sepomex_sdk'
+require_relative 'Sepomex_sdk'
 
 client = SepomexSDK.new(options)
 ```
@@ -105,19 +105,19 @@ city = client.City
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$OBJECT`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state_id` | ``$INTEGER`` | No |  |
+| `city` | `Hash` | No |  |
+| `id` | `Integer` | No |  |
+| `name` | `String` | No |  |
+| `state_id` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.City.list(nil)
+results = client.City.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -168,21 +168,21 @@ municipality = client.Municipality
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `municipality` | ``$OBJECT`` | No |  |
-| `municipality_key` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state_id` | ``$INTEGER`` | No |  |
-| `zip_code` | ``$STRING`` | No |  |
+| `id` | `Integer` | No |  |
+| `municipality` | `Hash` | No |  |
+| `municipality_key` | `String` | No |  |
+| `name` | `String` | No |  |
+| `state_id` | `Integer` | No |  |
+| `zip_code` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Municipality.list(nil)
+results = client.Municipality.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -233,22 +233,22 @@ state = client.State
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cities_count` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `municipality_key` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state` | ``$OBJECT`` | No |  |
-| `state_id` | ``$INTEGER`` | No |  |
-| `zip_code` | ``$STRING`` | No |  |
+| `cities_count` | `Integer` | No |  |
+| `id` | `Integer` | No |  |
+| `municipality_key` | `String` | No |  |
+| `name` | `String` | No |  |
+| `state` | `Hash` | No |  |
+| `state_id` | `Integer` | No |  |
+| `zip_code` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.State.list(nil)
+results = client.State.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -299,31 +299,31 @@ zip_code = client.ZipCode
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `c_cp` | ``$STRING`` | No |  |
-| `c_cve_ciudad` | ``$STRING`` | No |  |
-| `c_estado` | ``$STRING`` | No |  |
-| `c_mnpio` | ``$STRING`` | No |  |
-| `c_oficina` | ``$STRING`` | No |  |
-| `c_tipo_asenta` | ``$STRING`` | No |  |
-| `d_asenta` | ``$STRING`` | No |  |
-| `d_ciudad` | ``$STRING`` | No |  |
-| `d_codigo` | ``$STRING`` | No |  |
-| `d_cp` | ``$STRING`` | No |  |
-| `d_estado` | ``$STRING`` | No |  |
-| `d_mnpio` | ``$STRING`` | No |  |
-| `d_tipo_asenta` | ``$STRING`` | No |  |
-| `d_zona` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `id_asenta_cpcon` | ``$STRING`` | No |  |
+| `c_cp` | `String` | No |  |
+| `c_cve_ciudad` | `String` | No |  |
+| `c_estado` | `String` | No |  |
+| `c_mnpio` | `String` | No |  |
+| `c_oficina` | `String` | No |  |
+| `c_tipo_asenta` | `String` | No |  |
+| `d_asenta` | `String` | No |  |
+| `d_ciudad` | `String` | No |  |
+| `d_codigo` | `String` | No |  |
+| `d_cp` | `String` | No |  |
+| `d_estado` | `String` | No |  |
+| `d_mnpio` | `String` | No |  |
+| `d_tipo_asenta` | `String` | No |  |
+| `d_zona` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `id_asenta_cpcon` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.ZipCode.list(nil)
+results = client.ZipCode.list
 ```
 
 ### Common Methods

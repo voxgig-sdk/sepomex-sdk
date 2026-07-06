@@ -16,6 +16,10 @@
 ---@field id number
 
 ---@class CityListMatch
+---@field city? table
+---@field id? number
+---@field name? string
+---@field state_id? number
 
 ---@class Municipality
 ---@field id? number
@@ -29,6 +33,12 @@
 ---@field id number
 
 ---@class MunicipalityListMatch
+---@field id? number
+---@field municipality? table
+---@field municipality_key? string
+---@field name? string
+---@field state_id? number
+---@field zip_code? string
 
 ---@class State
 ---@field cities_count? number
@@ -64,6 +74,22 @@
 ---@field id_asenta_cpcon? string
 
 ---@class ZipCodeListMatch
+---@field c_cp? string
+---@field c_cve_ciudad? string
+---@field c_estado? string
+---@field c_mnpio? string
+---@field c_oficina? string
+---@field c_tipo_asenta? string
+---@field d_asenta? string
+---@field d_ciudad? string
+---@field d_codigo? string
+---@field d_cp? string
+---@field d_estado? string
+---@field d_mnpio? string
+---@field d_tipo_asenta? string
+---@field d_zona? string
+---@field id? number
+---@field id_asenta_cpcon? string
 
 local M = {}
 
