@@ -124,7 +124,7 @@ $results = $client->City()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->City()->load(["id" => "city_id"]);
+$result = $client->City()->load(["id" => 1]);
 ```
 
 ### Common Methods
@@ -189,7 +189,7 @@ $results = $client->Municipality()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Municipality()->load(["id" => "municipality_id"]);
+$result = $client->Municipality()->load(["id" => 1]);
 ```
 
 ### Common Methods
@@ -255,7 +255,7 @@ $results = $client->State()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->State()->load(["id" => "state_id"]);
+$result = $client->State()->load(["id" => 1]);
 ```
 
 ### Common Methods

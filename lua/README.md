@@ -50,7 +50,7 @@ end
 ### 3. Load a city
 
 ```lua
-local city, err = client:City():load({ id = "example_id" })
+local city, err = client:City():load({ id = 1 })
 if err then error(err) end
 print(city)
 ```
@@ -337,7 +337,7 @@ Create an instance: `local city = client:City(nil)`
 #### Example: Load
 
 ```lua
-local city, err = client:City():load({ id = "city_id" })
+local city, err = client:City():load({ id = 1 })
 ```
 
 #### Example: List
@@ -372,7 +372,7 @@ Create an instance: `local municipality = client:Municipality(nil)`
 #### Example: Load
 
 ```lua
-local municipality, err = client:Municipality():load({ id = "municipality_id" })
+local municipality, err = client:Municipality():load({ id = 1 })
 ```
 
 #### Example: List
@@ -408,7 +408,7 @@ Create an instance: `local state = client:State(nil)`
 #### Example: Load
 
 ```lua
-local state, err = client:State():load({ id = "state_id" })
+local state, err = client:State():load({ id = 1 })
 ```
 
 #### Example: List

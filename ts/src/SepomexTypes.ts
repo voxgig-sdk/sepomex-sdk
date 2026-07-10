@@ -60,7 +60,13 @@ export interface StateLoadMatch {
 }
 
 export interface StateListMatch {
-  id: number
+  cities_count?: number
+  id?: number
+  municipality_key?: string
+  name?: string
+  state?: Record<string, any>
+  state_id?: number
+  zip_code?: string
 }
 
 export interface ZipCode {

@@ -50,7 +50,7 @@ try {
 ```php
 try {
     // load() returns the bare City record (throws on error).
-    $city = $client->City()->load(["id" => "example_id"]);
+    $city = $client->City()->load(["id" => 1]);
     print_r($city);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -359,7 +359,7 @@ Create an instance: `$city = $client->City();`
 
 ```php
 // load() returns the bare City record (throws on error).
-$city = $client->City()->load(["id" => "city_id"]);
+$city = $client->City()->load(["id" => 1]);
 ```
 
 #### Example: List
@@ -396,7 +396,7 @@ Create an instance: `$municipality = $client->Municipality();`
 
 ```php
 // load() returns the bare Municipality record (throws on error).
-$municipality = $client->Municipality()->load(["id" => "municipality_id"]);
+$municipality = $client->Municipality()->load(["id" => 1]);
 ```
 
 #### Example: List
@@ -434,7 +434,7 @@ Create an instance: `$state = $client->State();`
 
 ```php
 // load() returns the bare State record (throws on error).
-$state = $client->State()->load(["id" => "state_id"]);
+$state = $client->State()->load(["id" => 1]);
 ```
 
 #### Example: List

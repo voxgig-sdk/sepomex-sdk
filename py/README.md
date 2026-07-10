@@ -56,7 +56,7 @@ except Exception as err:
 
 ```python
 try:
-    city = client.City().load({"id": "example_id"})
+    city = client.City().load({"id": 1})
     print(city)
 except Exception as err:
     print(f"load failed: {err}")
@@ -351,7 +351,7 @@ Create an instance: `city = client.City()`
 #### Example: Load
 
 ```python
-city = client.City().load({"id": "city_id"})
+city = client.City().load({"id": 1})
 ```
 
 #### Example: List
@@ -386,7 +386,7 @@ Create an instance: `municipality = client.Municipality()`
 #### Example: Load
 
 ```python
-municipality = client.Municipality().load({"id": "municipality_id"})
+municipality = client.Municipality().load({"id": 1})
 ```
 
 #### Example: List
@@ -422,7 +422,7 @@ Create an instance: `state = client.State()`
 #### Example: Load
 
 ```python
-state = client.State().load({"id": "state_id"})
+state = client.State().load({"id": 1})
 ```
 
 #### Example: List

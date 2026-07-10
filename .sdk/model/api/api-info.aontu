@@ -20,9 +20,9 @@ main: {
           url: "https://sepomex.icalialabs.com/api/v1"
         }
       ]
+      summary: "REST API mapping current zip codes in Mexico, provides CSV or Excel files from official site."
       title: "Sepomex"
       version: "1.0.0"
+      website: "https://sepomex.icalialabs.com"
     }
   }
-}
-

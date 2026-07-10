@@ -72,7 +72,13 @@ type StateLoadMatch struct {
 
 // StateListMatch is the typed request payload for State.ListTyped.
 type StateListMatch struct {
-	Id int `json:"id"`
+	CitiesCount *int `json:"cities_count,omitempty"`
+	Id *int `json:"id,omitempty"`
+	MunicipalityKey *string `json:"municipality_key,omitempty"`
+	Name *string `json:"name,omitempty"`
+	State *map[string]any `json:"state,omitempty"`
+	StateId *int `json:"state_id,omitempty"`
+	ZipCode *string `json:"zip_code,omitempty"`
 }
 
 // ZipCode is the typed data model for the zip_code entity.

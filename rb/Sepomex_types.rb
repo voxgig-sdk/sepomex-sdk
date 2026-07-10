@@ -170,10 +170,34 @@ StateLoadMatch = Struct.new(
 
 # Request payload for State#list.
 #
+# @!attribute [rw] cities_count
+#   @return [Integer, nil]
+#
 # @!attribute [rw] id
-#   @return [Integer]
+#   @return [Integer, nil]
+#
+# @!attribute [rw] municipality_key
+#   @return [String, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] state
+#   @return [Hash, nil]
+#
+# @!attribute [rw] state_id
+#   @return [Integer, nil]
+#
+# @!attribute [rw] zip_code
+#   @return [String, nil]
 StateListMatch = Struct.new(
+  :cities_count,
   :id,
+  :municipality_key,
+  :name,
+  :state,
+  :state_id,
+  :zip_code,
   keyword_init: true
 )
 

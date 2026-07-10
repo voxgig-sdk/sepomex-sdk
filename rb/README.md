@@ -49,7 +49,7 @@ end
 ```ruby
 begin
   # load returns the bare City record (raises on error).
-  city = client.City.load({ "id" => "example_id" })
+  city = client.City.load({ "id" => 1 })
   puts city
 rescue => err
   warn "load failed: #{err}"
@@ -349,7 +349,7 @@ Create an instance: `city = client.City`
 
 ```ruby
 # load returns the bare City record (raises on error).
-city = client.City.load({ "id" => "city_id" })
+city = client.City.load({ "id" => 1 })
 ```
 
 #### Example: List
@@ -386,7 +386,7 @@ Create an instance: `municipality = client.Municipality`
 
 ```ruby
 # load returns the bare Municipality record (raises on error).
-municipality = client.Municipality.load({ "id" => "municipality_id" })
+municipality = client.Municipality.load({ "id" => 1 })
 ```
 
 #### Example: List
@@ -424,7 +424,7 @@ Create an instance: `state = client.State`
 
 ```ruby
 # load returns the bare State record (raises on error).
-state = client.State.load({ "id" => "state_id" })
+state = client.State.load({ "id" => 1 })
 ```
 
 #### Example: List

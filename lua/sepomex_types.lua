@@ -53,7 +53,13 @@
 ---@field id number
 
 ---@class StateListMatch
----@field id number
+---@field cities_count? number
+---@field id? number
+---@field municipality_key? string
+---@field name? string
+---@field state? table
+---@field state_id? number
+---@field zip_code? string
 
 ---@class ZipCode
 ---@field c_cp? string

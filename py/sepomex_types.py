@@ -70,8 +70,14 @@ class StateLoadMatch(TypedDict):
     id: int
 
 
-class StateListMatch(TypedDict):
+class StateListMatch(TypedDict, total=False):
+    cities_count: int
     id: int
+    municipality_key: str
+    name: str
+    state: dict
+    state_id: int
+    zip_code: str
 
 
 class ZipCode(TypedDict, total=False):

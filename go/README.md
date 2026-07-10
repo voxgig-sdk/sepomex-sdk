@@ -365,7 +365,7 @@ Create an instance: `city := client.City(nil)`
 #### Example: Load
 
 ```go
-city, err := client.City(nil).Load(map[string]any{"id": "city_id"}, nil)
+city, err := client.City(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -408,7 +408,7 @@ Create an instance: `municipality := client.Municipality(nil)`
 #### Example: Load
 
 ```go
-municipality, err := client.Municipality(nil).Load(map[string]any{"id": "municipality_id"}, nil)
+municipality, err := client.Municipality(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -452,7 +452,7 @@ Create an instance: `state := client.State(nil)`
 #### Example: Load
 
 ```go
-state, err := client.State(nil).Load(map[string]any{"id": "state_id"}, nil)
+state, err := client.State(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -472,7 +472,7 @@ fmt.Println(states) // the array of records
 
 ### ZipCode
 
-Create an instance: `zip_code := client.ZipCode(nil)`
+Create an instance: `zipCode := client.ZipCode(nil)`
 
 #### Operations
 
@@ -504,11 +504,11 @@ Create an instance: `zip_code := client.ZipCode(nil)`
 #### Example: List
 
 ```go
-zip_codes, err := client.ZipCode(nil).List(nil, nil)
+zipCodes, err := client.ZipCode(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(zip_codes) // the array of records
+fmt.Println(zipCodes) // the array of records
 ```
 
 

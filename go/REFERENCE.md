@@ -103,6 +103,7 @@ same parameters as `Direct()`.
 
 ```go
 city := client.City(nil)
+fmt.Println(city.GetName()) // "city"
 ```
 
 ### Fields
@@ -122,6 +123,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.City(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -129,7 +134,11 @@ results, err := client.City(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.City(nil).Load(map[string]any{"id": "city_id"}, nil)
+result, err := client.City(nil).Load(map[string]any{"id": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -160,6 +169,7 @@ Return the entity name.
 
 ```go
 municipality := client.Municipality(nil)
+fmt.Println(municipality.GetName()) // "municipality"
 ```
 
 ### Fields
@@ -181,6 +191,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Municipality(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -188,7 +202,11 @@ results, err := client.Municipality(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Municipality(nil).Load(map[string]any{"id": "municipality_id"}, nil)
+result, err := client.Municipality(nil).Load(map[string]any{"id": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -219,6 +237,7 @@ Return the entity name.
 
 ```go
 state := client.State(nil)
+fmt.Println(state.GetName()) // "state"
 ```
 
 ### Fields
@@ -241,6 +260,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.State(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -248,7 +271,11 @@ results, err := client.State(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.State(nil).Load(map[string]any{"id": "state_id"}, nil)
+result, err := client.State(nil).Load(map[string]any{"id": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -278,7 +305,8 @@ Return the entity name.
 ## ZipCodeEntity
 
 ```go
-zip_code := client.ZipCode(nil)
+zipCode := client.ZipCode(nil)
+fmt.Println(zipCode.GetName()) // "zip_code"
 ```
 
 ### Fields
@@ -310,6 +338,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.ZipCode(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

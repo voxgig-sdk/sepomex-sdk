@@ -85,7 +85,13 @@ class StateLoadMatch
 /** Request payload for State#list. */
 class StateListMatch
 {
-    public int $id;
+    public ?int $cities_count = null;
+    public ?int $id = null;
+    public ?string $municipality_key = null;
+    public ?string $name = null;
+    public ?array $state = null;
+    public ?int $state_id = null;
+    public ?string $zip_code = null;
 }
 
 /** ZipCode entity data model. */

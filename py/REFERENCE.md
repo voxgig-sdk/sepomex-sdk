@@ -121,7 +121,7 @@ for city in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.City().load({"id": "city_id"})
+result = client.City().load({"id": 1})
 ```
 
 ### Common Methods
@@ -187,7 +187,7 @@ for municipality in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Municipality().load({"id": "municipality_id"})
+result = client.Municipality().load({"id": 1})
 ```
 
 ### Common Methods
@@ -254,7 +254,7 @@ for state in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.State().load({"id": "state_id"})
+result = client.State().load({"id": 1})
 ```
 
 ### Common Methods
