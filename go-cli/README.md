@@ -12,22 +12,25 @@ at `../go`.
 # 1. Build a native binary (-> dist/<os>-<arch>/sepomex-cli)
 make build
 
-# 2. Provide credentials once, via the environment
+# 2. See usage (words, entities, env vars)
+./sepomex-cli --help
+
+# 3. Provide credentials once, via the environment
 export SEPOMEX_APIKEY=sk_live_xxx
 
-# 3. Each command line is ONE AQL expression, run against the API:
+# 4. Each command line is ONE AQL expression, run against the API:
 ./sepomex-cli list city
 ./sepomex-cli load 1 city            # {id:1} shorthand
 ./sepomex-cli load '{id:1}' city       # explicit match map
 ./sepomex-cli list municipality
 
-# 4. Override the API base URL for a single call
+# 5. Override the API base URL for a single call
 SEPOMEX_BASE=https://api.example.com ./sepomex-cli list city
 
-# 5. No arguments -> interactive REPL
+# 6. No arguments -> interactive REPL
 ./sepomex-cli
 sepomex> list city
-sepomex> :quit
+sepomex> /quit
 ```
 
 > The rest of this guide follows the [Diátaxis](https://diataxis.fr) framework:
@@ -56,7 +59,7 @@ sepomex> :quit
    ```
 
 4. **Go interactive.** Run the binary with no arguments to open the REPL, then
-   type `:help` for the word and entity lists and `:quit` to leave.
+   type `/help` for the word and entity lists and `/quit` to leave.
 
 That is the whole loop: *build → set key → evaluate AQL expressions*.
 
@@ -101,8 +104,8 @@ evaluated as its own AQL expression:
 ```text
 $ ./sepomex-cli
 sepomex> list city
-sepomex> :help
-sepomex> :quit
+sepomex> /help
+sepomex> /quit
 ```
 
 ### Cross-compile release binaries
@@ -114,7 +117,7 @@ make build-all   # linux/darwin/windows x amd64/arm64, under dist/<os>-<arch>/
 
 ### Discover the available entities
 
-`:help` in the REPL prints the full entity list, or see [Entities](#entities)
+`/help` in the REPL prints the full entity list, or see [Entities](#entities)
 below — this SDK exposes 4 entities.
 
 ## Reference
@@ -141,10 +144,16 @@ The CLI registers these AQL words, each bound to the SDK:
 
 Unset variables fall back to the SDK's built-in defaults.
 
+### CLI flags
+
+- `--help` / `-h` — print usage (words, entities, env vars) and exit.
+
 ### REPL commands
 
-- `:quit` / `:q` / `:exit` — exit the REPL
-- `:help` / `:h` / `:?`     — show the word list, entity list and meta commands
+Meta-commands use the `/` prefix (everything else on a line is evaluated as AQL):
+
+- `/quit` / `/q` / `/exit` — exit the REPL
+- `/help` / `/h` / `/?`     — show the word list, entity list and meta commands
 
 ### Exit codes
 
