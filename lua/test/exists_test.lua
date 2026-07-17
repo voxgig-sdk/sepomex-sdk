@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Sepomex SDK exists test
 
 local sdk = require("sepomex_sdk")
 
