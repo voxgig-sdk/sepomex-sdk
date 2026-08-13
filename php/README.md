@@ -38,7 +38,7 @@ try {
     // list() returns an array of City records — iterate directly.
     $citys = $client->City()->list();
     foreach ($citys as $item) {
-        echo $item["id"] . " " . $item["city"] . "\n";
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -49,7 +49,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare City record (throws on error).
+    // load() returns the ENTITY — call data_get() for the City record (throws on error).
     $city = $client->City()->load(["id" => 1]);
     print_r($city);
 } catch (\Throwable $err) {
@@ -65,7 +65,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $citys = $client->City()->list();
+    $states = $client->State()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -137,12 +137,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```php
 $client = SepomexSDK::test([
-    "entity" => ["city" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["state" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
-$city = $client->City()->list();
-print_r($city);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$state = $client->State()->list();
+print_r($state);
 ```
 
 ### Use a custom fetch function
@@ -243,7 +244,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -265,7 +266,6 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `city` |  |
 | `id` |  |
 | `name` |  |
 | `state_id` |  |
@@ -279,7 +279,6 @@ API path: `/cities`
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `municipality` |  |
 | `municipality_key` |  |
 | `name` |  |
 | `state_id` |  |
@@ -297,7 +296,6 @@ API path: `/municipalities`
 | `id` |  |
 | `municipality_key` |  |
 | `name` |  |
-| `state` |  |
 | `state_id` |  |
 | `zip_code` |  |
 
@@ -324,7 +322,7 @@ API path: `/states`
 | `d_tipo_asenta` |  |
 | `d_zona` |  |
 | `id` |  |
-| `id_asenta_cpcon` |  |
+| `id_asenta_cpcons` |  |
 
 Operations: List.
 
@@ -350,7 +348,6 @@ Create an instance: `$city = $client->City();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | `array` |  |
 | `id` | `int` |  |
 | `name` | `string` |  |
 | `state_id` | `int` |  |
@@ -358,7 +355,7 @@ Create an instance: `$city = $client->City();`
 #### Example: Load
 
 ```php
-// load() returns the bare City record (throws on error).
+// load() returns the ENTITY — call data_get() for the City record (throws on error).
 $city = $client->City()->load(["id" => 1]);
 ```
 
@@ -386,7 +383,6 @@ Create an instance: `$municipality = $client->Municipality();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `int` |  |
-| `municipality` | `array` |  |
 | `municipality_key` | `string` |  |
 | `name` | `string` |  |
 | `state_id` | `int` |  |
@@ -395,7 +391,7 @@ Create an instance: `$municipality = $client->Municipality();`
 #### Example: Load
 
 ```php
-// load() returns the bare Municipality record (throws on error).
+// load() returns the ENTITY — call data_get() for the Municipality record (throws on error).
 $municipality = $client->Municipality()->load(["id" => 1]);
 ```
 
@@ -426,14 +422,13 @@ Create an instance: `$state = $client->State();`
 | `id` | `int` |  |
 | `municipality_key` | `string` |  |
 | `name` | `string` |  |
-| `state` | `array` |  |
 | `state_id` | `int` |  |
 | `zip_code` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare State record (throws on error).
+// load() returns the ENTITY — call data_get() for the State record (throws on error).
 $state = $client->State()->load(["id" => 1]);
 ```
 
@@ -474,7 +469,7 @@ Create an instance: `$zip_code = $client->ZipCode();`
 | `d_tipo_asenta` | `string` |  |
 | `d_zona` | `string` |  |
 | `id` | `int` |  |
-| `id_asenta_cpcon` | `string` |  |
+| `id_asenta_cpcons` | `string` |  |
 
 #### Example: List
 
@@ -560,11 +555,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$city = $client->City();
-$city->list();
+$state = $client->State();
+$state->list();
 
-// $city->data_get() now returns the city data from the last list
-// $city->match_get() returns the last match criteria
+// $state->data_get() now returns the state data from the last list
+// $state->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

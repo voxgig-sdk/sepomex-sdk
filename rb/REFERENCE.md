@@ -105,7 +105,6 @@ city = client.City
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | `Hash` | No |  |
 | `id` | `Integer` | No |  |
 | `name` | `String` | No |  |
 | `state_id` | `Integer` | No |  |
@@ -169,7 +168,6 @@ municipality = client.Municipality
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `Integer` | No |  |
-| `municipality` | `Hash` | No |  |
 | `municipality_key` | `String` | No |  |
 | `name` | `String` | No |  |
 | `state_id` | `Integer` | No |  |
@@ -237,7 +235,6 @@ state = client.State
 | `id` | `Integer` | No |  |
 | `municipality_key` | `String` | No |  |
 | `name` | `String` | No |  |
-| `state` | `Hash` | No |  |
 | `state_id` | `Integer` | No |  |
 | `zip_code` | `String` | No |  |
 
@@ -314,7 +311,7 @@ zip_code = client.ZipCode
 | `d_tipo_asenta` | `String` | No |  |
 | `d_zona` | `String` | No |  |
 | `id` | `Integer` | No |  |
-| `id_asenta_cpcon` | `String` | No |  |
+| `id_asenta_cpcons` | `String` | No |  |
 
 ### Operations
 

@@ -6,11 +6,6 @@ main: kit: entity: city: {
 
   fields: [
     {
-      name: "city"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "id"
       req: false
       type: "`$INTEGER`"

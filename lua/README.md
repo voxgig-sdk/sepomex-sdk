@@ -62,7 +62,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local citys, err = client:City():list()
+local states, err = client:State():list()
 if err then error(err) end
 ```
 
@@ -120,7 +120,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:City():list()
+local result, err = client:State():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -244,7 +244,6 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `city` |  |
 | `id` |  |
 | `name` |  |
 | `state_id` |  |
@@ -258,7 +257,6 @@ API path: `/cities`
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `municipality` |  |
 | `municipality_key` |  |
 | `name` |  |
 | `state_id` |  |
@@ -276,7 +274,6 @@ API path: `/municipalities`
 | `id` |  |
 | `municipality_key` |  |
 | `name` |  |
-| `state` |  |
 | `state_id` |  |
 | `zip_code` |  |
 
@@ -303,7 +300,7 @@ API path: `/states`
 | `d_tipo_asenta` |  |
 | `d_zona` |  |
 | `id` |  |
-| `id_asenta_cpcon` |  |
+| `id_asenta_cpcons` |  |
 
 Operations: List.
 
@@ -329,7 +326,6 @@ Create an instance: `local city = client:City(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | `table` |  |
 | `id` | `number` |  |
 | `name` | `string` |  |
 | `state_id` | `number` |  |
@@ -363,7 +359,6 @@ Create an instance: `local municipality = client:Municipality(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `number` |  |
-| `municipality` | `table` |  |
 | `municipality_key` | `string` |  |
 | `name` | `string` |  |
 | `state_id` | `number` |  |
@@ -401,7 +396,6 @@ Create an instance: `local state = client:State(nil)`
 | `id` | `number` |  |
 | `municipality_key` | `string` |  |
 | `name` | `string` |  |
-| `state` | `table` |  |
 | `state_id` | `number` |  |
 | `zip_code` | `string` |  |
 
@@ -447,7 +441,7 @@ Create an instance: `local zip_code = client:ZipCode(nil)`
 | `d_tipo_asenta` | `string` |  |
 | `d_zona` | `string` |  |
 | `id` | `number` |  |
-| `id_asenta_cpcon` | `string` |  |
+| `id_asenta_cpcons` | `string` |  |
 
 #### Example: List
 
@@ -532,11 +526,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local city = client:City()
-city:list()
+local state = client:State()
+state:list()
 
--- city:data_get() now returns the city data from the last list
--- city:match_get() returns the last match criteria
+-- state:data_get() now returns the state data from the last list
+-- state:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

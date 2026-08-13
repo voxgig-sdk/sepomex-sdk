@@ -97,7 +97,7 @@ class MunicipalityEntityTest extends TestCase
             "id" => $municipality_ref01_data["id"],
         ];
         $municipality_ref01_data_dt0_loaded = $municipality_ref01_ent->load($municipality_ref01_match_dt0, null);
-        $municipality_ref01_data_dt0_load_result = Helpers::to_map($municipality_ref01_data_dt0_loaded);
+        $municipality_ref01_data_dt0_load_result = Helpers::to_map(is_object($municipality_ref01_data_dt0_loaded) && method_exists($municipality_ref01_data_dt0_loaded, 'data_get') ? $municipality_ref01_data_dt0_loaded->data_get() : $municipality_ref01_data_dt0_loaded);
         $this->assertNotNull($municipality_ref01_data_dt0_load_result);
         $this->assertEquals($municipality_ref01_data_dt0_load_result["id"], $municipality_ref01_data["id"]);
 

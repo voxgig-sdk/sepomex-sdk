@@ -17,7 +17,7 @@
         "d_tipo_asenta": "sac",
         "d_zona": "sad",
         "id": "ZIP_CODE00",
-        "id_asenta_cpcon": "saf"
+        "id_asenta_cpcons": "saf"
       },
       "ZIP_CODE01": {
         "c_cp": "s140",
@@ -35,7 +35,7 @@
         "d_tipo_asenta": "s14c",
         "d_zona": "s14d",
         "id": "ZIP_CODE01",
-        "id_asenta_cpcon": "s14f"
+        "id_asenta_cpcons": "s14f"
       },
       "ZIP_CODE02": {
         "c_cp": "s1e0",
@@ -53,7 +53,7 @@
         "d_tipo_asenta": "s1ec",
         "d_zona": "s1ed",
         "id": "ZIP_CODE02",
-        "id_asenta_cpcon": "s1ef"
+        "id_asenta_cpcons": "s1ef"
       }
     }
   },
@@ -74,7 +74,7 @@
         "d_mnpio": "s28b",
         "d_tipo_asenta": "s28c",
         "d_zona": "s28d",
-        "id_asenta_cpcon": "s28f"
+        "id_asenta_cpcons": "s28f"
       }
     }
   }

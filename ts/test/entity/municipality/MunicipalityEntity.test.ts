@@ -63,13 +63,13 @@ describe('MunicipalityEntity', async () => {
     const municipality_ref01_ent = client.Municipality()
     const municipality_ref01_match: any = {}
 
-    const municipality_ref01_list = await municipality_ref01_ent.list(municipality_ref01_match)
+    const municipality_ref01_list = (await municipality_ref01_ent.list(municipality_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const municipality_ref01_match_dt0: any = {}
     municipality_ref01_match_dt0.id = municipality_ref01_data.id
-    const municipality_ref01_data_dt0 = await municipality_ref01_ent.load(municipality_ref01_match_dt0)
+    const municipality_ref01_data_dt0 = (await municipality_ref01_ent.load(municipality_ref01_match_dt0)).data()
     assert(municipality_ref01_data_dt0.id === municipality_ref01_data.id)
 
 

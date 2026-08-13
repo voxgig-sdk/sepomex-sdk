@@ -35,7 +35,9 @@ const client = new SepomexSDK()
 
 ### 2. List city records
 
-`list()` resolves to an array of City objects — iterate it directly:
+`list()` resolves to an array of City ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const citys = await client.City().list()
@@ -65,8 +67,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const citys = await client.City().list()
-  console.log(citys)
+  const states = await client.State().list()
+  console.log(states)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -132,9 +134,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = SepomexSDK.test()
 
-const city = await client.City().list()
-// city is a bare entity populated with mock response data
-console.log(city)
+const state = await client.State().list()
+// state is the entity, populated with mock response data
+// — call state.data() for the record itself
+console.log(state)
 ```
 
 You can also use the instance method:
@@ -149,7 +152,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.City()
+const entity = client.State()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -302,7 +305,6 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `city` |  |
 | `id` |  |
 | `name` |  |
 | `state_id` |  |
@@ -316,7 +318,6 @@ API path: `/cities`
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `municipality` |  |
 | `municipality_key` |  |
 | `name` |  |
 | `state_id` |  |
@@ -334,7 +335,6 @@ API path: `/municipalities`
 | `id` |  |
 | `municipality_key` |  |
 | `name` |  |
-| `state` |  |
 | `state_id` |  |
 | `zip_code` |  |
 
@@ -361,7 +361,7 @@ API path: `/states`
 | `d_tipo_asenta` |  |
 | `d_zona` |  |
 | `id` |  |
-| `id_asenta_cpcon` |  |
+| `id_asenta_cpcons` |  |
 
 Operations: list.
 
@@ -387,7 +387,6 @@ Create an instance: `const city = client.City()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | `Record<string, any>` |  |
 | `id` | `number` |  |
 | `name` | `string` |  |
 | `state_id` | `number` |  |
@@ -421,7 +420,6 @@ Create an instance: `const municipality = client.Municipality()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `number` |  |
-| `municipality` | `Record<string, any>` |  |
 | `municipality_key` | `string` |  |
 | `name` | `string` |  |
 | `state_id` | `number` |  |
@@ -459,7 +457,6 @@ Create an instance: `const state = client.State()`
 | `id` | `number` |  |
 | `municipality_key` | `string` |  |
 | `name` | `string` |  |
-| `state` | `Record<string, any>` |  |
 | `state_id` | `number` |  |
 | `zip_code` | `string` |  |
 
@@ -505,7 +502,7 @@ Create an instance: `const zip_code = client.ZipCode()`
 | `d_tipo_asenta` | `string` |  |
 | `d_zona` | `string` |  |
 | `id` | `number` |  |
-| `id_asenta_cpcon` | `string` |  |
+| `id_asenta_cpcons` | `string` |  |
 
 #### Example: List
 
@@ -583,11 +580,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const city = client.City()
-await city.list()
+const state = client.State()
+await state.list()
 
-// city.data() now returns the city data from the last `list`
-// city.match() returns the last match criteria
+// state.data() now returns the state data from the last `list`
+// state.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

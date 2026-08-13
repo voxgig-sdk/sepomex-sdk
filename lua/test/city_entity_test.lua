@@ -97,7 +97,7 @@ describe("CityEntity", function()
     }
     local city_ref01_data_dt0_loaded, err = city_ref01_ent:load(city_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local city_ref01_data_dt0_load_result = helpers.to_map(city_ref01_data_dt0_loaded)
+    local city_ref01_data_dt0_load_result = helpers.to_map(type(city_ref01_data_dt0_loaded) == 'table' and city_ref01_data_dt0_loaded.data_get and city_ref01_data_dt0_loaded:data_get() or city_ref01_data_dt0_loaded)
     assert.is_not_nil(city_ref01_data_dt0_load_result)
     assert.are.equal(city_ref01_data_dt0_load_result["id"], city_ref01_data["id"])
 

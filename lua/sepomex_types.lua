@@ -7,7 +7,6 @@
 -- edit by hand.
 
 ---@class City
----@field city? table
 ---@field id? number
 ---@field name? string
 ---@field state_id? number
@@ -16,14 +15,12 @@
 ---@field id number
 
 ---@class CityListMatch
----@field city? table
 ---@field id? number
 ---@field name? string
 ---@field state_id? number
 
 ---@class Municipality
 ---@field id? number
----@field municipality? table
 ---@field municipality_key? string
 ---@field name? string
 ---@field state_id? number
@@ -34,7 +31,6 @@
 
 ---@class MunicipalityListMatch
 ---@field id? number
----@field municipality? table
 ---@field municipality_key? string
 ---@field name? string
 ---@field state_id? number
@@ -45,7 +41,6 @@
 ---@field id? number
 ---@field municipality_key? string
 ---@field name? string
----@field state? table
 ---@field state_id? number
 ---@field zip_code? string
 
@@ -57,7 +52,6 @@
 ---@field id? number
 ---@field municipality_key? string
 ---@field name? string
----@field state? table
 ---@field state_id? number
 ---@field zip_code? string
 
@@ -77,7 +71,7 @@
 ---@field d_tipo_asenta? string
 ---@field d_zona? string
 ---@field id? number
----@field id_asenta_cpcon? string
+---@field id_asenta_cpcons? string
 
 ---@class ZipCodeListMatch
 ---@field c_cp? string
@@ -95,7 +89,7 @@
 ---@field d_tipo_asenta? string
 ---@field d_zona? string
 ---@field id? number
----@field id_asenta_cpcon? string
+---@field id_asenta_cpcons? string
 
 local M = {}
 

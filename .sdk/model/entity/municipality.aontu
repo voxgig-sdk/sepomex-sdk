@@ -11,11 +11,6 @@ main: kit: entity: municipality: {
       type: "`$INTEGER`"
     }
     {
-      name: "municipality"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "municipality_key"
       req: false
       type: "`$STRING`"

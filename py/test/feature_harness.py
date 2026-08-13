@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import SepomexControl
-from core.error import SepomexError
-from core.result import SepomexResult
-from core.spec import SepomexSpec
+from sepomex_sdk.config import make_config
+from sepomex_sdk.features import _make_feature
+from sepomex_sdk.core.control import SepomexControl
+from sepomex_sdk.core.error import SepomexError
+from sepomex_sdk.core.result import SepomexResult
+from sepomex_sdk.core.spec import SepomexSpec
 
 
 # True when this SDK was generated with the named feature.

@@ -87,7 +87,7 @@ class MunicipalityEntityTest < Minitest::Test
       "id" => municipality_ref01_data["id"],
     }
     municipality_ref01_data_dt0_loaded = municipality_ref01_ent.load(municipality_ref01_match_dt0, nil)
-    municipality_ref01_data_dt0_load_result = Helpers.to_map(municipality_ref01_data_dt0_loaded)
+    municipality_ref01_data_dt0_load_result = Helpers.to_map(municipality_ref01_data_dt0_loaded.respond_to?(:data_get) ? municipality_ref01_data_dt0_loaded.data_get : municipality_ref01_data_dt0_loaded)
     assert !municipality_ref01_data_dt0_load_result.nil?
     assert_equal municipality_ref01_data_dt0_load_result["id"], municipality_ref01_data["id"]
 

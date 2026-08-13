@@ -128,7 +128,7 @@ func TestCityEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		cityRef01DataDt0LoadResult := core.ToMapAny(cityRef01DataDt0Loaded)
+		cityRef01DataDt0LoadResult := core.ToMapAny(entityData(cityRef01DataDt0Loaded))
 		if cityRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

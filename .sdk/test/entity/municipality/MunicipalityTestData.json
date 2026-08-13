@@ -3,38 +3,34 @@
     "municipality": {
       "MUNICIPALITY00": {
         "id": "MUNICIPALITY00",
-        "municipality": {},
-        "municipality_key": "s3e",
-        "name": "s3f",
+        "municipality_key": "s33",
+        "name": "s34",
         "state_id": "STATE01",
-        "zip_code": "s41"
+        "zip_code": "s36"
       },
       "MUNICIPALITY01": {
         "id": "MUNICIPALITY01",
-        "municipality": {},
-        "municipality_key": "s7a",
-        "name": "s7b",
+        "municipality_key": "s65",
+        "name": "s66",
         "state_id": "STATE01",
-        "zip_code": "s7d"
+        "zip_code": "s68"
       },
       "MUNICIPALITY02": {
         "id": "MUNICIPALITY02",
-        "municipality": {},
-        "municipality_key": "sb6",
-        "name": "sb7",
+        "municipality_key": "s97",
+        "name": "s98",
         "state_id": "STATE01",
-        "zip_code": "sb9"
+        "zip_code": "s9a"
       }
     }
   },
   "new": {
     "municipality": {
       "municipality_ref01": {
-        "municipality": {},
-        "municipality_key": "sf2",
-        "name": "sf3",
+        "municipality_key": "sc9",
+        "name": "sca",
         "state_id": "STATE01",
-        "zip_code": "sf5"
+        "zip_code": "scc"
       }
     }
   }

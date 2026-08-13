@@ -2,43 +2,39 @@
   "existing": {
     "state": {
       "STATE00": {
-        "cities_count": "s46",
+        "cities_count": "s3c",
         "id": "STATE00",
-        "municipality_key": "s48",
-        "name": "s49",
-        "state": {},
+        "municipality_key": "s3e",
+        "name": "s3f",
         "state_id": "STATE01",
-        "zip_code": "s4c"
+        "zip_code": "s41"
       },
       "STATE01": {
-        "cities_count": "s8c",
+        "cities_count": "s78",
         "id": "STATE01",
-        "municipality_key": "s8e",
-        "name": "s8f",
-        "state": {},
+        "municipality_key": "s7a",
+        "name": "s7b",
         "state_id": "STATE01",
-        "zip_code": "s92"
+        "zip_code": "s7d"
       },
       "STATE02": {
-        "cities_count": "sd2",
+        "cities_count": "sb4",
         "id": "STATE02",
-        "municipality_key": "sd4",
-        "name": "sd5",
-        "state": {},
+        "municipality_key": "sb6",
+        "name": "sb7",
         "state_id": "STATE01",
-        "zip_code": "sd8"
+        "zip_code": "sb9"
       }
     }
   },
   "new": {
     "state": {
       "state_ref01": {
-        "cities_count": "s118",
-        "municipality_key": "s11a",
-        "name": "s11b",
-        "state": {},
+        "cities_count": "sf0",
+        "municipality_key": "sf2",
+        "name": "sf3",
         "state_id": "STATE01",
-        "zip_code": "s11e"
+        "zip_code": "sf5"
       }
     }
   }

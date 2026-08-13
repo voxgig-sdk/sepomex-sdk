@@ -63,13 +63,13 @@ describe('StateEntity', async () => {
     const state_ref01_ent = client.State()
     const state_ref01_match: any = {}
 
-    const state_ref01_list = await state_ref01_ent.list(state_ref01_match)
+    const state_ref01_list = (await state_ref01_ent.list(state_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const state_ref01_match_dt0: any = {}
     state_ref01_match_dt0.id = state_ref01_data.id
-    const state_ref01_data_dt0 = await state_ref01_ent.load(state_ref01_match_dt0)
+    const state_ref01_data_dt0 = (await state_ref01_ent.load(state_ref01_match_dt0)).data()
     assert(state_ref01_data_dt0.id === state_ref01_data.id)
 
 

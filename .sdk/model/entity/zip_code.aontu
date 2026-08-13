@@ -81,7 +81,7 @@ main: kit: entity: zip_code: {
       type: "`$INTEGER`"
     }
     {
-      name: "id_asenta_cpcon"
+      name: "id_asenta_cpcons"
       req: false
       type: "`$STRING`"
     }

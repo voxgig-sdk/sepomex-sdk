@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Sepomex SDK exists test
 
 import pytest
 from sepomex_sdk import SepomexSDK

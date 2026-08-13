@@ -6,11 +6,14 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/sepomex-sdk/go/core"
+)
 
 // City is the typed data model for the city entity.
 type City struct {
-	City *map[string]any `json:"city,omitempty"`
 	Id *int `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	StateId *int `json:"state_id,omitempty"`
@@ -23,7 +26,6 @@ type CityLoadMatch struct {
 
 // CityListMatch is the typed request payload for City.ListTyped.
 type CityListMatch struct {
-	City *map[string]any `json:"city,omitempty"`
 	Id *int `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	StateId *int `json:"state_id,omitempty"`
@@ -32,7 +34,6 @@ type CityListMatch struct {
 // Municipality is the typed data model for the municipality entity.
 type Municipality struct {
 	Id *int `json:"id,omitempty"`
-	Municipality *map[string]any `json:"municipality,omitempty"`
 	MunicipalityKey *string `json:"municipality_key,omitempty"`
 	Name *string `json:"name,omitempty"`
 	StateId *int `json:"state_id,omitempty"`
@@ -47,7 +48,6 @@ type MunicipalityLoadMatch struct {
 // MunicipalityListMatch is the typed request payload for Municipality.ListTyped.
 type MunicipalityListMatch struct {
 	Id *int `json:"id,omitempty"`
-	Municipality *map[string]any `json:"municipality,omitempty"`
 	MunicipalityKey *string `json:"municipality_key,omitempty"`
 	Name *string `json:"name,omitempty"`
 	StateId *int `json:"state_id,omitempty"`
@@ -60,7 +60,6 @@ type State struct {
 	Id *int `json:"id,omitempty"`
 	MunicipalityKey *string `json:"municipality_key,omitempty"`
 	Name *string `json:"name,omitempty"`
-	State *map[string]any `json:"state,omitempty"`
 	StateId *int `json:"state_id,omitempty"`
 	ZipCode *string `json:"zip_code,omitempty"`
 }
@@ -76,7 +75,6 @@ type StateListMatch struct {
 	Id *int `json:"id,omitempty"`
 	MunicipalityKey *string `json:"municipality_key,omitempty"`
 	Name *string `json:"name,omitempty"`
-	State *map[string]any `json:"state,omitempty"`
 	StateId *int `json:"state_id,omitempty"`
 	ZipCode *string `json:"zip_code,omitempty"`
 }
@@ -98,7 +96,7 @@ type ZipCode struct {
 	DTipoAsenta *string `json:"d_tipo_asenta,omitempty"`
 	DZona *string `json:"d_zona,omitempty"`
 	Id *int `json:"id,omitempty"`
-	IdAsentaCpcon *string `json:"id_asenta_cpcon,omitempty"`
+	IdAsentaCpcons *string `json:"id_asenta_cpcons,omitempty"`
 }
 
 // ZipCodeListMatch is the typed request payload for ZipCode.ListTyped.
@@ -118,7 +116,7 @@ type ZipCodeListMatch struct {
 	DTipoAsenta *string `json:"d_tipo_asenta,omitempty"`
 	DZona *string `json:"d_zona,omitempty"`
 	Id *int `json:"id,omitempty"`
-	IdAsentaCpcon *string `json:"id_asenta_cpcon,omitempty"`
+	IdAsentaCpcons *string `json:"id_asenta_cpcons,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
@@ -133,12 +131,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -150,12 +162,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

@@ -104,7 +104,6 @@ $city = $client->City();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | `array` | No |  |
 | `id` | `int` | No |  |
 | `name` | `string` | No |  |
 | `state_id` | `int` | No |  |
@@ -168,7 +167,6 @@ $municipality = $client->Municipality();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `int` | No |  |
-| `municipality` | `array` | No |  |
 | `municipality_key` | `string` | No |  |
 | `name` | `string` | No |  |
 | `state_id` | `int` | No |  |
@@ -236,7 +234,6 @@ $state = $client->State();
 | `id` | `int` | No |  |
 | `municipality_key` | `string` | No |  |
 | `name` | `string` | No |  |
-| `state` | `array` | No |  |
 | `state_id` | `int` | No |  |
 | `zip_code` | `string` | No |  |
 
@@ -313,7 +310,7 @@ $zip_code = $client->ZipCode();
 | `d_tipo_asenta` | `string` | No |  |
 | `d_zona` | `string` | No |  |
 | `id` | `int` | No |  |
-| `id_asenta_cpcon` | `string` | No |  |
+| `id_asenta_cpcons` | `string` | No |  |
 
 ### Operations
 

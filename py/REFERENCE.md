@@ -99,7 +99,6 @@ city = client.City()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | `dict` | No |  |
 | `id` | `int` | No |  |
 | `name` | `str` | No |  |
 | `state_id` | `int` | No |  |
@@ -164,7 +163,6 @@ municipality = client.Municipality()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `int` | No |  |
-| `municipality` | `dict` | No |  |
 | `municipality_key` | `str` | No |  |
 | `name` | `str` | No |  |
 | `state_id` | `int` | No |  |
@@ -233,7 +231,6 @@ state = client.State()
 | `id` | `int` | No |  |
 | `municipality_key` | `str` | No |  |
 | `name` | `str` | No |  |
-| `state` | `dict` | No |  |
 | `state_id` | `int` | No |  |
 | `zip_code` | `str` | No |  |
 
@@ -311,7 +308,7 @@ zip_code = client.ZipCode()
 | `d_tipo_asenta` | `str` | No |  |
 | `d_zona` | `str` | No |  |
 | `id` | `int` | No |  |
-| `id_asenta_cpcon` | `str` | No |  |
+| `id_asenta_cpcons` | `str` | No |  |
 
 ### Operations
 

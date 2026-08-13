@@ -75,12 +75,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-citys, err := client.City(nil).List(nil, nil)
+states, err := client.State(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = citys
+_ = states
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -144,13 +144,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-city, err := client.City(nil).List(
+state, err := client.State(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(city) // the returned mock data
+fmt.Println(state) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -272,7 +272,6 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"city"` |  |
 | `"id"` |  |
 | `"name"` |  |
 | `"state_id"` |  |
@@ -286,7 +285,6 @@ API path: `/cities`
 | Field | Description |
 | --- | --- |
 | `"id"` |  |
-| `"municipality"` |  |
 | `"municipality_key"` |  |
 | `"name"` |  |
 | `"state_id"` |  |
@@ -304,7 +302,6 @@ API path: `/municipalities`
 | `"id"` |  |
 | `"municipality_key"` |  |
 | `"name"` |  |
-| `"state"` |  |
 | `"state_id"` |  |
 | `"zip_code"` |  |
 
@@ -331,7 +328,7 @@ API path: `/states`
 | `"d_tipo_asenta"` |  |
 | `"d_zona"` |  |
 | `"id"` |  |
-| `"id_asenta_cpcon"` |  |
+| `"id_asenta_cpcons"` |  |
 
 Operations: List.
 
@@ -357,7 +354,6 @@ Create an instance: `city := client.City(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | `map[string]any` |  |
 | `id` | `int` |  |
 | `name` | `string` |  |
 | `state_id` | `int` |  |
@@ -399,7 +395,6 @@ Create an instance: `municipality := client.Municipality(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `int` |  |
-| `municipality` | `map[string]any` |  |
 | `municipality_key` | `string` |  |
 | `name` | `string` |  |
 | `state_id` | `int` |  |
@@ -445,7 +440,6 @@ Create an instance: `state := client.State(nil)`
 | `id` | `int` |  |
 | `municipality_key` | `string` |  |
 | `name` | `string` |  |
-| `state` | `map[string]any` |  |
 | `state_id` | `int` |  |
 | `zip_code` | `string` |  |
 
@@ -499,7 +493,7 @@ Create an instance: `zipCode := client.ZipCode(nil)`
 | `d_tipo_asenta` | `string` |  |
 | `d_zona` | `string` |  |
 | `id` | `int` |  |
-| `id_asenta_cpcon` | `string` |  |
+| `id_asenta_cpcons` | `string` |  |
 
 #### Example: List
 
@@ -585,11 +579,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-city := client.City(nil)
-city.List(nil, nil)
+state := client.State(nil)
+state.List(nil, nil)
 
-// city.Data() now returns the city data from the last list
-// city.Match() returns the last match criteria
+// state.Data() now returns the state data from the last list
+// state.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

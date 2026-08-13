@@ -97,7 +97,7 @@ class StateEntityTest extends TestCase
             "id" => $state_ref01_data["id"],
         ];
         $state_ref01_data_dt0_loaded = $state_ref01_ent->load($state_ref01_match_dt0, null);
-        $state_ref01_data_dt0_load_result = Helpers::to_map($state_ref01_data_dt0_loaded);
+        $state_ref01_data_dt0_load_result = Helpers::to_map(is_object($state_ref01_data_dt0_loaded) && method_exists($state_ref01_data_dt0_loaded, 'data_get') ? $state_ref01_data_dt0_loaded->data_get() : $state_ref01_data_dt0_loaded);
         $this->assertNotNull($state_ref01_data_dt0_load_result);
         $this->assertEquals($state_ref01_data_dt0_load_result["id"], $state_ref01_data["id"]);
 

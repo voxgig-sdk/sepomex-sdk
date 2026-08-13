@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ SepomexUtility.registrar = ->(u) {
   u.prepare_params = SepomexUtilities::PrepareParams
   u.prepare_path = SepomexUtilities::PreparePath
   u.prepare_query = SepomexUtilities::PrepareQuery
+  u.graphql_body = SepomexUtilities::GraphqlBody
+  u.graphql_errors = SepomexUtilities::GraphqlErrors
   u.result_basic = SepomexUtilities::ResultBasic
   u.result_body = SepomexUtilities::ResultBody
   u.result_headers = SepomexUtilities::ResultHeaders

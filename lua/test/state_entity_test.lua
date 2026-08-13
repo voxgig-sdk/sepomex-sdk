@@ -97,7 +97,7 @@ describe("StateEntity", function()
     }
     local state_ref01_data_dt0_loaded, err = state_ref01_ent:load(state_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local state_ref01_data_dt0_load_result = helpers.to_map(state_ref01_data_dt0_loaded)
+    local state_ref01_data_dt0_load_result = helpers.to_map(type(state_ref01_data_dt0_loaded) == 'table' and state_ref01_data_dt0_loaded.data_get and state_ref01_data_dt0_loaded:data_get() or state_ref01_data_dt0_loaded)
     assert.is_not_nil(state_ref01_data_dt0_load_result)
     assert.are.equal(state_ref01_data_dt0_load_result["id"], state_ref01_data["id"])
 

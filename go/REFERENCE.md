@@ -110,7 +110,6 @@ fmt.Println(city.GetName()) // "city"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | `map[string]any` | No |  |
 | `id` | `int` | No |  |
 | `name` | `string` | No |  |
 | `state_id` | `int` | No |  |
@@ -177,7 +176,6 @@ fmt.Println(municipality.GetName()) // "municipality"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `int` | No |  |
-| `municipality` | `map[string]any` | No |  |
 | `municipality_key` | `string` | No |  |
 | `name` | `string` | No |  |
 | `state_id` | `int` | No |  |
@@ -248,7 +246,6 @@ fmt.Println(state.GetName()) // "state"
 | `id` | `int` | No |  |
 | `municipality_key` | `string` | No |  |
 | `name` | `string` | No |  |
-| `state` | `map[string]any` | No |  |
 | `state_id` | `int` | No |  |
 | `zip_code` | `string` | No |  |
 
@@ -328,7 +325,7 @@ fmt.Println(zipCode.GetName()) // "zip_code"
 | `d_tipo_asenta` | `string` | No |  |
 | `d_zona` | `string` | No |  |
 | `id` | `int` | No |  |
-| `id_asenta_cpcon` | `string` | No |  |
+| `id_asenta_cpcons` | `string` | No |  |
 
 ### Operations
 

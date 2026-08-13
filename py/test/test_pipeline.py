@@ -16,11 +16,11 @@
 import pytest
 
 from sepomex_sdk import SepomexSDK
-from core.error import SepomexError
-from core.result import SepomexResult
-from core.response import SepomexResponse
-from core.spec import SepomexSpec
-from feature.base_feature import SepomexBaseFeature
+from sepomex_sdk.core.error import SepomexError
+from sepomex_sdk.core.result import SepomexResult
+from sepomex_sdk.core.response import SepomexResponse
+from sepomex_sdk.core.spec import SepomexSpec
+from sepomex_sdk.feature.base_feature import SepomexBaseFeature
 
 
 def _client():

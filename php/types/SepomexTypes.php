@@ -15,7 +15,6 @@ declare(strict_types=1);
 /** City entity data model. */
 class City
 {
-    public ?array $city = null;
     public ?int $id = null;
     public ?string $name = null;
     public ?int $state_id = null;
@@ -30,7 +29,6 @@ class CityLoadMatch
 /** Request payload for City#list. */
 class CityListMatch
 {
-    public ?array $city = null;
     public ?int $id = null;
     public ?string $name = null;
     public ?int $state_id = null;
@@ -40,7 +38,6 @@ class CityListMatch
 class Municipality
 {
     public ?int $id = null;
-    public ?array $municipality = null;
     public ?string $municipality_key = null;
     public ?string $name = null;
     public ?int $state_id = null;
@@ -57,7 +54,6 @@ class MunicipalityLoadMatch
 class MunicipalityListMatch
 {
     public ?int $id = null;
-    public ?array $municipality = null;
     public ?string $municipality_key = null;
     public ?string $name = null;
     public ?int $state_id = null;
@@ -71,7 +67,6 @@ class State
     public ?int $id = null;
     public ?string $municipality_key = null;
     public ?string $name = null;
-    public ?array $state = null;
     public ?int $state_id = null;
     public ?string $zip_code = null;
 }
@@ -89,7 +84,6 @@ class StateListMatch
     public ?int $id = null;
     public ?string $municipality_key = null;
     public ?string $name = null;
-    public ?array $state = null;
     public ?int $state_id = null;
     public ?string $zip_code = null;
 }
@@ -112,7 +106,7 @@ class ZipCode
     public ?string $d_tipo_asenta = null;
     public ?string $d_zona = null;
     public ?int $id = null;
-    public ?string $id_asenta_cpcon = null;
+    public ?string $id_asenta_cpcons = null;
 }
 
 /** Request payload for ZipCode#list. */
@@ -133,6 +127,6 @@ class ZipCodeListMatch
     public ?string $d_tipo_asenta = null;
     public ?string $d_zona = null;
     public ?int $id = null;
-    public ?string $id_asenta_cpcon = null;
+    public ?string $id_asenta_cpcons = null;
 }
 

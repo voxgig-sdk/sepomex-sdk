@@ -87,7 +87,7 @@ class StateEntityTest < Minitest::Test
       "id" => state_ref01_data["id"],
     }
     state_ref01_data_dt0_loaded = state_ref01_ent.load(state_ref01_match_dt0, nil)
-    state_ref01_data_dt0_load_result = Helpers.to_map(state_ref01_data_dt0_loaded)
+    state_ref01_data_dt0_load_result = Helpers.to_map(state_ref01_data_dt0_loaded.respond_to?(:data_get) ? state_ref01_data_dt0_loaded.data_get : state_ref01_data_dt0_loaded)
     assert !state_ref01_data_dt0_load_result.nil?
     assert_equal state_ref01_data_dt0_load_result["id"], state_ref01_data["id"]
 

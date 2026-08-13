@@ -6,7 +6,6 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface City {
-  city?: Record<string, any>
   id?: number
   name?: string
   state_id?: number
@@ -17,7 +16,6 @@ export interface CityLoadMatch {
 }
 
 export interface CityListMatch {
-  city?: Record<string, any>
   id?: number
   name?: string
   state_id?: number
@@ -25,7 +23,6 @@ export interface CityListMatch {
 
 export interface Municipality {
   id?: number
-  municipality?: Record<string, any>
   municipality_key?: string
   name?: string
   state_id?: number
@@ -38,7 +35,6 @@ export interface MunicipalityLoadMatch {
 
 export interface MunicipalityListMatch {
   id?: number
-  municipality?: Record<string, any>
   municipality_key?: string
   name?: string
   state_id?: number
@@ -50,7 +46,6 @@ export interface State {
   id?: number
   municipality_key?: string
   name?: string
-  state?: Record<string, any>
   state_id?: number
   zip_code?: string
 }
@@ -64,9 +59,14 @@ export interface StateListMatch {
   id?: number
   municipality_key?: string
   name?: string
-  state?: Record<string, any>
   state_id?: number
   zip_code?: string
+
+  // Selects a custom action instead of the plain list:
+  //   'municipality'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface ZipCode {
@@ -85,7 +85,7 @@ export interface ZipCode {
   d_tipo_asenta?: string
   d_zona?: string
   id?: number
-  id_asenta_cpcon?: string
+  id_asenta_cpcons?: string
 }
 
 export interface ZipCodeListMatch {
@@ -104,6 +104,6 @@ export interface ZipCodeListMatch {
   d_tipo_asenta?: string
   d_zona?: string
   id?: number
-  id_asenta_cpcon?: string
+  id_asenta_cpcons?: string
 }
 

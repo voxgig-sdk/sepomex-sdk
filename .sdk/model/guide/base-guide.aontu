@@ -36,6 +36,7 @@ guide: {
     path: "/states/{id}/municipalities": {
       action: "municipality": {}
       op: list: method: *GET
+      op: list: transform: res: *("`body.municipalities`")|top
     }
   }
 

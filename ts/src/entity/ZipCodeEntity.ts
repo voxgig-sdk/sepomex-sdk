@@ -37,7 +37,7 @@ class ZipCodeEntity extends SepomexEntityBase<ZipCode> {
 
 
 
-  async list(this: any, reqmatch?: ZipCodeListMatch, ctrl?: Control): Promise<ZipCode[]> {
+  async list(this: any, reqmatch?: ZipCodeListMatch, ctrl?: Control): Promise<ZipCodeEntity[]> {
 
     const utility = this._utility
 

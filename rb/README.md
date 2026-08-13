@@ -37,7 +37,7 @@ begin
   # list returns an Array of City records — iterate directly.
   citys = client.City.list
   citys.each do |item|
-    puts "#{item["id"]} #{item["city"]}"
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare City record (raises on error).
+  # load returns the ENTITY — call data_get for the City record (raises on error).
   city = client.City.load({ "id" => 1 })
   puts city
 rescue => err
@@ -63,7 +63,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  citys = client.City.list()
+  states = client.State.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -131,12 +131,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
 client = SepomexSDK.test({
-  "entity" => { "city" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "state" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
-city = client.City.list()
-puts city
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+state = client.State.list()
+puts state
 ```
 
 ### Use a custom fetch function
@@ -255,7 +256,6 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `city` |  |
 | `id` |  |
 | `name` |  |
 | `state_id` |  |
@@ -269,7 +269,6 @@ API path: `/cities`
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `municipality` |  |
 | `municipality_key` |  |
 | `name` |  |
 | `state_id` |  |
@@ -287,7 +286,6 @@ API path: `/municipalities`
 | `id` |  |
 | `municipality_key` |  |
 | `name` |  |
-| `state` |  |
 | `state_id` |  |
 | `zip_code` |  |
 
@@ -314,7 +312,7 @@ API path: `/states`
 | `d_tipo_asenta` |  |
 | `d_zona` |  |
 | `id` |  |
-| `id_asenta_cpcon` |  |
+| `id_asenta_cpcons` |  |
 
 Operations: List.
 
@@ -340,7 +338,6 @@ Create an instance: `city = client.City`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | `Hash` |  |
 | `id` | `Integer` |  |
 | `name` | `String` |  |
 | `state_id` | `Integer` |  |
@@ -348,7 +345,7 @@ Create an instance: `city = client.City`
 #### Example: Load
 
 ```ruby
-# load returns the bare City record (raises on error).
+# load returns the ENTITY — call data_get for the City record (raises on error).
 city = client.City.load({ "id" => 1 })
 ```
 
@@ -376,7 +373,6 @@ Create an instance: `municipality = client.Municipality`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `Integer` |  |
-| `municipality` | `Hash` |  |
 | `municipality_key` | `String` |  |
 | `name` | `String` |  |
 | `state_id` | `Integer` |  |
@@ -385,7 +381,7 @@ Create an instance: `municipality = client.Municipality`
 #### Example: Load
 
 ```ruby
-# load returns the bare Municipality record (raises on error).
+# load returns the ENTITY — call data_get for the Municipality record (raises on error).
 municipality = client.Municipality.load({ "id" => 1 })
 ```
 
@@ -416,14 +412,13 @@ Create an instance: `state = client.State`
 | `id` | `Integer` |  |
 | `municipality_key` | `String` |  |
 | `name` | `String` |  |
-| `state` | `Hash` |  |
 | `state_id` | `Integer` |  |
 | `zip_code` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare State record (raises on error).
+# load returns the ENTITY — call data_get for the State record (raises on error).
 state = client.State.load({ "id" => 1 })
 ```
 
@@ -464,7 +459,7 @@ Create an instance: `zip_code = client.ZipCode`
 | `d_tipo_asenta` | `String` |  |
 | `d_zona` | `String` |  |
 | `id` | `Integer` |  |
-| `id_asenta_cpcon` | `String` |  |
+| `id_asenta_cpcons` | `String` |  |
 
 #### Example: List
 
@@ -550,11 +545,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-city = client.City
-city.list()
+state = client.State
+state.list()
 
-# city.data_get now returns the city data from the last list
-# city.match_get returns the last match criteria
+# state.data_get now returns the state data from the last list
+# state.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

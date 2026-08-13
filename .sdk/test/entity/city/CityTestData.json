@@ -2,21 +2,18 @@
   "existing": {
     "city": {
       "CITY00": {
-        "city": {},
         "id": "CITY00",
-        "name": "s2a",
+        "name": "s1f",
         "state_id": "STATE01"
       },
       "CITY01": {
-        "city": {},
         "id": "CITY01",
-        "name": "s52",
+        "name": "s3d",
         "state_id": "STATE01"
       },
       "CITY02": {
-        "city": {},
         "id": "CITY02",
-        "name": "s7a",
+        "name": "s5b",
         "state_id": "STATE01"
       }
     }
@@ -24,8 +21,7 @@
   "new": {
     "city": {
       "city_ref01": {
-        "city": {},
-        "name": "sa2",
+        "name": "s79",
         "state_id": "STATE01"
       }
     }

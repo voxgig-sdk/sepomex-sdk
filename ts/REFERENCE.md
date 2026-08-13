@@ -152,7 +152,6 @@ const city = client.City()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | `Record<string, any>` | No |  |
 | `id` | `number` | No |  |
 | `name` | `string` | No |  |
 | `state_id` | `number` | No |  |
@@ -214,7 +213,6 @@ const municipality = client.Municipality()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `number` | No |  |
-| `municipality` | `Record<string, any>` | No |  |
 | `municipality_key` | `string` | No |  |
 | `name` | `string` | No |  |
 | `state_id` | `number` | No |  |
@@ -280,9 +278,28 @@ const state = client.State()
 | `id` | `number` | No |  |
 | `municipality_key` | `string` | No |  |
 | `name` | `string` | No |  |
-| `state` | `Record<string, any>` | No |  |
 | `state_id` | `number` | No |  |
 | `zip_code` | `string` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `municipality` | `/states/{id}/municipalities` | `client.State().list({ $action: 'municipality', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+State record — check the API definition for its shape.
+
+```ts
+const result = await client.State().list({
+  $action: 'municipality',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -355,7 +372,7 @@ const zip_code = client.ZipCode()
 | `d_tipo_asenta` | `string` | No |  |
 | `d_zona` | `string` | No |  |
 | `id` | `number` | No |  |
-| `id_asenta_cpcon` | `string` | No |  |
+| `id_asenta_cpcons` | `string` | No |  |
 
 ### Operations
 

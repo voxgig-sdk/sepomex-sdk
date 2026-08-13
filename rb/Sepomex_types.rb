@@ -10,9 +10,6 @@
 
 # City entity data model.
 #
-# @!attribute [rw] city
-#   @return [Hash, nil]
-#
 # @!attribute [rw] id
 #   @return [Integer, nil]
 #
@@ -22,7 +19,6 @@
 # @!attribute [rw] state_id
 #   @return [Integer, nil]
 City = Struct.new(
-  :city,
   :id,
   :name,
   :state_id,
@@ -40,9 +36,6 @@ CityLoadMatch = Struct.new(
 
 # Request payload for City#list.
 #
-# @!attribute [rw] city
-#   @return [Hash, nil]
-#
 # @!attribute [rw] id
 #   @return [Integer, nil]
 #
@@ -52,7 +45,6 @@ CityLoadMatch = Struct.new(
 # @!attribute [rw] state_id
 #   @return [Integer, nil]
 CityListMatch = Struct.new(
-  :city,
   :id,
   :name,
   :state_id,
@@ -63,9 +55,6 @@ CityListMatch = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [Integer, nil]
-#
-# @!attribute [rw] municipality
-#   @return [Hash, nil]
 #
 # @!attribute [rw] municipality_key
 #   @return [String, nil]
@@ -80,7 +69,6 @@ CityListMatch = Struct.new(
 #   @return [String, nil]
 Municipality = Struct.new(
   :id,
-  :municipality,
   :municipality_key,
   :name,
   :state_id,
@@ -102,9 +90,6 @@ MunicipalityLoadMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [Integer, nil]
 #
-# @!attribute [rw] municipality
-#   @return [Hash, nil]
-#
 # @!attribute [rw] municipality_key
 #   @return [String, nil]
 #
@@ -118,7 +103,6 @@ MunicipalityLoadMatch = Struct.new(
 #   @return [String, nil]
 MunicipalityListMatch = Struct.new(
   :id,
-  :municipality,
   :municipality_key,
   :name,
   :state_id,
@@ -140,9 +124,6 @@ MunicipalityListMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] state
-#   @return [Hash, nil]
-#
 # @!attribute [rw] state_id
 #   @return [Integer, nil]
 #
@@ -153,7 +134,6 @@ State = Struct.new(
   :id,
   :municipality_key,
   :name,
-  :state,
   :state_id,
   :zip_code,
   keyword_init: true
@@ -182,9 +162,6 @@ StateLoadMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] state
-#   @return [Hash, nil]
-#
 # @!attribute [rw] state_id
 #   @return [Integer, nil]
 #
@@ -195,7 +172,6 @@ StateListMatch = Struct.new(
   :id,
   :municipality_key,
   :name,
-  :state,
   :state_id,
   :zip_code,
   keyword_init: true
@@ -248,7 +224,7 @@ StateListMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [Integer, nil]
 #
-# @!attribute [rw] id_asenta_cpcon
+# @!attribute [rw] id_asenta_cpcons
 #   @return [String, nil]
 ZipCode = Struct.new(
   :c_cp,
@@ -266,7 +242,7 @@ ZipCode = Struct.new(
   :d_tipo_asenta,
   :d_zona,
   :id,
-  :id_asenta_cpcon,
+  :id_asenta_cpcons,
   keyword_init: true
 )
 
@@ -317,7 +293,7 @@ ZipCode = Struct.new(
 # @!attribute [rw] id
 #   @return [Integer, nil]
 #
-# @!attribute [rw] id_asenta_cpcon
+# @!attribute [rw] id_asenta_cpcons
 #   @return [String, nil]
 ZipCodeListMatch = Struct.new(
   :c_cp,
@@ -335,7 +311,7 @@ ZipCodeListMatch = Struct.new(
   :d_tipo_asenta,
   :d_zona,
   :id,
-  :id_asenta_cpcon,
+  :id_asenta_cpcons,
   keyword_init: true
 )
 

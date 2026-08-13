@@ -26,11 +26,6 @@ main: kit: entity: state: {
       type: "`$STRING`"
     }
     {
-      name: "state"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "state_id"
       req: false
       type: "`$INTEGER`"
@@ -116,7 +111,7 @@ main: kit: entity: state: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.municipalities`"
           }
         }
       ]

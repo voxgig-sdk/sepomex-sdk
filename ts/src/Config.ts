@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Sepomex',
   }
 
 
@@ -65,31 +65,24 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "city",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 0
-        },
-        {
-          "active": true,
           "name": "id",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 1
+          "index$": 0
         },
         {
           "active": true,
           "name": "name",
           "req": false,
           "type": "`$STRING`",
-          "index$": 2
+          "index$": 1
         },
         {
           "active": true,
           "name": "state_id",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 3
+          "index$": 2
         }
       ],
       "name": "city",
@@ -122,6 +115,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/cities",
               "parts": [
@@ -161,6 +155,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/cities/{id}",
               "parts": [
@@ -197,38 +192,31 @@ class Config {
         },
         {
           "active": true,
-          "name": "municipality",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 1
-        },
-        {
-          "active": true,
           "name": "municipality_key",
           "req": false,
           "type": "`$STRING`",
-          "index$": 2
+          "index$": 1
         },
         {
           "active": true,
           "name": "name",
           "req": false,
           "type": "`$STRING`",
-          "index$": 3
+          "index$": 2
         },
         {
           "active": true,
           "name": "state_id",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 4
+          "index$": 3
         },
         {
           "active": true,
           "name": "zip_code",
           "req": false,
           "type": "`$STRING`",
-          "index$": 5
+          "index$": 4
         }
       ],
       "name": "municipality",
@@ -261,6 +249,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/municipalities",
               "parts": [
@@ -300,6 +289,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/municipalities/{id}",
               "parts": [
@@ -357,24 +347,17 @@ class Config {
         },
         {
           "active": true,
-          "name": "state",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 4
-        },
-        {
-          "active": true,
           "name": "state_id",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 5
+          "index$": 4
         },
         {
           "active": true,
           "name": "zip_code",
           "req": false,
           "type": "`$STRING`",
-          "index$": 6
+          "index$": 5
         }
       ],
       "name": "state",
@@ -407,6 +390,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/states",
               "parts": [
@@ -438,6 +422,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/states/{id}/municipalities",
               "parts": [
@@ -453,7 +438,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.municipalities`"
               },
               "index$": 1
             }
@@ -479,6 +464,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/states/{id}",
               "parts": [
@@ -613,7 +599,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "id_asenta_cpcon",
+          "name": "id_asenta_cpcons",
           "req": false,
           "type": "`$STRING`",
           "index$": 15
@@ -685,6 +671,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/zip_codes",
               "parts": [

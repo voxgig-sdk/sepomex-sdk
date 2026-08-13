@@ -63,7 +63,7 @@ describe('ZipCodeEntity', async () => {
     const zip_code_ref01_ent = client.ZipCode()
     const zip_code_ref01_match: any = {}
 
-    const zip_code_ref01_list = await zip_code_ref01_ent.list(zip_code_ref01_match)
+    const zip_code_ref01_list = (await zip_code_ref01_ent.list(zip_code_ref01_match)).map((e: any) => e.data())
 
 
   })

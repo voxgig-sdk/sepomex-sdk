@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = SepomexSDK.test()
-const citys = await client.City().list()
-// citys is an array of bare City records populated with mock data
-console.log(citys)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = SepomexSDK.test({
+  entity: {
+    state: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const states = await client.State().list()
+// states is an array of State entities, populated with mock data
+// — call states[0].data() for the record itself
+console.log(states)
 ```
 
 ### Python
 
 ```python
 client = SepomexSDK.test()
-citys = client.City().list()
-print(citys)
+states = client.State().list()
+print(states)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(citys)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = SepomexSDK::test([
-    "entity" => ["city" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["state" => ["test01" => ["id" => "test01"]]],
 ]);
-$citys = $client->City()->list();
+$states = $client->State()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.City(nil).List(
+result, err := client.State(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.City(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = SepomexSDK.test({
-  "entity" => { "city" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "state" => { "test01" => { "id" => "test01" } } },
 })
-citys = client.City.list()
+states = client.State.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:City():list()
+local results, err = client:State():list()
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { SepomexSDK } from '@voxgig-sdk/sepomex'
 
 const client = new SepomexSDK()
 
-// List all citys (returns City[])
+// List all citys (returns CityEntity[] — .data() for the record)
 const citys = await client.City().list()
 for (const city of citys) {
   console.log(city)
@@ -194,7 +203,7 @@ $client = new SepomexSDK();
 $citys = $client->City()->list();
 print_r($citys);
 
-// Load a specific city (returns the bare record; throws on error)
+// Load a specific city (returns the ENTITY; call data_get() for the record; throws on error)
 $city = $client->City()->load(["id" => 1]);
 print_r($city);
 ```
@@ -225,7 +234,7 @@ client = SepomexSDK.new
 citys = client.City.list
 puts citys
 
-# Load a specific city (returns the bare record; raises on error)
+# Load a specific city (returns the ENTITY; call data_get for the record)
 city = client.City.load({ "id" => 1 })
 puts city
 ```
@@ -362,6 +371,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://github.com/IcaliaLabs/sepomex](https://github.com/IcaliaLabs/sepomex)
 

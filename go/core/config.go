@@ -29,31 +29,24 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "city",
-						"req": false,
-						"type": "`$OBJECT`",
-						"index$": 0,
-					},
-					map[string]any{
-						"active": true,
 						"name": "id",
 						"req": false,
 						"type": "`$INTEGER`",
-						"index$": 1,
+						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
 						"name": "name",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 2,
+						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
 						"name": "state_id",
 						"req": false,
 						"type": "`$INTEGER`",
-						"index$": 3,
+						"index$": 2,
 					},
 				},
 				"name": "city",
@@ -86,6 +79,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/cities",
 								"parts": []any{
@@ -104,7 +98,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -125,6 +118,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/cities/{id}",
 								"parts": []any{
@@ -143,7 +137,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -161,38 +154,31 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "municipality",
-						"req": false,
-						"type": "`$OBJECT`",
-						"index$": 1,
-					},
-					map[string]any{
-						"active": true,
 						"name": "municipality_key",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 2,
+						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
 						"name": "name",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 3,
+						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
 						"name": "state_id",
 						"req": false,
 						"type": "`$INTEGER`",
-						"index$": 4,
+						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
 						"name": "zip_code",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 5,
+						"index$": 4,
 					},
 				},
 				"name": "municipality",
@@ -225,6 +211,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/municipalities",
 								"parts": []any{
@@ -243,7 +230,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -264,6 +250,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/municipalities/{id}",
 								"parts": []any{
@@ -282,7 +269,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -321,24 +307,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "state",
-						"req": false,
-						"type": "`$OBJECT`",
-						"index$": 4,
-					},
-					map[string]any{
-						"active": true,
 						"name": "state_id",
 						"req": false,
 						"type": "`$INTEGER`",
-						"index$": 5,
+						"index$": 4,
 					},
 					map[string]any{
 						"active": true,
 						"name": "zip_code",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 6,
+						"index$": 5,
 					},
 				},
 				"name": "state",
@@ -371,6 +350,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/states",
 								"parts": []any{
@@ -402,6 +382,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/states/{id}/municipalities",
 								"parts": []any{
@@ -417,12 +398,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.municipalities`",
 								},
 								"index$": 1,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -443,6 +423,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/states/{id}",
 								"parts": []any{
@@ -461,7 +442,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -577,7 +557,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "id_asenta_cpcon",
+						"name": "id_asenta_cpcons",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 15,
@@ -649,6 +629,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/zip_codes",
 								"parts": []any{
@@ -671,7 +652,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{

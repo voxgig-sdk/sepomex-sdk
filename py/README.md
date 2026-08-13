@@ -52,7 +52,7 @@ except Exception as err:
 
 ### 3. Load a city
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -69,8 +69,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    citys = client.City().list()
-    print(citys)
+    states = client.State().list()
+    print(states)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -136,9 +136,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = SepomexSDK.test()
 
-# Entity ops return the bare record and raise on error.
-city = client.City().list()
-# city contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+state = client.State().list()
+# state contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -236,7 +237,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -258,7 +259,6 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `city` |  |
 | `id` |  |
 | `name` |  |
 | `state_id` |  |
@@ -272,7 +272,6 @@ API path: `/cities`
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `municipality` |  |
 | `municipality_key` |  |
 | `name` |  |
 | `state_id` |  |
@@ -290,7 +289,6 @@ API path: `/municipalities`
 | `id` |  |
 | `municipality_key` |  |
 | `name` |  |
-| `state` |  |
 | `state_id` |  |
 | `zip_code` |  |
 
@@ -317,7 +315,7 @@ API path: `/states`
 | `d_tipo_asenta` |  |
 | `d_zona` |  |
 | `id` |  |
-| `id_asenta_cpcon` |  |
+| `id_asenta_cpcons` |  |
 
 Operations: List.
 
@@ -343,7 +341,6 @@ Create an instance: `city = client.City()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | `dict` |  |
 | `id` | `int` |  |
 | `name` | `str` |  |
 | `state_id` | `int` |  |
@@ -377,7 +374,6 @@ Create an instance: `municipality = client.Municipality()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `int` |  |
-| `municipality` | `dict` |  |
 | `municipality_key` | `str` |  |
 | `name` | `str` |  |
 | `state_id` | `int` |  |
@@ -415,7 +411,6 @@ Create an instance: `state = client.State()`
 | `id` | `int` |  |
 | `municipality_key` | `str` |  |
 | `name` | `str` |  |
-| `state` | `dict` |  |
 | `state_id` | `int` |  |
 | `zip_code` | `str` |  |
 
@@ -461,7 +456,7 @@ Create an instance: `zip_code = client.ZipCode()`
 | `d_tipo_asenta` | `str` |  |
 | `d_zona` | `str` |  |
 | `id` | `int` |  |
-| `id_asenta_cpcon` | `str` |  |
+| `id_asenta_cpcons` | `str` |  |
 
 #### Example: List
 
@@ -545,11 +540,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-city = client.City()
-city.list()
+state = client.State()
+state.list()
 
-# city.data_get() now returns the city data from the last list
-# city.match_get() returns the last match criteria
+# state.data_get() now returns the state data from the last list
+# state.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -102,7 +102,6 @@ local city = client:City(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | `table` | No |  |
 | `id` | `number` | No |  |
 | `name` | `string` | No |  |
 | `state_id` | `number` | No |  |
@@ -166,7 +165,6 @@ local municipality = client:Municipality(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `number` | No |  |
-| `municipality` | `table` | No |  |
 | `municipality_key` | `string` | No |  |
 | `name` | `string` | No |  |
 | `state_id` | `number` | No |  |
@@ -234,7 +232,6 @@ local state = client:State(nil)
 | `id` | `number` | No |  |
 | `municipality_key` | `string` | No |  |
 | `name` | `string` | No |  |
-| `state` | `table` | No |  |
 | `state_id` | `number` | No |  |
 | `zip_code` | `string` | No |  |
 
@@ -311,7 +308,7 @@ local zip_code = client:ZipCode(nil)
 | `d_tipo_asenta` | `string` | No |  |
 | `d_zona` | `string` | No |  |
 | `id` | `number` | No |  |
-| `id_asenta_cpcon` | `string` | No |  |
+| `id_asenta_cpcons` | `string` | No |  |
 
 ### Operations
 
