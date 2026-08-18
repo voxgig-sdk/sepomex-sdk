@@ -40,7 +40,7 @@ class CityEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = SepomexConfig::make_config();
+        $cfg = SepomexConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = SepomexSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];

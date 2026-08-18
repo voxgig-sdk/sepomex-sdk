@@ -28,7 +28,7 @@ class SepomexSDK
     utility = SepomexUtility.new
     @_utility = utility
 
-    config = SepomexConfig.make_config
+    config = SepomexConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

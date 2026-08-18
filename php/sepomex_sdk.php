@@ -40,7 +40,7 @@ class SepomexSDK
         $utility = new SepomexUtility();
         $this->_utility = $utility;
 
-        $config = SepomexConfig::make_config();
+        $config = SepomexConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
