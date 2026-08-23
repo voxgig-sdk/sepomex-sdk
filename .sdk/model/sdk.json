@@ -36,18 +36,21 @@
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the city",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "City name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "state_id",
               "req": false,
+              "short": "ID of the state this city belongs to",
               "type": "`$INTEGER`"
             }
           ],
@@ -156,30 +159,35 @@
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the municipality",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "municipality_key",
               "req": false,
+              "short": "Municipality key code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Municipality name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "state_id",
               "req": false,
+              "short": "ID of the state this municipality belongs to",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "zip_code",
               "req": false,
+              "short": "Representative zip code for the municipality",
               "type": "`$STRING`"
             }
           ],
@@ -288,36 +296,42 @@
               "active": true,
               "name": "cities_count",
               "req": false,
+              "short": "Number of cities in the state",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the state",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "municipality_key",
               "req": false,
+              "short": "Municipality key code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "State name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "state_id",
               "req": false,
+              "short": "ID of the state this municipality belongs to",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "zip_code",
               "req": false,
+              "short": "Representative zip code for the municipality",
               "type": "`$STRING`"
             }
           ],
@@ -459,96 +473,112 @@
               "active": true,
               "name": "c_cp",
               "req": false,
+              "short": "Postal code field",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "c_cve_ciudad",
               "req": false,
+              "short": "City key",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "c_estado",
               "req": false,
+              "short": "State code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "c_mnpio",
               "req": false,
+              "short": "Municipality code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "c_oficina",
               "req": false,
+              "short": "Office code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "c_tipo_asenta",
               "req": false,
+              "short": "Settlement type code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "d_asenta",
               "req": false,
+              "short": "Settlement name (colony)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "d_ciudad",
               "req": false,
+              "short": "City name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "d_codigo",
               "req": false,
+              "short": "Zip code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "d_cp",
               "req": false,
+              "short": "Postal code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "d_estado",
               "req": false,
+              "short": "State name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "d_mnpio",
               "req": false,
+              "short": "Municipality name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "d_tipo_asenta",
               "req": false,
+              "short": "Settlement type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "d_zona",
               "req": false,
+              "short": "Zone type (Urban/Rural)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the zip code record",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "id_asenta_cpcons",
               "req": false,
+              "short": "Settlement ID",
               "type": "`$STRING`"
             }
           ],

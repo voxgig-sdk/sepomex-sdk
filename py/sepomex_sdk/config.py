@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "Sepomex",
+            "slug": "sepomex",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -53,14 +56,17 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "short": "Unique identifier for the city",
             "type": "`$INTEGER`",
           },
           {
             "name": "name",
+            "short": "City name",
             "type": "`$STRING`",
           },
           {
             "name": "state_id",
+            "short": "ID of the state this city belongs to",
             "type": "`$INTEGER`",
           },
         ],
@@ -152,22 +158,27 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "short": "Unique identifier for the municipality",
             "type": "`$INTEGER`",
           },
           {
             "name": "municipality_key",
+            "short": "Municipality key code",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "short": "Municipality name",
             "type": "`$STRING`",
           },
           {
             "name": "state_id",
+            "short": "ID of the state this municipality belongs to",
             "type": "`$INTEGER`",
           },
           {
             "name": "zip_code",
+            "short": "Representative zip code for the municipality",
             "type": "`$STRING`",
           },
         ],
@@ -259,26 +270,32 @@ def make_config():
         "fields": [
           {
             "name": "cities_count",
+            "short": "Number of cities in the state",
             "type": "`$INTEGER`",
           },
           {
             "name": "id",
+            "short": "Unique identifier for the state",
             "type": "`$INTEGER`",
           },
           {
             "name": "municipality_key",
+            "short": "Municipality key code",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "short": "State name",
             "type": "`$STRING`",
           },
           {
             "name": "state_id",
+            "short": "ID of the state this municipality belongs to",
             "type": "`$INTEGER`",
           },
           {
             "name": "zip_code",
+            "short": "Representative zip code for the municipality",
             "type": "`$STRING`",
           },
         ],
@@ -401,66 +418,82 @@ def make_config():
         "fields": [
           {
             "name": "c_cp",
+            "short": "Postal code field",
             "type": "`$STRING`",
           },
           {
             "name": "c_cve_ciudad",
+            "short": "City key",
             "type": "`$STRING`",
           },
           {
             "name": "c_estado",
+            "short": "State code",
             "type": "`$STRING`",
           },
           {
             "name": "c_mnpio",
+            "short": "Municipality code",
             "type": "`$STRING`",
           },
           {
             "name": "c_oficina",
+            "short": "Office code",
             "type": "`$STRING`",
           },
           {
             "name": "c_tipo_asenta",
+            "short": "Settlement type code",
             "type": "`$STRING`",
           },
           {
             "name": "d_asenta",
+            "short": "Settlement name (colony)",
             "type": "`$STRING`",
           },
           {
             "name": "d_ciudad",
+            "short": "City name",
             "type": "`$STRING`",
           },
           {
             "name": "d_codigo",
+            "short": "Zip code",
             "type": "`$STRING`",
           },
           {
             "name": "d_cp",
+            "short": "Postal code",
             "type": "`$STRING`",
           },
           {
             "name": "d_estado",
+            "short": "State name",
             "type": "`$STRING`",
           },
           {
             "name": "d_mnpio",
+            "short": "Municipality name",
             "type": "`$STRING`",
           },
           {
             "name": "d_tipo_asenta",
+            "short": "Settlement type",
             "type": "`$STRING`",
           },
           {
             "name": "d_zona",
+            "short": "Zone type (Urban/Rural)",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "Unique identifier for the zip code record",
             "type": "`$INTEGER`",
           },
           {
             "name": "id_asenta_cpcons",
+            "short": "Settlement ID",
             "type": "`$STRING`",
           },
         ],

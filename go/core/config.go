@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Sepomex",
+			"slug": "sepomex",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -36,14 +39,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the city",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "City name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "state_id",
+						"short": "ID of the state this city belongs to",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -135,22 +141,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the municipality",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "municipality_key",
+						"short": "Municipality key code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Municipality name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "state_id",
+						"short": "ID of the state this municipality belongs to",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "zip_code",
+						"short": "Representative zip code for the municipality",
 						"type": "`$STRING`",
 					},
 				},
@@ -242,26 +253,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "cities_count",
+						"short": "Number of cities in the state",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the state",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "municipality_key",
+						"short": "Municipality key code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "State name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "state_id",
+						"short": "ID of the state this municipality belongs to",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "zip_code",
+						"short": "Representative zip code for the municipality",
 						"type": "`$STRING`",
 					},
 				},
@@ -384,66 +401,82 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "c_cp",
+						"short": "Postal code field",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "c_cve_ciudad",
+						"short": "City key",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "c_estado",
+						"short": "State code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "c_mnpio",
+						"short": "Municipality code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "c_oficina",
+						"short": "Office code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "c_tipo_asenta",
+						"short": "Settlement type code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "d_asenta",
+						"short": "Settlement name (colony)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "d_ciudad",
+						"short": "City name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "d_codigo",
+						"short": "Zip code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "d_cp",
+						"short": "Postal code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "d_estado",
+						"short": "State name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "d_mnpio",
+						"short": "Municipality name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "d_tipo_asenta",
+						"short": "Settlement type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "d_zona",
+						"short": "Zone type (Urban/Rural)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the zip code record",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "id_asenta_cpcons",
+						"short": "Settlement ID",
 						"type": "`$STRING`",
 					},
 				},

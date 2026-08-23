@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -305,9 +305,9 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
-| `name` |  |
-| `state_id` |  |
+| `id` | Unique identifier for the city |
+| `name` | City name |
+| `state_id` | ID of the state this city belongs to |
 
 Operations: list, load.
 
@@ -317,11 +317,11 @@ API path: `/cities`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
-| `municipality_key` |  |
-| `name` |  |
-| `state_id` |  |
-| `zip_code` |  |
+| `id` | Unique identifier for the municipality |
+| `municipality_key` | Municipality key code |
+| `name` | Municipality name |
+| `state_id` | ID of the state this municipality belongs to |
+| `zip_code` | Representative zip code for the municipality |
 
 Operations: list, load.
 
@@ -331,12 +331,12 @@ API path: `/municipalities`
 
 | Field | Description |
 | --- | --- |
-| `cities_count` |  |
-| `id` |  |
-| `municipality_key` |  |
-| `name` |  |
-| `state_id` |  |
-| `zip_code` |  |
+| `cities_count` | Number of cities in the state |
+| `id` | Unique identifier for the state |
+| `municipality_key` | Municipality key code |
+| `name` | State name |
+| `state_id` | ID of the state this municipality belongs to |
+| `zip_code` | Representative zip code for the municipality |
 
 Operations: list, load.
 
@@ -346,22 +346,22 @@ API path: `/states`
 
 | Field | Description |
 | --- | --- |
-| `c_cp` |  |
-| `c_cve_ciudad` |  |
-| `c_estado` |  |
-| `c_mnpio` |  |
-| `c_oficina` |  |
-| `c_tipo_asenta` |  |
-| `d_asenta` |  |
-| `d_ciudad` |  |
-| `d_codigo` |  |
-| `d_cp` |  |
-| `d_estado` |  |
-| `d_mnpio` |  |
-| `d_tipo_asenta` |  |
-| `d_zona` |  |
-| `id` |  |
-| `id_asenta_cpcons` |  |
+| `c_cp` | Postal code field |
+| `c_cve_ciudad` | City key |
+| `c_estado` | State code |
+| `c_mnpio` | Municipality code |
+| `c_oficina` | Office code |
+| `c_tipo_asenta` | Settlement type code |
+| `d_asenta` | Settlement name (colony) |
+| `d_ciudad` | City name |
+| `d_codigo` | Zip code |
+| `d_cp` | Postal code |
+| `d_estado` | State name |
+| `d_mnpio` | Municipality name |
+| `d_tipo_asenta` | Settlement type |
+| `d_zona` | Zone type (Urban/Rural) |
+| `id` | Unique identifier for the zip code record |
+| `id_asenta_cpcons` | Settlement ID |
 
 Operations: list.
 
@@ -387,9 +387,9 @@ Create an instance: `const city = client.City()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `number` |  |
-| `name` | `string` |  |
-| `state_id` | `number` |  |
+| `id` | `number` | Unique identifier for the city |
+| `name` | `string` | City name |
+| `state_id` | `number` | ID of the state this city belongs to |
 
 #### Example: Load
 
@@ -419,11 +419,11 @@ Create an instance: `const municipality = client.Municipality()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `number` |  |
-| `municipality_key` | `string` |  |
-| `name` | `string` |  |
-| `state_id` | `number` |  |
-| `zip_code` | `string` |  |
+| `id` | `number` | Unique identifier for the municipality |
+| `municipality_key` | `string` | Municipality key code |
+| `name` | `string` | Municipality name |
+| `state_id` | `number` | ID of the state this municipality belongs to |
+| `zip_code` | `string` | Representative zip code for the municipality |
 
 #### Example: Load
 
@@ -453,12 +453,12 @@ Create an instance: `const state = client.State()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cities_count` | `number` |  |
-| `id` | `number` |  |
-| `municipality_key` | `string` |  |
-| `name` | `string` |  |
-| `state_id` | `number` |  |
-| `zip_code` | `string` |  |
+| `cities_count` | `number` | Number of cities in the state |
+| `id` | `number` | Unique identifier for the state |
+| `municipality_key` | `string` | Municipality key code |
+| `name` | `string` | State name |
+| `state_id` | `number` | ID of the state this municipality belongs to |
+| `zip_code` | `string` | Representative zip code for the municipality |
 
 #### Example: Load
 
@@ -487,22 +487,22 @@ Create an instance: `const zip_code = client.ZipCode()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `c_cp` | `string` |  |
-| `c_cve_ciudad` | `string` |  |
-| `c_estado` | `string` |  |
-| `c_mnpio` | `string` |  |
-| `c_oficina` | `string` |  |
-| `c_tipo_asenta` | `string` |  |
-| `d_asenta` | `string` |  |
-| `d_ciudad` | `string` |  |
-| `d_codigo` | `string` |  |
-| `d_cp` | `string` |  |
-| `d_estado` | `string` |  |
-| `d_mnpio` | `string` |  |
-| `d_tipo_asenta` | `string` |  |
-| `d_zona` | `string` |  |
-| `id` | `number` |  |
-| `id_asenta_cpcons` | `string` |  |
+| `c_cp` | `string` | Postal code field |
+| `c_cve_ciudad` | `string` | City key |
+| `c_estado` | `string` | State code |
+| `c_mnpio` | `string` | Municipality code |
+| `c_oficina` | `string` | Office code |
+| `c_tipo_asenta` | `string` | Settlement type code |
+| `d_asenta` | `string` | Settlement name (colony) |
+| `d_ciudad` | `string` | City name |
+| `d_codigo` | `string` | Zip code |
+| `d_cp` | `string` | Postal code |
+| `d_estado` | `string` | State name |
+| `d_mnpio` | `string` | Municipality name |
+| `d_tipo_asenta` | `string` | Settlement type |
+| `d_zona` | `string` | Zone type (Urban/Rural) |
+| `id` | `number` | Unique identifier for the zip code record |
+| `id_asenta_cpcons` | `string` | Settlement ID |
 
 #### Example: List
 

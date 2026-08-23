@@ -105,9 +105,9 @@ city = client.City
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `Integer` | No |  |
-| `name` | `String` | No |  |
-| `state_id` | `Integer` | No |  |
+| `id` | `Integer` | No | Unique identifier for the city |
+| `name` | `String` | No | City name |
+| `state_id` | `Integer` | No | ID of the state this city belongs to |
 
 ### Operations
 
@@ -167,11 +167,11 @@ municipality = client.Municipality
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `Integer` | No |  |
-| `municipality_key` | `String` | No |  |
-| `name` | `String` | No |  |
-| `state_id` | `Integer` | No |  |
-| `zip_code` | `String` | No |  |
+| `id` | `Integer` | No | Unique identifier for the municipality |
+| `municipality_key` | `String` | No | Municipality key code |
+| `name` | `String` | No | Municipality name |
+| `state_id` | `Integer` | No | ID of the state this municipality belongs to |
+| `zip_code` | `String` | No | Representative zip code for the municipality |
 
 ### Operations
 
@@ -231,12 +231,12 @@ state = client.State
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cities_count` | `Integer` | No |  |
-| `id` | `Integer` | No |  |
-| `municipality_key` | `String` | No |  |
-| `name` | `String` | No |  |
-| `state_id` | `Integer` | No |  |
-| `zip_code` | `String` | No |  |
+| `cities_count` | `Integer` | No | Number of cities in the state |
+| `id` | `Integer` | No | Unique identifier for the state |
+| `municipality_key` | `String` | No | Municipality key code |
+| `name` | `String` | No | State name |
+| `state_id` | `Integer` | No | ID of the state this municipality belongs to |
+| `zip_code` | `String` | No | Representative zip code for the municipality |
 
 ### Operations
 
@@ -296,22 +296,22 @@ zip_code = client.ZipCode
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `c_cp` | `String` | No |  |
-| `c_cve_ciudad` | `String` | No |  |
-| `c_estado` | `String` | No |  |
-| `c_mnpio` | `String` | No |  |
-| `c_oficina` | `String` | No |  |
-| `c_tipo_asenta` | `String` | No |  |
-| `d_asenta` | `String` | No |  |
-| `d_ciudad` | `String` | No |  |
-| `d_codigo` | `String` | No |  |
-| `d_cp` | `String` | No |  |
-| `d_estado` | `String` | No |  |
-| `d_mnpio` | `String` | No |  |
-| `d_tipo_asenta` | `String` | No |  |
-| `d_zona` | `String` | No |  |
-| `id` | `Integer` | No |  |
-| `id_asenta_cpcons` | `String` | No |  |
+| `c_cp` | `String` | No | Postal code field |
+| `c_cve_ciudad` | `String` | No | City key |
+| `c_estado` | `String` | No | State code |
+| `c_mnpio` | `String` | No | Municipality code |
+| `c_oficina` | `String` | No | Office code |
+| `c_tipo_asenta` | `String` | No | Settlement type code |
+| `d_asenta` | `String` | No | Settlement name (colony) |
+| `d_ciudad` | `String` | No | City name |
+| `d_codigo` | `String` | No | Zip code |
+| `d_cp` | `String` | No | Postal code |
+| `d_estado` | `String` | No | State name |
+| `d_mnpio` | `String` | No | Municipality name |
+| `d_tipo_asenta` | `String` | No | Settlement type |
+| `d_zona` | `String` | No | Zone type (Urban/Rural) |
+| `id` | `Integer` | No | Unique identifier for the zip code record |
+| `id_asenta_cpcons` | `String` | No | Settlement ID |
 
 ### Operations
 
