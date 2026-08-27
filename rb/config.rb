@@ -28,6 +28,7 @@ module SepomexConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
