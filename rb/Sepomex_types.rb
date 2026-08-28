@@ -36,18 +36,14 @@ CityLoadMatch = Struct.new(
 
 # Request payload for City#list.
 #
-# @!attribute [rw] id
+# @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] state_id
+# @!attribute [rw] per_page
 #   @return [Integer, nil]
 CityListMatch = Struct.new(
-  :id,
-  :name,
-  :state_id,
+  :page,
+  :per_page,
   keyword_init: true
 )
 
@@ -87,26 +83,14 @@ MunicipalityLoadMatch = Struct.new(
 
 # Request payload for Municipality#list.
 #
-# @!attribute [rw] id
+# @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] municipality_key
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] state_id
+# @!attribute [rw] per_page
 #   @return [Integer, nil]
-#
-# @!attribute [rw] zip_code
-#   @return [String, nil]
 MunicipalityListMatch = Struct.new(
-  :id,
-  :municipality_key,
-  :name,
-  :state_id,
-  :zip_code,
+  :page,
+  :per_page,
   keyword_init: true
 )
 
@@ -150,30 +134,14 @@ StateLoadMatch = Struct.new(
 
 # Request payload for State#list.
 #
-# @!attribute [rw] cities_count
+# @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] id
+# @!attribute [rw] per_page
 #   @return [Integer, nil]
-#
-# @!attribute [rw] municipality_key
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] state_id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] zip_code
-#   @return [String, nil]
 StateListMatch = Struct.new(
-  :cities_count,
-  :id,
-  :municipality_key,
-  :name,
-  :state_id,
-  :zip_code,
+  :page,
+  :per_page,
   keyword_init: true
 )
 
@@ -248,70 +216,30 @@ ZipCode = Struct.new(
 
 # Request payload for ZipCode#list.
 #
-# @!attribute [rw] c_cp
+# @!attribute [rw] city
 #   @return [String, nil]
 #
-# @!attribute [rw] c_cve_ciudad
+# @!attribute [rw] colony
 #   @return [String, nil]
 #
-# @!attribute [rw] c_estado
-#   @return [String, nil]
-#
-# @!attribute [rw] c_mnpio
-#   @return [String, nil]
-#
-# @!attribute [rw] c_oficina
-#   @return [String, nil]
-#
-# @!attribute [rw] c_tipo_asenta
-#   @return [String, nil]
-#
-# @!attribute [rw] d_asenta
-#   @return [String, nil]
-#
-# @!attribute [rw] d_ciudad
-#   @return [String, nil]
-#
-# @!attribute [rw] d_codigo
-#   @return [String, nil]
-#
-# @!attribute [rw] d_cp
-#   @return [String, nil]
-#
-# @!attribute [rw] d_estado
-#   @return [String, nil]
-#
-# @!attribute [rw] d_mnpio
-#   @return [String, nil]
-#
-# @!attribute [rw] d_tipo_asenta
-#   @return [String, nil]
-#
-# @!attribute [rw] d_zona
-#   @return [String, nil]
-#
-# @!attribute [rw] id
+# @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] id_asenta_cpcons
+# @!attribute [rw] per_page
+#   @return [Integer, nil]
+#
+# @!attribute [rw] state
+#   @return [String, nil]
+#
+# @!attribute [rw] zip_code
 #   @return [String, nil]
 ZipCodeListMatch = Struct.new(
-  :c_cp,
-  :c_cve_ciudad,
-  :c_estado,
-  :c_mnpio,
-  :c_oficina,
-  :c_tipo_asenta,
-  :d_asenta,
-  :d_ciudad,
-  :d_codigo,
-  :d_cp,
-  :d_estado,
-  :d_mnpio,
-  :d_tipo_asenta,
-  :d_zona,
-  :id,
-  :id_asenta_cpcons,
+  :city,
+  :colony,
+  :page,
+  :per_page,
+  :state,
+  :zip_code,
   keyword_init: true
 )
 

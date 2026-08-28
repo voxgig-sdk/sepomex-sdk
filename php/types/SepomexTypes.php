@@ -29,9 +29,8 @@ class CityLoadMatch
 /** Request payload for City#list. */
 class CityListMatch
 {
-    public ?int $id = null;
-    public ?string $name = null;
-    public ?int $state_id = null;
+    public ?int $page = null;
+    public ?int $per_page = null;
 }
 
 /** Municipality entity data model. */
@@ -53,11 +52,8 @@ class MunicipalityLoadMatch
 /** Request payload for Municipality#list. */
 class MunicipalityListMatch
 {
-    public ?int $id = null;
-    public ?string $municipality_key = null;
-    public ?string $name = null;
-    public ?int $state_id = null;
-    public ?string $zip_code = null;
+    public ?int $page = null;
+    public ?int $per_page = null;
 }
 
 /** State entity data model. */
@@ -80,12 +76,8 @@ class StateLoadMatch
 /** Request payload for State#list. */
 class StateListMatch
 {
-    public ?int $cities_count = null;
-    public ?int $id = null;
-    public ?string $municipality_key = null;
-    public ?string $name = null;
-    public ?int $state_id = null;
-    public ?string $zip_code = null;
+    public ?int $page = null;
+    public ?int $per_page = null;
 }
 
 /** ZipCode entity data model. */
@@ -112,21 +104,11 @@ class ZipCode
 /** Request payload for ZipCode#list. */
 class ZipCodeListMatch
 {
-    public ?string $c_cp = null;
-    public ?string $c_cve_ciudad = null;
-    public ?string $c_estado = null;
-    public ?string $c_mnpio = null;
-    public ?string $c_oficina = null;
-    public ?string $c_tipo_asenta = null;
-    public ?string $d_asenta = null;
-    public ?string $d_ciudad = null;
-    public ?string $d_codigo = null;
-    public ?string $d_cp = null;
-    public ?string $d_estado = null;
-    public ?string $d_mnpio = null;
-    public ?string $d_tipo_asenta = null;
-    public ?string $d_zona = null;
-    public ?int $id = null;
-    public ?string $id_asenta_cpcons = null;
+    public ?string $city = null;
+    public ?string $colony = null;
+    public ?int $page = null;
+    public ?int $per_page = null;
+    public ?string $state = null;
+    public ?string $zip_code = null;
 }
 

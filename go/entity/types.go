@@ -26,9 +26,8 @@ type CityLoadMatch struct {
 
 // CityListMatch is the typed request payload for City.ListTyped.
 type CityListMatch struct {
-	Id *int `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	StateId *int `json:"state_id,omitempty"`
+	Page *int `json:"page,omitempty"`
+	PerPage *int `json:"per_page,omitempty"`
 }
 
 // Municipality is the typed data model for the municipality entity.
@@ -47,11 +46,8 @@ type MunicipalityLoadMatch struct {
 
 // MunicipalityListMatch is the typed request payload for Municipality.ListTyped.
 type MunicipalityListMatch struct {
-	Id *int `json:"id,omitempty"`
-	MunicipalityKey *string `json:"municipality_key,omitempty"`
-	Name *string `json:"name,omitempty"`
-	StateId *int `json:"state_id,omitempty"`
-	ZipCode *string `json:"zip_code,omitempty"`
+	Page *int `json:"page,omitempty"`
+	PerPage *int `json:"per_page,omitempty"`
 }
 
 // State is the typed data model for the state entity.
@@ -71,12 +67,8 @@ type StateLoadMatch struct {
 
 // StateListMatch is the typed request payload for State.ListTyped.
 type StateListMatch struct {
-	CitiesCount *int `json:"cities_count,omitempty"`
-	Id *int `json:"id,omitempty"`
-	MunicipalityKey *string `json:"municipality_key,omitempty"`
-	Name *string `json:"name,omitempty"`
-	StateId *int `json:"state_id,omitempty"`
-	ZipCode *string `json:"zip_code,omitempty"`
+	Page *int `json:"page,omitempty"`
+	PerPage *int `json:"per_page,omitempty"`
 }
 
 // ZipCode is the typed data model for the zip_code entity.
@@ -101,22 +93,12 @@ type ZipCode struct {
 
 // ZipCodeListMatch is the typed request payload for ZipCode.ListTyped.
 type ZipCodeListMatch struct {
-	CCp *string `json:"c_cp,omitempty"`
-	CCveCiudad *string `json:"c_cve_ciudad,omitempty"`
-	CEstado *string `json:"c_estado,omitempty"`
-	CMnpio *string `json:"c_mnpio,omitempty"`
-	COficina *string `json:"c_oficina,omitempty"`
-	CTipoAsenta *string `json:"c_tipo_asenta,omitempty"`
-	DAsenta *string `json:"d_asenta,omitempty"`
-	DCiudad *string `json:"d_ciudad,omitempty"`
-	DCodigo *string `json:"d_codigo,omitempty"`
-	DCp *string `json:"d_cp,omitempty"`
-	DEstado *string `json:"d_estado,omitempty"`
-	DMnpio *string `json:"d_mnpio,omitempty"`
-	DTipoAsenta *string `json:"d_tipo_asenta,omitempty"`
-	DZona *string `json:"d_zona,omitempty"`
-	Id *int `json:"id,omitempty"`
-	IdAsentaCpcons *string `json:"id_asenta_cpcons,omitempty"`
+	City *string `json:"city,omitempty"`
+	Colony *string `json:"colony,omitempty"`
+	Page *int `json:"page,omitempty"`
+	PerPage *int `json:"per_page,omitempty"`
+	State *string `json:"state,omitempty"`
+	ZipCode *string `json:"zip_code,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

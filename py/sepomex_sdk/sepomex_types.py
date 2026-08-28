@@ -27,9 +27,8 @@ class CityLoadMatch(TypedDict):
 
 
 class CityListMatch(TypedDict, total=False):
-    id: int
-    name: str
-    state_id: int
+    page: int
+    per_page: int
 
 
 class Municipality(TypedDict, total=False):
@@ -45,11 +44,8 @@ class MunicipalityLoadMatch(TypedDict):
 
 
 class MunicipalityListMatch(TypedDict, total=False):
-    id: int
-    municipality_key: str
-    name: str
-    state_id: int
-    zip_code: str
+    page: int
+    per_page: int
 
 
 class State(TypedDict, total=False):
@@ -66,12 +62,8 @@ class StateLoadMatch(TypedDict):
 
 
 class StateListMatch(TypedDict, total=False):
-    cities_count: int
-    id: int
-    municipality_key: str
-    name: str
-    state_id: int
-    zip_code: str
+    page: int
+    per_page: int
 
 
 class ZipCode(TypedDict, total=False):
@@ -94,19 +86,9 @@ class ZipCode(TypedDict, total=False):
 
 
 class ZipCodeListMatch(TypedDict, total=False):
-    c_cp: str
-    c_cve_ciudad: str
-    c_estado: str
-    c_mnpio: str
-    c_oficina: str
-    c_tipo_asenta: str
-    d_asenta: str
-    d_ciudad: str
-    d_codigo: str
-    d_cp: str
-    d_estado: str
-    d_mnpio: str
-    d_tipo_asenta: str
-    d_zona: str
-    id: int
-    id_asenta_cpcons: str
+    city: str
+    colony: str
+    page: int
+    per_page: int
+    state: str
+    zip_code: str

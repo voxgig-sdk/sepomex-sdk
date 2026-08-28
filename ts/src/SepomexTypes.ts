@@ -16,9 +16,8 @@ export interface CityLoadMatch {
 }
 
 export interface CityListMatch {
-  id?: number
-  name?: string
-  state_id?: number
+  page?: number
+  per_page?: number
 }
 
 export interface Municipality {
@@ -34,11 +33,8 @@ export interface MunicipalityLoadMatch {
 }
 
 export interface MunicipalityListMatch {
-  id?: number
-  municipality_key?: string
-  name?: string
-  state_id?: number
-  zip_code?: string
+  page?: number
+  per_page?: number
 }
 
 export interface State {
@@ -55,12 +51,8 @@ export interface StateLoadMatch {
 }
 
 export interface StateListMatch {
-  cities_count?: number
-  id?: number
-  municipality_key?: string
-  name?: string
-  state_id?: number
-  zip_code?: string
+  page?: number
+  per_page?: number
 
   // Selects a custom action instead of the plain list:
   //   'municipality'
@@ -89,21 +81,11 @@ export interface ZipCode {
 }
 
 export interface ZipCodeListMatch {
-  c_cp?: string
-  c_cve_ciudad?: string
-  c_estado?: string
-  c_mnpio?: string
-  c_oficina?: string
-  c_tipo_asenta?: string
-  d_asenta?: string
-  d_ciudad?: string
-  d_codigo?: string
-  d_cp?: string
-  d_estado?: string
-  d_mnpio?: string
-  d_tipo_asenta?: string
-  d_zona?: string
-  id?: number
-  id_asenta_cpcons?: string
+  city?: string
+  colony?: string
+  page?: number
+  per_page?: number
+  state?: string
+  zip_code?: string
 }
 
