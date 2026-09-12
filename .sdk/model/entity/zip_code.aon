@@ -168,8 +168,10 @@ main: kit: entity: zip_code: {
           }
           method: "GET"
           orig: "/zip_codes"
-          parts: [
-            "zip_codes"
+          segments: [
+            {
+              lit: "zip_codes"
+            }
           ]
           select: {
             exist: [

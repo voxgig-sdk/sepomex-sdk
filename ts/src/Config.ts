@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -91,6 +102,10 @@ class Config {
           "type": "`$INTEGER`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "city",
       "op": {
         "list": {
@@ -119,8 +134,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/cities",
-              "parts": [
-                "cities"
+              "segments": [
+                {
+                  "lit": "cities"
+                }
               ],
               "select": {
                 "exist": [
@@ -131,7 +148,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "cities"
+              ]
             }
           ]
         },
@@ -154,9 +174,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/cities/{id}",
-              "parts": [
-                "cities",
-                "{id}"
+              "segments": [
+                {
+                  "lit": "cities"
+                },
+                {
+                  "var": "id"
+                }
               ],
               "select": {
                 "exist": [
@@ -166,7 +190,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.city`"
-              }
+              },
+              "parts": [
+                "cities",
+                "{id}"
+              ]
             }
           ]
         }
@@ -203,6 +231,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "municipality",
       "op": {
         "list": {
@@ -231,8 +263,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/municipalities",
-              "parts": [
-                "municipalities"
+              "segments": [
+                {
+                  "lit": "municipalities"
+                }
               ],
               "select": {
                 "exist": [
@@ -243,7 +277,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "municipalities"
+              ]
             }
           ]
         },
@@ -266,9 +303,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/municipalities/{id}",
-              "parts": [
-                "municipalities",
-                "{id}"
+              "segments": [
+                {
+                  "lit": "municipalities"
+                },
+                {
+                  "var": "id"
+                }
               ],
               "select": {
                 "exist": [
@@ -278,7 +319,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.municipality`"
-              }
+              },
+              "parts": [
+                "municipalities",
+                "{id}"
+              ]
             }
           ]
         }
@@ -320,6 +365,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "state",
       "op": {
         "list": {
@@ -348,8 +397,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/states",
-              "parts": [
-                "states"
+              "segments": [
+                {
+                  "lit": "states"
+                }
               ],
               "select": {
                 "exist": [
@@ -360,7 +411,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "states"
+              ]
             },
             {
               "args": {
@@ -377,10 +431,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/states/{id}/municipalities",
-              "parts": [
-                "states",
-                "{id}",
-                "municipalities"
+              "segments": [
+                {
+                  "lit": "states"
+                },
+                {
+                  "var": "id"
+                },
+                {
+                  "lit": "municipalities"
+                }
               ],
               "select": {
                 "$action": "municipality",
@@ -391,7 +451,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.municipalities`"
-              }
+              },
+              "parts": [
+                "states",
+                "{id}",
+                "municipalities"
+              ]
             }
           ]
         },
@@ -414,9 +479,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/states/{id}",
-              "parts": [
-                "states",
-                "{id}"
+              "segments": [
+                {
+                  "lit": "states"
+                },
+                {
+                  "var": "id"
+                }
               ],
               "select": {
                 "exist": [
@@ -426,7 +495,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.state`"
-              }
+              },
+              "parts": [
+                "states",
+                "{id}"
+              ]
             }
           ]
         }
@@ -518,6 +591,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "zip_code",
       "op": {
         "list": {
@@ -574,8 +651,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/zip_codes",
-              "parts": [
-                "zip_codes"
+              "segments": [
+                {
+                  "lit": "zip_codes"
+                }
               ],
               "select": {
                 "exist": [
@@ -590,7 +669,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "zip_codes"
+              ]
             }
           ]
         }
@@ -606,6 +688,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

@@ -70,8 +70,10 @@ main: kit: entity: municipality: {
           }
           method: "GET"
           orig: "/municipalities"
-          parts: [
-            "municipalities"
+          segments: [
+            {
+              lit: "municipalities"
+            }
           ]
           select: {
             exist: [
@@ -103,9 +105,13 @@ main: kit: entity: municipality: {
           }
           method: "GET"
           orig: "/municipalities/{id}"
-          parts: [
-            "municipalities"
-            "{id}"
+          segments: [
+            {
+              lit: "municipalities"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

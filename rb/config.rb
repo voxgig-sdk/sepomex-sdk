@@ -62,6 +62,10 @@ module SepomexConfig
               "type" => "`$INTEGER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "city",
           "op" => {
             "list" => {
@@ -90,8 +94,10 @@ module SepomexConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cities",
-                  "parts" => [
-                    "cities",
+                  "segments" => [
+                    {
+                      "lit" => "cities",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -103,6 +109,9 @@ module SepomexConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "cities",
+                  ],
                 },
               ],
             },
@@ -125,9 +134,13 @@ module SepomexConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cities/{id}",
-                  "parts" => [
-                    "cities",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "cities",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -138,6 +151,10 @@ module SepomexConfig
                     "req" => "`reqdata`",
                     "res" => "`body.city`",
                   },
+                  "parts" => [
+                    "cities",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -174,6 +191,10 @@ module SepomexConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "municipality",
           "op" => {
             "list" => {
@@ -202,8 +223,10 @@ module SepomexConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/municipalities",
-                  "parts" => [
-                    "municipalities",
+                  "segments" => [
+                    {
+                      "lit" => "municipalities",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -215,6 +238,9 @@ module SepomexConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "municipalities",
+                  ],
                 },
               ],
             },
@@ -237,9 +263,13 @@ module SepomexConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/municipalities/{id}",
-                  "parts" => [
-                    "municipalities",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "municipalities",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -250,6 +280,10 @@ module SepomexConfig
                     "req" => "`reqdata`",
                     "res" => "`body.municipality`",
                   },
+                  "parts" => [
+                    "municipalities",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -291,6 +325,10 @@ module SepomexConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "state",
           "op" => {
             "list" => {
@@ -319,8 +357,10 @@ module SepomexConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/states",
-                  "parts" => [
-                    "states",
+                  "segments" => [
+                    {
+                      "lit" => "states",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -332,6 +372,9 @@ module SepomexConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "states",
+                  ],
                 },
                 {
                   "args" => {
@@ -348,10 +391,16 @@ module SepomexConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/states/{id}/municipalities",
-                  "parts" => [
-                    "states",
-                    "{id}",
-                    "municipalities",
+                  "segments" => [
+                    {
+                      "lit" => "states",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                    {
+                      "lit" => "municipalities",
+                    },
                   ],
                   "select" => {
                     "$action" => "municipality",
@@ -363,6 +412,11 @@ module SepomexConfig
                     "req" => "`reqdata`",
                     "res" => "`body.municipalities`",
                   },
+                  "parts" => [
+                    "states",
+                    "{id}",
+                    "municipalities",
+                  ],
                 },
               ],
             },
@@ -385,9 +439,13 @@ module SepomexConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/states/{id}",
-                  "parts" => [
-                    "states",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "states",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -398,6 +456,10 @@ module SepomexConfig
                     "req" => "`reqdata`",
                     "res" => "`body.state`",
                   },
+                  "parts" => [
+                    "states",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -489,6 +551,10 @@ module SepomexConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "zip_code",
           "op" => {
             "list" => {
@@ -545,8 +611,10 @@ module SepomexConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/zip_codes",
-                  "parts" => [
-                    "zip_codes",
+                  "segments" => [
+                    {
+                      "lit" => "zip_codes",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -562,6 +630,9 @@ module SepomexConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "zip_codes",
+                  ],
                 },
               ],
             },

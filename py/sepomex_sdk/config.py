@@ -1,6 +1,14 @@
 # Sepomex SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -71,6 +79,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "city",
         "op": {
           "list": {
@@ -99,8 +111,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cities",
-                "parts": [
-                  "cities",
+                "segments": [
+                  {
+                    "lit": "cities",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -112,6 +126,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "cities",
+                ],
               },
             ],
           },
@@ -134,9 +151,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cities/{id}",
-                "parts": [
-                  "cities",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "cities",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -147,6 +168,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.city`",
                 },
+                "parts": [
+                  "cities",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -183,6 +208,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "municipality",
         "op": {
           "list": {
@@ -211,8 +240,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/municipalities",
-                "parts": [
-                  "municipalities",
+                "segments": [
+                  {
+                    "lit": "municipalities",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -224,6 +255,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "municipalities",
+                ],
               },
             ],
           },
@@ -246,9 +280,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/municipalities/{id}",
-                "parts": [
-                  "municipalities",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "municipalities",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -259,6 +297,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.municipality`",
                 },
+                "parts": [
+                  "municipalities",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -300,6 +342,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "state",
         "op": {
           "list": {
@@ -328,8 +374,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/states",
-                "parts": [
-                  "states",
+                "segments": [
+                  {
+                    "lit": "states",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -341,6 +389,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "states",
+                ],
               },
               {
                 "args": {
@@ -357,10 +408,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/states/{id}/municipalities",
-                "parts": [
-                  "states",
-                  "{id}",
-                  "municipalities",
+                "segments": [
+                  {
+                    "lit": "states",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "municipalities",
+                  },
                 ],
                 "select": {
                   "$action": "municipality",
@@ -372,6 +429,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.municipalities`",
                 },
+                "parts": [
+                  "states",
+                  "{id}",
+                  "municipalities",
+                ],
               },
             ],
           },
@@ -394,9 +456,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/states/{id}",
-                "parts": [
-                  "states",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "states",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -407,6 +473,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.state`",
                 },
+                "parts": [
+                  "states",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -498,6 +568,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "zip_code",
         "op": {
           "list": {
@@ -554,8 +628,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/zip_codes",
-                "parts": [
-                  "zip_codes",
+                "segments": [
+                  {
+                    "lit": "zip_codes",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -571,6 +647,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "zip_codes",
+                ],
               },
             ],
           },
