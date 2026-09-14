@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { SepomexSDK } from '@voxgig-sdk/sepomex'
+import { SepomexSDK } from '@voxgig-sdk/sepomex-sdk'
 
 const client = new SepomexSDK()
 ```
@@ -593,7 +593,7 @@ sepomex/
 Import the SDK from the package root:
 
 ```ts
-import { SepomexSDK } from '@voxgig-sdk/sepomex'
+import { SepomexSDK } from '@voxgig-sdk/sepomex-sdk'
 ```
 
 ### Entity state

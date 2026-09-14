@@ -105,7 +105,7 @@ local results, err = client:State():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/sepomex` | publish pending — [install from git tag](https://github.com/voxgig-sdk/sepomex-sdk/releases) |
+| TypeScript | `@voxgig-sdk/sepomex-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/sepomex-sdk/releases) |
 | Python | `voxgig-sdk-sepomex` | publish pending — [install from git tag](https://github.com/voxgig-sdk/sepomex-sdk/releases) |
 | PHP | `voxgig-sdk/sepomex` | publish pending — [install from git tag](https://github.com/voxgig-sdk/sepomex-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/sepomex-sdk/go` | `go get github.com/voxgig-sdk/sepomex-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:State():list()
 ### TypeScript
 
 ```ts
-import { SepomexSDK } from '@voxgig-sdk/sepomex'
+import { SepomexSDK } from '@voxgig-sdk/sepomex-sdk'
 
 const client = new SepomexSDK()
 
