@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { SepomexSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('MunicipalityEntity', async () => {
 
     const live = 'TRUE' === process.env.SEPOMEX_TEST_LIVE
     for (const op of ['list', 'load']) {
-      if (maybeSkipControl(t, 'entityOp', 'municipality.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'municipality.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set SEPOMEX_TEST_MUNICIPALITY_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"id","req":false,"short":"Unique identifier for the municipality","type":"`$INTEGER`","index$":0},{"active":true,"name":"municipality_key","req":false,"short":"Municipality key code","type":"`$STRING`","index$":1},{"active":true,"name":"name","req":false,"short":"Municipality name","type":"`$STRING`","index$":2},{"active":true,"name":"state_id","req":false,"short":"ID of the state this municipality belongs to","type":"`$INTEGER`","index$":3},{"active":true,"name":"zip_code","req":false,"short":"Representative zip code for the municipality","type":"`$STRING`","index$":4}],"id":{"field":"id","name":"id"},"name":"municipality","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"query":[{"active":true,"example":1,"kind":"query","name":"page","orig":"page","reqd":false,"type":"`$INTEGER`","index$":0},{"active":true,"example":15,"kind":"query","name":"per_page","orig":"per_page","reqd":false,"type":"`$INTEGER`","index$":1}]},"contract":{"id":"GET /municipalities","json":"{\"operationId\":\"getMunicipalities\",\"parameters\":[{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Number of items per page (max 200)\",\"in\":\"query\",\"name\":\"per_page\",\"required\":false,\"schema\":{\"default\":15,\"maximum\":200,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"meta\":{\"properties\":{\"pagination\":{\"properties\":{\"links\":{\"properties\":{\"first\":{\"description\":\"URL for the first page\",\"example\":\"/zip_code?page=1\",\"type\":\"string\"},\"last\":{\"description\":\"URL for the last page\",\"example\":\"/zip_code?page=9728\",\"type\":\"string\"},\"next\":{\"description\":\"URL for the next page\",\"example\":\"/zip_code?page=2\",\"nullable\":true,\"type\":\"string\"},\"prev\":{\"description\":\"URL for the previous page\",\"example\":\"/zip_code?page=1\",\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"per_page\":{\"description\":\"Number of items per page\",\"example\":15,\"type\":\"integer\"},\"total_objects\":{\"description\":\"Total number of objects across all pages\",\"example\":145906,\"type\":\"integer\"},\"total_pages\":{\"description\":\"Total number of pages\",\"example\":9728,\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"},\"municipalities\":{\"items\":{\"properties\":{\"id\":{\"description\":\"Unique identifier for the municipality\",\"example\":1,\"type\":\"integer\"},\"municipality_key\":{\"description\":\"Municipality key code\",\"example\":\"010\",\"type\":\"string\"},\"name\":{\"description\":\"Municipality name\",\"example\":\"Álvaro Obregón\",\"type\":\"string\"},\"state_id\":{\"description\":\"ID of the state this municipality belongs to\",\"example\":1,\"type\":\"integer\"},\"zip_code\":{\"description\":\"Representative zip code for the municipality\",\"example\":\"01001\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with municipalities list\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/municipalities","segments":[{"lit":"municipalities"}],"select":{"exist":["page","per_page"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"kind":"param","name":"id","orig":"id","reqd":true,"type":"`$INTEGER`","index$":0}]},"contract":{"id":"GET /municipalities/{id}","json":"{\"operationId\":\"getMunicipalityById\",\"parameters\":[{\"description\":\"Municipality ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"municipality\":{\"properties\":{\"id\":{\"description\":\"Unique identifier for the municipality\",\"example\":1,\"type\":\"integer\"},\"municipality_key\":{\"description\":\"Municipality key code\",\"example\":\"010\",\"type\":\"string\"},\"name\":{\"description\":\"Municipality name\",\"example\":\"Álvaro Obregón\",\"type\":\"string\"},\"state_id\":{\"description\":\"ID of the state this municipality belongs to\",\"example\":1,\"type\":\"integer\"},\"zip_code\":{\"description\":\"Representative zip code for the municipality\",\"example\":\"01001\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response with municipality details\"},\"404\":{\"description\":\"Municipality not found\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/municipalities/{id}","segments":[{"lit":"municipalities"},{"var":"id"}],"select":{"exist":["id"]},"transform":{"req":"`reqdata`","res":"`body.municipality`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"municipality","name__orig":"municipality","Name":"Municipality","name_":"municipality","name-":"municipality","NAME":"MUNICIPALITY","index$":1}, {"active":true,"entity":"municipality","key$":"BasicMunicipalityFlow","kind":"basic","name":"BasicMunicipalityFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"municipality_ref01"}}],"index$":0},{"active":true,"data":{},"input":{"ref":"municipality_ref01","srcdatavar":"municipality_ref01_data","suffix":"_dt0"},"match":{"id":"municipality01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-municipality_ref01"}}],"index$":1}]}, 'Municipality')
     }
     const client = setup.client
     const struct = setup.struct
@@ -116,13 +115,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['SEPOMEX_TEST_MUNICIPALITY_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'SEPOMEX_TEST_MUNICIPALITY_ENTID': idmap,
     'SEPOMEX_TEST_LIVE': 'FALSE',
@@ -133,7 +125,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.SEPOMEX_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['SEPOMEX_TEST_MUNICIPALITY_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new SepomexSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -145,7 +143,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -158,7 +157,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.SEPOMEX_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

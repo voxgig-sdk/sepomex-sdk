@@ -77,5 +77,234 @@
         "id_asenta_cpcons": "s28f"
       }
     }
+  },
+  "requests": {
+    "GET /zip_codes": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getZipCodes",
+        "parameters": [
+          {
+            "description": "Page number for pagination",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of items per page (max 200)",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "schema": {
+              "default": 15,
+              "maximum": 200,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Filter by city name",
+            "example": "monterrey",
+            "in": "query",
+            "name": "city",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by state name",
+            "example": "nuevo leon",
+            "in": "query",
+            "name": "state",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by colony name",
+            "example": "punta contry",
+            "in": "query",
+            "name": "colony",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by zip code",
+            "example": "67173",
+            "in": "query",
+            "name": "zip_code",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "meta": {
+                      "properties": {
+                        "pagination": {
+                          "properties": {
+                            "links": {
+                              "properties": {
+                                "first": {
+                                  "description": "URL for the first page",
+                                  "example": "/zip_code?page=1",
+                                  "type": "string"
+                                },
+                                "last": {
+                                  "description": "URL for the last page",
+                                  "example": "/zip_code?page=9728",
+                                  "type": "string"
+                                },
+                                "next": {
+                                  "description": "URL for the next page",
+                                  "example": "/zip_code?page=2",
+                                  "nullable": true,
+                                  "type": "string"
+                                },
+                                "prev": {
+                                  "description": "URL for the previous page",
+                                  "example": "/zip_code?page=1",
+                                  "nullable": true,
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "per_page": {
+                              "description": "Number of items per page",
+                              "example": 15,
+                              "type": "integer"
+                            },
+                            "total_objects": {
+                              "description": "Total number of objects across all pages",
+                              "example": 145906,
+                              "type": "integer"
+                            },
+                            "total_pages": {
+                              "description": "Total number of pages",
+                              "example": 9728,
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "zip_codes": {
+                      "items": {
+                        "properties": {
+                          "c_cp": {
+                            "description": "Postal code field",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "c_cve_ciudad": {
+                            "description": "City key",
+                            "example": "01",
+                            "type": "string"
+                          },
+                          "c_estado": {
+                            "description": "State code",
+                            "example": "09",
+                            "type": "string"
+                          },
+                          "c_mnpio": {
+                            "description": "Municipality code",
+                            "example": "010",
+                            "type": "string"
+                          },
+                          "c_oficina": {
+                            "description": "Office code",
+                            "example": "01001",
+                            "type": "string"
+                          },
+                          "c_tipo_asenta": {
+                            "description": "Settlement type code",
+                            "example": "09",
+                            "type": "string"
+                          },
+                          "d_asenta": {
+                            "description": "Settlement name (colony)",
+                            "example": "San Ángel",
+                            "type": "string"
+                          },
+                          "d_ciudad": {
+                            "description": "City name",
+                            "example": "Ciudad de México",
+                            "type": "string"
+                          },
+                          "d_codigo": {
+                            "description": "Zip code",
+                            "example": "01000",
+                            "type": "string"
+                          },
+                          "d_cp": {
+                            "description": "Postal code",
+                            "example": "01001",
+                            "type": "string"
+                          },
+                          "d_estado": {
+                            "description": "State name",
+                            "example": "Ciudad de México",
+                            "type": "string"
+                          },
+                          "d_mnpio": {
+                            "description": "Municipality name",
+                            "example": "Álvaro Obregón",
+                            "type": "string"
+                          },
+                          "d_tipo_asenta": {
+                            "description": "Settlement type",
+                            "example": "Colonia",
+                            "type": "string"
+                          },
+                          "d_zona": {
+                            "description": "Zone type (Urban/Rural)",
+                            "example": "Urbano",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Unique identifier for the zip code record",
+                            "example": 1,
+                            "type": "integer"
+                          },
+                          "id_asenta_cpcons": {
+                            "description": "Settlement ID",
+                            "example": "0001",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with zip codes list"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

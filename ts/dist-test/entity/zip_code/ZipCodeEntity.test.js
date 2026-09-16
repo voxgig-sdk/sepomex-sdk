@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.SEPOMEX_TEST_LIVE;
         for (const op of ['list']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'zip_code.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'zip_code.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set SEPOMEX_TEST_ZIP_CODE_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "c_cp", "req": false, "short": "Postal code field", "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "c_cve_ciudad", "req": false, "short": "City key", "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "c_estado", "req": false, "short": "State code", "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "c_mnpio", "req": false, "short": "Municipality code", "type": "`$STRING`", "index$": 3 }, { "active": true, "name": "c_oficina", "req": false, "short": "Office code", "type": "`$STRING`", "index$": 4 }, { "active": true, "name": "c_tipo_asenta", "req": false, "short": "Settlement type code", "type": "`$STRING`", "index$": 5 }, { "active": true, "name": "d_asenta", "req": false, "short": "Settlement name (colony)", "type": "`$STRING`", "index$": 6 }, { "active": true, "name": "d_ciudad", "req": false, "short": "City name", "type": "`$STRING`", "index$": 7 }, { "active": true, "name": "d_codigo", "req": false, "short": "Zip code", "type": "`$STRING`", "index$": 8 }, { "active": true, "name": "d_cp", "req": false, "short": "Postal code", "type": "`$STRING`", "index$": 9 }, { "active": true, "name": "d_estado", "req": false, "short": "State name", "type": "`$STRING`", "index$": 10 }, { "active": true, "name": "d_mnpio", "req": false, "short": "Municipality name", "type": "`$STRING`", "index$": 11 }, { "active": true, "name": "d_tipo_asenta", "req": false, "short": "Settlement type", "type": "`$STRING`", "index$": 12 }, { "active": true, "name": "d_zona", "req": false, "short": "Zone type (Urban/Rural)", "type": "`$STRING`", "index$": 13 }, { "active": true, "name": "id", "req": false, "short": "Unique identifier for the zip code record", "type": "`$INTEGER`", "index$": 14 }, { "active": true, "name": "id_asenta_cpcons", "req": false, "short": "Settlement ID", "type": "`$STRING`", "index$": 15 }], "id": { "field": "id", "name": "id" }, "name": "zip_code", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "query": [{ "active": true, "example": "monterrey", "kind": "query", "name": "city", "orig": "city", "reqd": false, "type": "`$STRING`", "index$": 0 }, { "active": true, "example": "punta contry", "kind": "query", "name": "colony", "orig": "colony", "reqd": false, "type": "`$STRING`", "index$": 1 }, { "active": true, "example": 1, "kind": "query", "name": "page", "orig": "page", "reqd": false, "type": "`$INTEGER`", "index$": 2 }, { "active": true, "example": 15, "kind": "query", "name": "per_page", "orig": "per_page", "reqd": false, "type": "`$INTEGER`", "index$": 3 }, { "active": true, "example": "nuevo leon", "kind": "query", "name": "state", "orig": "state", "reqd": false, "type": "`$STRING`", "index$": 4 }, { "active": true, "example": "67173", "kind": "query", "name": "zip_code", "orig": "zip_code", "reqd": false, "type": "`$STRING`", "index$": 5 }] }, "contract": { "id": "GET /zip_codes", "json": "{\"operationId\":\"getZipCodes\",\"parameters\":[{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Number of items per page (max 200)\",\"in\":\"query\",\"name\":\"per_page\",\"required\":false,\"schema\":{\"default\":15,\"maximum\":200,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Filter by city name\",\"example\":\"monterrey\",\"in\":\"query\",\"name\":\"city\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by state name\",\"example\":\"nuevo leon\",\"in\":\"query\",\"name\":\"state\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by colony name\",\"example\":\"punta contry\",\"in\":\"query\",\"name\":\"colony\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by zip code\",\"example\":\"67173\",\"in\":\"query\",\"name\":\"zip_code\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"meta\":{\"properties\":{\"pagination\":{\"properties\":{\"links\":{\"properties\":{\"first\":{\"description\":\"URL for the first page\",\"example\":\"/zip_code?page=1\",\"type\":\"string\"},\"last\":{\"description\":\"URL for the last page\",\"example\":\"/zip_code?page=9728\",\"type\":\"string\"},\"next\":{\"description\":\"URL for the next page\",\"example\":\"/zip_code?page=2\",\"nullable\":true,\"type\":\"string\"},\"prev\":{\"description\":\"URL for the previous page\",\"example\":\"/zip_code?page=1\",\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"per_page\":{\"description\":\"Number of items per page\",\"example\":15,\"type\":\"integer\"},\"total_objects\":{\"description\":\"Total number of objects across all pages\",\"example\":145906,\"type\":\"integer\"},\"total_pages\":{\"description\":\"Total number of pages\",\"example\":9728,\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"},\"zip_codes\":{\"items\":{\"properties\":{\"c_cp\":{\"description\":\"Postal code field\",\"nullable\":true,\"type\":\"string\"},\"c_cve_ciudad\":{\"description\":\"City key\",\"example\":\"01\",\"type\":\"string\"},\"c_estado\":{\"description\":\"State code\",\"example\":\"09\",\"type\":\"string\"},\"c_mnpio\":{\"description\":\"Municipality code\",\"example\":\"010\",\"type\":\"string\"},\"c_oficina\":{\"description\":\"Office code\",\"example\":\"01001\",\"type\":\"string\"},\"c_tipo_asenta\":{\"description\":\"Settlement type code\",\"example\":\"09\",\"type\":\"string\"},\"d_asenta\":{\"description\":\"Settlement name (colony)\",\"example\":\"San Ángel\",\"type\":\"string\"},\"d_ciudad\":{\"description\":\"City name\",\"example\":\"Ciudad de México\",\"type\":\"string\"},\"d_codigo\":{\"description\":\"Zip code\",\"example\":\"01000\",\"type\":\"string\"},\"d_cp\":{\"description\":\"Postal code\",\"example\":\"01001\",\"type\":\"string\"},\"d_estado\":{\"description\":\"State name\",\"example\":\"Ciudad de México\",\"type\":\"string\"},\"d_mnpio\":{\"description\":\"Municipality name\",\"example\":\"Álvaro Obregón\",\"type\":\"string\"},\"d_tipo_asenta\":{\"description\":\"Settlement type\",\"example\":\"Colonia\",\"type\":\"string\"},\"d_zona\":{\"description\":\"Zone type (Urban/Rural)\",\"example\":\"Urbano\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the zip code record\",\"example\":1,\"type\":\"integer\"},\"id_asenta_cpcons\":{\"description\":\"Settlement ID\",\"example\":\"0001\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with zip codes list\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/zip_codes", "segments": [{ "lit": "zip_codes" }], "select": { "exist": ["city", "colony", "page", "per_page", "state", "zip_code"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "zip_code", "name__orig": "zip_code", "Name": "ZipCode", "name_": "zip_code", "name-": "zip-code", "NAME": "ZIP_CODE", "index$": 3 }, { "active": true, "entity": "zip_code", "key$": "BasicZipCodeFlow", "kind": "basic", "name": "BasicZipCodeFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": {}, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "zip_code_ref01" } }], "index$": 0 }] }, 'ZipCode');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -101,12 +99,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['SEPOMEX_TEST_ZIP_CODE_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'SEPOMEX_TEST_ZIP_CODE_ENTID': idmap,
         'SEPOMEX_TEST_LIVE': 'FALSE',
@@ -114,7 +106,13 @@ function basicSetup(extra) {
     });
     idmap = env['SEPOMEX_TEST_ZIP_CODE_ENTID'];
     const live = 'TRUE' === env.SEPOMEX_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['SEPOMEX_TEST_ZIP_CODE_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.SepomexSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -125,7 +123,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -137,7 +136,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.SEPOMEX_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

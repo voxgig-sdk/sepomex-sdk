@@ -1,12 +1,18 @@
 # Sepomex SDK feature factory
 
 from sepomex_sdk.feature.base_feature import SepomexBaseFeature
+from sepomex_sdk.feature.ratelimit_feature import SepomexRatelimitFeature
+from sepomex_sdk.feature.retry_feature import SepomexRetryFeature
 from sepomex_sdk.feature.test_feature import SepomexTestFeature
+from sepomex_sdk.feature.timeout_feature import SepomexTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: SepomexBaseFeature(),
+    "ratelimit": lambda: SepomexRatelimitFeature(),
+    "retry": lambda: SepomexRetryFeature(),
     "test": lambda: SepomexTestFeature(),
+    "timeout": lambda: SepomexTimeoutFeature(),
 }
 
 

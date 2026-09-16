@@ -4,7 +4,10 @@ declare(strict_types=1);
 // Sepomex SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class SepomexFeatures
@@ -14,8 +17,14 @@ class SepomexFeatures
         switch ($name) {
             case "base":
                 return new SepomexBaseFeature();
+            case "ratelimit":
+                return new SepomexRatelimitFeature();
+            case "retry":
+                return new SepomexRetryFeature();
             case "test":
                 return new SepomexTestFeature();
+            case "timeout":
+                return new SepomexTimeoutFeature();
             default:
                 return new SepomexBaseFeature();
         }
@@ -31,7 +40,10 @@ class SepomexFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

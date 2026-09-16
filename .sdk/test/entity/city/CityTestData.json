@@ -25,5 +25,185 @@
         "state_id": "STATE01"
       }
     }
+  },
+  "requests": {
+    "GET /cities": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCities",
+        "parameters": [
+          {
+            "description": "Page number for pagination",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of items per page (max 200)",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "schema": {
+              "default": 15,
+              "maximum": 200,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cities": {
+                      "items": {
+                        "properties": {
+                          "id": {
+                            "description": "Unique identifier for the city",
+                            "example": 1,
+                            "type": "integer"
+                          },
+                          "name": {
+                            "description": "City name",
+                            "example": "Ciudad de México",
+                            "type": "string"
+                          },
+                          "state_id": {
+                            "description": "ID of the state this city belongs to",
+                            "example": 1,
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "properties": {
+                        "pagination": {
+                          "properties": {
+                            "links": {
+                              "properties": {
+                                "first": {
+                                  "description": "URL for the first page",
+                                  "example": "/zip_code?page=1",
+                                  "type": "string"
+                                },
+                                "last": {
+                                  "description": "URL for the last page",
+                                  "example": "/zip_code?page=9728",
+                                  "type": "string"
+                                },
+                                "next": {
+                                  "description": "URL for the next page",
+                                  "example": "/zip_code?page=2",
+                                  "nullable": true,
+                                  "type": "string"
+                                },
+                                "prev": {
+                                  "description": "URL for the previous page",
+                                  "example": "/zip_code?page=1",
+                                  "nullable": true,
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "per_page": {
+                              "description": "Number of items per page",
+                              "example": 15,
+                              "type": "integer"
+                            },
+                            "total_objects": {
+                              "description": "Total number of objects across all pages",
+                              "example": 145906,
+                              "type": "integer"
+                            },
+                            "total_pages": {
+                              "description": "Total number of pages",
+                              "example": 9728,
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with cities list"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /cities/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCityById",
+        "parameters": [
+          {
+            "description": "City ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "city": {
+                      "properties": {
+                        "id": {
+                          "description": "Unique identifier for the city",
+                          "example": 1,
+                          "type": "integer"
+                        },
+                        "name": {
+                          "description": "City name",
+                          "example": "Ciudad de México",
+                          "type": "string"
+                        },
+                        "state_id": {
+                          "description": "ID of the state this city belongs to",
+                          "example": 1,
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with city details"
+          },
+          "404": {
+            "description": "City not found"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }
