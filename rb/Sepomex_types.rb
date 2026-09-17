@@ -102,24 +102,12 @@ MunicipalityListMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [Integer, nil]
 #
-# @!attribute [rw] municipality_key
-#   @return [String, nil]
-#
 # @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] state_id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] zip_code
 #   @return [String, nil]
 State = Struct.new(
   :cities_count,
   :id,
-  :municipality_key,
   :name,
-  :state_id,
-  :zip_code,
   keyword_init: true
 )
 

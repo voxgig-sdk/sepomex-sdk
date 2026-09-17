@@ -338,10 +338,7 @@ API path: `/municipalities`
 | --- | --- |
 | `cities_count` | Number of cities in the state |
 | `id` | Unique identifier for the state |
-| `municipality_key` | Municipality key code |
 | `name` | State name |
-| `state_id` | ID of the state this municipality belongs to |
-| `zip_code` | Representative zip code for the municipality |
 
 Operations: list, load.
 
@@ -460,10 +457,7 @@ Create an instance: `const state = client.State()`
 | --- | --- | --- |
 | `cities_count` | `number` | Number of cities in the state |
 | `id` | `number` | Unique identifier for the state |
-| `municipality_key` | `string` | Municipality key code |
 | `name` | `string` | State name |
-| `state_id` | `number` | ID of the state this municipality belongs to |
-| `zip_code` | `string` | Representative zip code for the municipality |
 
 #### Example: Load
 

@@ -347,23 +347,8 @@ local function make_config()
             ["type"] = "`$INTEGER`",
           },
           {
-            ["name"] = "municipality_key",
-            ["short"] = "Municipality key code",
-            ["type"] = "`$STRING`",
-          },
-          {
             ["name"] = "name",
             ["short"] = "State name",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "state_id",
-            ["short"] = "ID of the state this municipality belongs to",
-            ["type"] = "`$INTEGER`",
-          },
-          {
-            ["name"] = "zip_code",
-            ["short"] = "Representative zip code for the municipality",
             ["type"] = "`$STRING`",
           },
         },

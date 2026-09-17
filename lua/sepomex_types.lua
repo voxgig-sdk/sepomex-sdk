@@ -35,10 +35,7 @@
 ---@class State
 ---@field cities_count? number
 ---@field id? number
----@field municipality_key? string
 ---@field name? string
----@field state_id? number
----@field zip_code? string
 
 ---@class StateLoadMatch
 ---@field id number

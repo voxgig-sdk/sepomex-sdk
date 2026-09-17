@@ -229,10 +229,7 @@ state = client.State()
 | --- | --- | --- | --- |
 | `cities_count` | `int` | No | Number of cities in the state |
 | `id` | `int` | No | Unique identifier for the state |
-| `municipality_key` | `str` | No | Municipality key code |
 | `name` | `str` | No | State name |
-| `state_id` | `int` | No | ID of the state this municipality belongs to |
-| `zip_code` | `str` | No | Representative zip code for the municipality |
 
 ### Operations
 

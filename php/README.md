@@ -295,10 +295,7 @@ API path: `/municipalities`
 | --- | --- |
 | `cities_count` | Number of cities in the state |
 | `id` | Unique identifier for the state |
-| `municipality_key` | Municipality key code |
 | `name` | State name |
-| `state_id` | ID of the state this municipality belongs to |
-| `zip_code` | Representative zip code for the municipality |
 
 Operations: List, Load.
 
@@ -421,10 +418,7 @@ Create an instance: `$state = $client->State();`
 | --- | --- | --- |
 | `cities_count` | `int` | Number of cities in the state |
 | `id` | `int` | Unique identifier for the state |
-| `municipality_key` | `string` | Municipality key code |
 | `name` | `string` | State name |
-| `state_id` | `int` | ID of the state this municipality belongs to |
-| `zip_code` | `string` | Representative zip code for the municipality |
 
 #### Example: Load
 
@@ -622,6 +616,7 @@ Use `Helpers::to_map()` to safely validate that a value is an array.
 php/
 ├── sepomex_sdk.php          -- Main SDK class
 ├── config.php                     -- Configuration
+├── schema.php                     -- Generated option + entity specs
 ├── features.php                   -- Feature factory
 ├── core/                          -- Core types and context
 ├── entity/                        -- Entity implementations

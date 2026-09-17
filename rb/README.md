@@ -284,10 +284,7 @@ API path: `/municipalities`
 | --- | --- |
 | `cities_count` | Number of cities in the state |
 | `id` | Unique identifier for the state |
-| `municipality_key` | Municipality key code |
 | `name` | State name |
-| `state_id` | ID of the state this municipality belongs to |
-| `zip_code` | Representative zip code for the municipality |
 
 Operations: List, Load.
 
@@ -410,10 +407,7 @@ Create an instance: `state = client.State`
 | --- | --- | --- |
 | `cities_count` | `Integer` | Number of cities in the state |
 | `id` | `Integer` | Unique identifier for the state |
-| `municipality_key` | `String` | Municipality key code |
 | `name` | `String` | State name |
-| `state_id` | `Integer` | ID of the state this municipality belongs to |
-| `zip_code` | `String` | Representative zip code for the municipality |
 
 #### Example: Load
 
@@ -611,6 +605,7 @@ Use `Helpers.to_map()` to safely validate that a value is a hash.
 rb/
 ├── Sepomex_sdk.rb       -- Main SDK module
 ├── config.rb                  -- Configuration
+├── schema.rb                  -- Generated option + entity specs
 ├── features.rb                -- Feature factory
 ├── core/                      -- Core types and context
 ├── entity/                    -- Entity implementations

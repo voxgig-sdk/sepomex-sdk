@@ -18,27 +18,9 @@ main: kit: entity: state: {
       type: "`$INTEGER`"
     }
     {
-      name: "municipality_key"
-      req: false
-      short: "Municipality key code"
-      type: "`$STRING`"
-    }
-    {
       name: "name"
       req: false
       short: "State name"
-      type: "`$STRING`"
-    }
-    {
-      name: "state_id"
-      req: false
-      short: "ID of the state this municipality belongs to"
-      type: "`$INTEGER`"
-    }
-    {
-      name: "zip_code"
-      req: false
-      short: "Representative zip code for the municipality"
       type: "`$STRING`"
     }
   ]

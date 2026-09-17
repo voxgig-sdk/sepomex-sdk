@@ -51,10 +51,7 @@ class MunicipalityListMatch(TypedDict, total=False):
 class State(TypedDict, total=False):
     cities_count: int
     id: int
-    municipality_key: str
     name: str
-    state_id: int
-    zip_code: str
 
 
 class StateLoadMatch(TypedDict):

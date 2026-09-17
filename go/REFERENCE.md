@@ -244,10 +244,7 @@ fmt.Println(state.GetName()) // "state"
 | --- | --- | --- | --- |
 | `cities_count` | `int` | No | Number of cities in the state |
 | `id` | `int` | No | Unique identifier for the state |
-| `municipality_key` | `string` | No | Municipality key code |
 | `name` | `string` | No | State name |
-| `state_id` | `int` | No | ID of the state this municipality belongs to |
-| `zip_code` | `string` | No | Representative zip code for the municipality |
 
 ### Operations
 

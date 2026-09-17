@@ -54,10 +54,7 @@ type MunicipalityListMatch struct {
 type State struct {
 	CitiesCount *int `json:"cities_count,omitempty"`
 	Id *int `json:"id,omitempty"`
-	MunicipalityKey *string `json:"municipality_key,omitempty"`
 	Name *string `json:"name,omitempty"`
-	StateId *int `json:"state_id,omitempty"`
-	ZipCode *string `json:"zip_code,omitempty"`
 }
 
 // StateLoadMatch is the typed request payload for State.LoadTyped.

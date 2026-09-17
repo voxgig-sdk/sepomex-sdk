@@ -230,10 +230,7 @@ local state = client:State(nil)
 | --- | --- | --- | --- |
 | `cities_count` | `number` | No | Number of cities in the state |
 | `id` | `number` | No | Unique identifier for the state |
-| `municipality_key` | `string` | No | Municipality key code |
 | `name` | `string` | No | State name |
-| `state_id` | `number` | No | ID of the state this municipality belongs to |
-| `zip_code` | `string` | No | Representative zip code for the municipality |
 
 ### Operations
 

@@ -287,10 +287,7 @@ API path: `/municipalities`
 | --- | --- |
 | `cities_count` | Number of cities in the state |
 | `id` | Unique identifier for the state |
-| `municipality_key` | Municipality key code |
 | `name` | State name |
-| `state_id` | ID of the state this municipality belongs to |
-| `zip_code` | Representative zip code for the municipality |
 
 Operations: List, Load.
 
@@ -409,10 +406,7 @@ Create an instance: `state = client.State()`
 | --- | --- | --- |
 | `cities_count` | `int` | Number of cities in the state |
 | `id` | `int` | Unique identifier for the state |
-| `municipality_key` | `str` | Municipality key code |
 | `name` | `str` | State name |
-| `state_id` | `int` | ID of the state this municipality belongs to |
-| `zip_code` | `str` | Representative zip code for the municipality |
 
 #### Example: Load
 
@@ -607,6 +601,7 @@ Use `helpers.to_map()` to safely validate that a value is a dict.
 py/
 ├── sepomex_sdk.py         -- Main SDK module
 ├── config.py                    -- Configuration
+├── schema.py                    -- Generated option + entity specs
 ├── features.py                  -- Feature factory
 ├── core/                        -- Core types and context
 ├── entity/                      -- Entity implementations

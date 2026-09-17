@@ -61,10 +61,7 @@ class State
 {
     public ?int $cities_count = null;
     public ?int $id = null;
-    public ?string $municipality_key = null;
     public ?string $name = null;
-    public ?int $state_id = null;
-    public ?string $zip_code = null;
 }
 
 /** Request payload for State#load. */

@@ -351,23 +351,8 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
-						"name": "municipality_key",
-						"short": "Municipality key code",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"name": "name",
 						"short": "State name",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "state_id",
-						"short": "ID of the state this municipality belongs to",
-						"type": "`$INTEGER`",
-					},
-					map[string]any{
-						"name": "zip_code",
-						"short": "Representative zip code for the municipality",
 						"type": "`$STRING`",
 					},
 				},
