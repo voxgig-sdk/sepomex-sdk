@@ -1,0 +1,218 @@
+# Entity: zip_code
+
+main: kit: entity: zip_code: {
+
+  alias: field: {}
+
+  fields: {
+    c_cp: {
+      h: "C Cp"
+      n: "c_cp"
+      r: false
+      sh: "Postal code field"
+      t: "`$STRING`"
+    }
+    c_cve_ciudad: {
+      h: "C Cve Ciudad"
+      n: "c_cve_ciudad"
+      r: false
+      sh: "City key"
+      t: "`$STRING`"
+    }
+    c_estado: {
+      h: "C Estado"
+      n: "c_estado"
+      r: false
+      sh: "State code"
+      t: "`$STRING`"
+    }
+    c_mnpio: {
+      h: "C Mnpio"
+      n: "c_mnpio"
+      r: false
+      sh: "Municipality code"
+      t: "`$STRING`"
+    }
+    c_oficina: {
+      h: "C Oficina"
+      n: "c_oficina"
+      r: false
+      sh: "Office code"
+      t: "`$STRING`"
+    }
+    c_tipo_asenta: {
+      h: "C Tipo Asenta"
+      n: "c_tipo_asenta"
+      r: false
+      sh: "Settlement type code"
+      t: "`$STRING`"
+    }
+    d_asenta: {
+      h: "D Asenta"
+      n: "d_asenta"
+      r: false
+      sh: "Settlement name (colony)"
+      t: "`$STRING`"
+    }
+    d_ciudad: {
+      h: "D Ciudad"
+      n: "d_ciudad"
+      r: false
+      sh: "City name"
+      t: "`$STRING`"
+    }
+    d_codigo: {
+      h: "D Codigo"
+      n: "d_codigo"
+      r: false
+      sh: "Zip code"
+      t: "`$STRING`"
+    }
+    d_cp: {
+      h: "D Cp"
+      n: "d_cp"
+      r: false
+      sh: "Postal code"
+      t: "`$STRING`"
+    }
+    d_estado: {
+      h: "D Estado"
+      n: "d_estado"
+      r: false
+      sh: "State name"
+      t: "`$STRING`"
+    }
+    d_mnpio: {
+      h: "D Mnpio"
+      n: "d_mnpio"
+      r: false
+      sh: "Municipality name"
+      t: "`$STRING`"
+    }
+    d_tipo_asenta: {
+      h: "D Tipo Asenta"
+      n: "d_tipo_asenta"
+      r: false
+      sh: "Settlement type"
+      t: "`$STRING`"
+    }
+    d_zona: {
+      h: "D Zona"
+      n: "d_zona"
+      r: false
+      sh: "Zone type (Urban/Rural)"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the zip code record"
+      t: "`$INTEGER`"
+    }
+    id_asenta_cpcons: {
+      h: "Id Asenta Cpcons"
+      n: "id_asenta_cpcons"
+      r: false
+      sh: "Settlement ID"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "zip_code"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /zip_codes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "monterrey"
+                k: "query"
+                n: "city"
+                or: "city"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "punta contry"
+                k: "query"
+                n: "colony"
+                or: "colony"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 15
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "nuevo leon"
+                k: "query"
+                n: "state"
+                or: "state"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "67173"
+                k: "query"
+                n: "zip_code"
+                or: "zip_code"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/zip_codes"
+          q: {
+            exist: [
+              "city"
+              "colony"
+              "page"
+              "per_page"
+              "state"
+              "zip_code"
+            ]
+          }
+          s: [
+            {
+              lit: "zip_codes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

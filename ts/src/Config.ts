@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -148,18 +141,21 @@ class Config {
       "fields": [
         {
           "name": "id",
-          "short": "Unique identifier for the city",
-          "type": "`$INTEGER`"
+          "title": "Id",
+          "type": "`$INTEGER`",
+          "short": "Unique identifier for the city"
         },
         {
           "name": "name",
-          "short": "City name",
-          "type": "`$STRING`"
+          "title": "Name",
+          "type": "`$STRING`",
+          "short": "City name"
         },
         {
           "name": "state_id",
-          "short": "ID of the state this city belongs to",
-          "type": "`$INTEGER`"
+          "title": "State Id",
+          "type": "`$INTEGER`",
+          "short": "ID of the state this city belongs to"
         }
       ],
       "id": {
@@ -173,24 +169,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "page",
-                    "orig": "page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": 15,
-                    "kind": "query",
-                    "name": "per_page",
-                    "orig": "per_page",
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/cities",
@@ -199,19 +177,38 @@ class Config {
                   "lit": "cities"
                 }
               ],
+              "parts": [
+                "cities"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "page",
+                    "orig": "page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  },
+                  {
+                    "name": "per_page",
+                    "orig": "per_page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 15
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "page",
                   "per_page"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "cities"
-              ]
+              }
             }
           ]
         },
@@ -220,17 +217,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/cities/{id}",
@@ -242,19 +228,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "cities",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.city`"
               },
-              "parts": [
-                "cities",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$INTEGER`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -267,28 +265,33 @@ class Config {
       "fields": [
         {
           "name": "id",
-          "short": "Unique identifier for the municipality",
-          "type": "`$INTEGER`"
+          "title": "Id",
+          "type": "`$INTEGER`",
+          "short": "Unique identifier for the municipality"
         },
         {
           "name": "municipality_key",
-          "short": "Municipality key code",
-          "type": "`$STRING`"
+          "title": "Municipality Key",
+          "type": "`$STRING`",
+          "short": "Municipality key code"
         },
         {
           "name": "name",
-          "short": "Municipality name",
-          "type": "`$STRING`"
+          "title": "Name",
+          "type": "`$STRING`",
+          "short": "Municipality name"
         },
         {
           "name": "state_id",
-          "short": "ID of the state this municipality belongs to",
-          "type": "`$INTEGER`"
+          "title": "State Id",
+          "type": "`$INTEGER`",
+          "short": "ID of the state this municipality belongs to"
         },
         {
           "name": "zip_code",
-          "short": "Representative zip code for the municipality",
-          "type": "`$STRING`"
+          "title": "Zip Code",
+          "type": "`$STRING`",
+          "short": "Representative zip code for the municipality"
         }
       ],
       "id": {
@@ -302,24 +305,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "page",
-                    "orig": "page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": 15,
-                    "kind": "query",
-                    "name": "per_page",
-                    "orig": "per_page",
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/municipalities",
@@ -328,19 +313,38 @@ class Config {
                   "lit": "municipalities"
                 }
               ],
+              "parts": [
+                "municipalities"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "page",
+                    "orig": "page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  },
+                  {
+                    "name": "per_page",
+                    "orig": "per_page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 15
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "page",
                   "per_page"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "municipalities"
-              ]
+              }
             }
           ]
         },
@@ -349,17 +353,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/municipalities/{id}",
@@ -371,19 +364,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "municipalities",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.municipality`"
               },
-              "parts": [
-                "municipalities",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$INTEGER`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -396,18 +401,21 @@ class Config {
       "fields": [
         {
           "name": "cities_count",
-          "short": "Number of cities in the state",
-          "type": "`$INTEGER`"
+          "title": "Cities Count",
+          "type": "`$INTEGER`",
+          "short": "Number of cities in the state"
         },
         {
           "name": "id",
-          "short": "Unique identifier for the state",
-          "type": "`$INTEGER`"
+          "title": "Id",
+          "type": "`$INTEGER`",
+          "short": "Unique identifier for the state"
         },
         {
           "name": "name",
-          "short": "State name",
-          "type": "`$STRING`"
+          "title": "Name",
+          "type": "`$STRING`",
+          "short": "State name"
         }
       ],
       "id": {
@@ -421,24 +429,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "page",
-                    "orig": "page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": 15,
-                    "kind": "query",
-                    "name": "per_page",
-                    "orig": "per_page",
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/states",
@@ -447,32 +437,40 @@ class Config {
                   "lit": "states"
                 }
               ],
+              "parts": [
+                "states"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "page",
+                    "orig": "page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  },
+                  {
+                    "name": "per_page",
+                    "orig": "per_page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 15
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "page",
                   "per_page"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "states"
-              ]
+              }
             },
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/states/{id}/municipalities",
@@ -487,21 +485,33 @@ class Config {
                   "lit": "municipalities"
                 }
               ],
+              "parts": [
+                "states",
+                "{id}",
+                "municipalities"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.municipalities`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$INTEGER`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
               "select": {
                 "$action": "municipality",
                 "exist": [
                   "id"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.municipalities`"
-              },
-              "parts": [
-                "states",
-                "{id}",
-                "municipalities"
-              ]
+              }
             }
           ]
         },
@@ -510,17 +520,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/states/{id}",
@@ -532,19 +531,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "states",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.state`"
               },
-              "parts": [
-                "states",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$INTEGER`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -557,83 +568,99 @@ class Config {
       "fields": [
         {
           "name": "c_cp",
-          "short": "Postal code field",
-          "type": "`$STRING`"
+          "title": "C Cp",
+          "type": "`$STRING`",
+          "short": "Postal code field"
         },
         {
           "name": "c_cve_ciudad",
-          "short": "City key",
-          "type": "`$STRING`"
+          "title": "C Cve Ciudad",
+          "type": "`$STRING`",
+          "short": "City key"
         },
         {
           "name": "c_estado",
-          "short": "State code",
-          "type": "`$STRING`"
+          "title": "C Estado",
+          "type": "`$STRING`",
+          "short": "State code"
         },
         {
           "name": "c_mnpio",
-          "short": "Municipality code",
-          "type": "`$STRING`"
+          "title": "C Mnpio",
+          "type": "`$STRING`",
+          "short": "Municipality code"
         },
         {
           "name": "c_oficina",
-          "short": "Office code",
-          "type": "`$STRING`"
+          "title": "C Oficina",
+          "type": "`$STRING`",
+          "short": "Office code"
         },
         {
           "name": "c_tipo_asenta",
-          "short": "Settlement type code",
-          "type": "`$STRING`"
+          "title": "C Tipo Asenta",
+          "type": "`$STRING`",
+          "short": "Settlement type code"
         },
         {
           "name": "d_asenta",
-          "short": "Settlement name (colony)",
-          "type": "`$STRING`"
+          "title": "D Asenta",
+          "type": "`$STRING`",
+          "short": "Settlement name (colony)"
         },
         {
           "name": "d_ciudad",
-          "short": "City name",
-          "type": "`$STRING`"
+          "title": "D Ciudad",
+          "type": "`$STRING`",
+          "short": "City name"
         },
         {
           "name": "d_codigo",
-          "short": "Zip code",
-          "type": "`$STRING`"
+          "title": "D Codigo",
+          "type": "`$STRING`",
+          "short": "Zip code"
         },
         {
           "name": "d_cp",
-          "short": "Postal code",
-          "type": "`$STRING`"
+          "title": "D Cp",
+          "type": "`$STRING`",
+          "short": "Postal code"
         },
         {
           "name": "d_estado",
-          "short": "State name",
-          "type": "`$STRING`"
+          "title": "D Estado",
+          "type": "`$STRING`",
+          "short": "State name"
         },
         {
           "name": "d_mnpio",
-          "short": "Municipality name",
-          "type": "`$STRING`"
+          "title": "D Mnpio",
+          "type": "`$STRING`",
+          "short": "Municipality name"
         },
         {
           "name": "d_tipo_asenta",
-          "short": "Settlement type",
-          "type": "`$STRING`"
+          "title": "D Tipo Asenta",
+          "type": "`$STRING`",
+          "short": "Settlement type"
         },
         {
           "name": "d_zona",
-          "short": "Zone type (Urban/Rural)",
-          "type": "`$STRING`"
+          "title": "D Zona",
+          "type": "`$STRING`",
+          "short": "Zone type (Urban/Rural)"
         },
         {
           "name": "id",
-          "short": "Unique identifier for the zip code record",
-          "type": "`$INTEGER`"
+          "title": "Id",
+          "type": "`$INTEGER`",
+          "short": "Unique identifier for the zip code record"
         },
         {
           "name": "id_asenta_cpcons",
-          "short": "Settlement ID",
-          "type": "`$STRING`"
+          "title": "Id Asenta Cpcons",
+          "type": "`$STRING`",
+          "short": "Settlement ID"
         }
       ],
       "id": {
@@ -647,52 +674,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "monterrey",
-                    "kind": "query",
-                    "name": "city",
-                    "orig": "city",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "punta contry",
-                    "kind": "query",
-                    "name": "colony",
-                    "orig": "colony",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "page",
-                    "orig": "page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": 15,
-                    "kind": "query",
-                    "name": "per_page",
-                    "orig": "per_page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": "nuevo leon",
-                    "kind": "query",
-                    "name": "state",
-                    "orig": "state",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "67173",
-                    "kind": "query",
-                    "name": "zip_code",
-                    "orig": "zip_code",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/zip_codes",
@@ -701,6 +682,60 @@ class Config {
                   "lit": "zip_codes"
                 }
               ],
+              "parts": [
+                "zip_codes"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "city",
+                    "orig": "city",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "monterrey"
+                  },
+                  {
+                    "name": "colony",
+                    "orig": "colony",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "punta contry"
+                  },
+                  {
+                    "name": "page",
+                    "orig": "page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  },
+                  {
+                    "name": "per_page",
+                    "orig": "per_page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 15
+                  },
+                  {
+                    "name": "state",
+                    "orig": "state",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "nuevo leon"
+                  },
+                  {
+                    "name": "zip_code",
+                    "orig": "zip_code",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "67173"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "city",
@@ -710,14 +745,7 @@ class Config {
                   "state",
                   "zip_code"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "zip_codes"
-              ]
+              }
             }
           ]
         }

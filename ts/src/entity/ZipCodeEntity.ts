@@ -19,7 +19,6 @@ import type {
   ZipCodeListMatch,
 } from '../SepomexTypes'
 
-// TODO: needs Entity superclass
 class ZipCodeEntity extends SepomexEntityBase<ZipCode> {
 
   constructor(client: SepomexSDK, entopts: any) {

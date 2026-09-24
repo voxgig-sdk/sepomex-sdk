@@ -1,6 +1,0 @@
-# Entity Models
-
-@"./city.aon"
-@"./municipality.aon"
-@"./state.aon"
-@"./zip_code.aon"

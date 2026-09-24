@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ZipCodeEntity = void 0;
 const SepomexEntityBase_1 = require("../SepomexEntityBase");
-// TODO: needs Entity superclass
 class ZipCodeEntity extends SepomexEntityBase_1.SepomexEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

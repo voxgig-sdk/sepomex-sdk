@@ -119,18 +119,21 @@ def make_config():
         "fields": [
           {
             "name": "id",
-            "short": "Unique identifier for the city",
+            "title": "Id",
             "type": "`$INTEGER`",
+            "short": "Unique identifier for the city",
           },
           {
             "name": "name",
-            "short": "City name",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "City name",
           },
           {
             "name": "state_id",
-            "short": "ID of the state this city belongs to",
+            "title": "State Id",
             "type": "`$INTEGER`",
+            "short": "ID of the state this city belongs to",
           },
         ],
         "id": {
@@ -144,24 +147,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": 1,
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": 15,
-                      "kind": "query",
-                      "name": "per_page",
-                      "orig": "per_page",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cities",
@@ -170,19 +155,38 @@ def make_config():
                     "lit": "cities",
                   },
                 ],
+                "parts": [
+                  "cities",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 1,
+                    },
+                    {
+                      "name": "per_page",
+                      "orig": "per_page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 15,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "page",
                     "per_page",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cities",
-                ],
               },
             ],
           },
@@ -191,17 +195,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cities/{id}",
@@ -213,19 +206,31 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "cities",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.city`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.city`",
-                },
-                "parts": [
-                  "cities",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -238,28 +243,33 @@ def make_config():
         "fields": [
           {
             "name": "id",
-            "short": "Unique identifier for the municipality",
+            "title": "Id",
             "type": "`$INTEGER`",
+            "short": "Unique identifier for the municipality",
           },
           {
             "name": "municipality_key",
-            "short": "Municipality key code",
+            "title": "Municipality Key",
             "type": "`$STRING`",
+            "short": "Municipality key code",
           },
           {
             "name": "name",
-            "short": "Municipality name",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "Municipality name",
           },
           {
             "name": "state_id",
-            "short": "ID of the state this municipality belongs to",
+            "title": "State Id",
             "type": "`$INTEGER`",
+            "short": "ID of the state this municipality belongs to",
           },
           {
             "name": "zip_code",
-            "short": "Representative zip code for the municipality",
+            "title": "Zip Code",
             "type": "`$STRING`",
+            "short": "Representative zip code for the municipality",
           },
         ],
         "id": {
@@ -273,24 +283,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": 1,
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": 15,
-                      "kind": "query",
-                      "name": "per_page",
-                      "orig": "per_page",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/municipalities",
@@ -299,19 +291,38 @@ def make_config():
                     "lit": "municipalities",
                   },
                 ],
+                "parts": [
+                  "municipalities",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 1,
+                    },
+                    {
+                      "name": "per_page",
+                      "orig": "per_page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 15,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "page",
                     "per_page",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "municipalities",
-                ],
               },
             ],
           },
@@ -320,17 +331,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/municipalities/{id}",
@@ -342,19 +342,31 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "municipalities",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.municipality`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.municipality`",
-                },
-                "parts": [
-                  "municipalities",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -367,18 +379,21 @@ def make_config():
         "fields": [
           {
             "name": "cities_count",
-            "short": "Number of cities in the state",
+            "title": "Cities Count",
             "type": "`$INTEGER`",
+            "short": "Number of cities in the state",
           },
           {
             "name": "id",
-            "short": "Unique identifier for the state",
+            "title": "Id",
             "type": "`$INTEGER`",
+            "short": "Unique identifier for the state",
           },
           {
             "name": "name",
-            "short": "State name",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "State name",
           },
         ],
         "id": {
@@ -392,24 +407,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": 1,
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": 15,
-                      "kind": "query",
-                      "name": "per_page",
-                      "orig": "per_page",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/states",
@@ -418,32 +415,40 @@ def make_config():
                     "lit": "states",
                   },
                 ],
+                "parts": [
+                  "states",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 1,
+                    },
+                    {
+                      "name": "per_page",
+                      "orig": "per_page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 15,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "page",
                     "per_page",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "states",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/states/{id}/municipalities",
@@ -458,21 +463,33 @@ def make_config():
                     "lit": "municipalities",
                   },
                 ],
+                "parts": [
+                  "states",
+                  "{id}",
+                  "municipalities",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.municipalities`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "municipality",
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.municipalities`",
-                },
-                "parts": [
-                  "states",
-                  "{id}",
-                  "municipalities",
-                ],
               },
             ],
           },
@@ -481,17 +498,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/states/{id}",
@@ -503,19 +509,31 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "states",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.state`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.state`",
-                },
-                "parts": [
-                  "states",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -528,83 +546,99 @@ def make_config():
         "fields": [
           {
             "name": "c_cp",
-            "short": "Postal code field",
+            "title": "C Cp",
             "type": "`$STRING`",
+            "short": "Postal code field",
           },
           {
             "name": "c_cve_ciudad",
-            "short": "City key",
+            "title": "C Cve Ciudad",
             "type": "`$STRING`",
+            "short": "City key",
           },
           {
             "name": "c_estado",
-            "short": "State code",
+            "title": "C Estado",
             "type": "`$STRING`",
+            "short": "State code",
           },
           {
             "name": "c_mnpio",
-            "short": "Municipality code",
+            "title": "C Mnpio",
             "type": "`$STRING`",
+            "short": "Municipality code",
           },
           {
             "name": "c_oficina",
-            "short": "Office code",
+            "title": "C Oficina",
             "type": "`$STRING`",
+            "short": "Office code",
           },
           {
             "name": "c_tipo_asenta",
-            "short": "Settlement type code",
+            "title": "C Tipo Asenta",
             "type": "`$STRING`",
+            "short": "Settlement type code",
           },
           {
             "name": "d_asenta",
-            "short": "Settlement name (colony)",
+            "title": "D Asenta",
             "type": "`$STRING`",
+            "short": "Settlement name (colony)",
           },
           {
             "name": "d_ciudad",
-            "short": "City name",
+            "title": "D Ciudad",
             "type": "`$STRING`",
+            "short": "City name",
           },
           {
             "name": "d_codigo",
-            "short": "Zip code",
+            "title": "D Codigo",
             "type": "`$STRING`",
+            "short": "Zip code",
           },
           {
             "name": "d_cp",
-            "short": "Postal code",
+            "title": "D Cp",
             "type": "`$STRING`",
+            "short": "Postal code",
           },
           {
             "name": "d_estado",
-            "short": "State name",
+            "title": "D Estado",
             "type": "`$STRING`",
+            "short": "State name",
           },
           {
             "name": "d_mnpio",
-            "short": "Municipality name",
+            "title": "D Mnpio",
             "type": "`$STRING`",
+            "short": "Municipality name",
           },
           {
             "name": "d_tipo_asenta",
-            "short": "Settlement type",
+            "title": "D Tipo Asenta",
             "type": "`$STRING`",
+            "short": "Settlement type",
           },
           {
             "name": "d_zona",
-            "short": "Zone type (Urban/Rural)",
+            "title": "D Zona",
             "type": "`$STRING`",
+            "short": "Zone type (Urban/Rural)",
           },
           {
             "name": "id",
-            "short": "Unique identifier for the zip code record",
+            "title": "Id",
             "type": "`$INTEGER`",
+            "short": "Unique identifier for the zip code record",
           },
           {
             "name": "id_asenta_cpcons",
-            "short": "Settlement ID",
+            "title": "Id Asenta Cpcons",
             "type": "`$STRING`",
+            "short": "Settlement ID",
           },
         ],
         "id": {
@@ -618,52 +652,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "monterrey",
-                      "kind": "query",
-                      "name": "city",
-                      "orig": "city",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "punta contry",
-                      "kind": "query",
-                      "name": "colony",
-                      "orig": "colony",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": 1,
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": 15,
-                      "kind": "query",
-                      "name": "per_page",
-                      "orig": "per_page",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": "nuevo leon",
-                      "kind": "query",
-                      "name": "state",
-                      "orig": "state",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "67173",
-                      "kind": "query",
-                      "name": "zip_code",
-                      "orig": "zip_code",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/zip_codes",
@@ -672,6 +660,60 @@ def make_config():
                     "lit": "zip_codes",
                   },
                 ],
+                "parts": [
+                  "zip_codes",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "city",
+                      "orig": "city",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "monterrey",
+                    },
+                    {
+                      "name": "colony",
+                      "orig": "colony",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "punta contry",
+                    },
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 1,
+                    },
+                    {
+                      "name": "per_page",
+                      "orig": "per_page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 15,
+                    },
+                    {
+                      "name": "state",
+                      "orig": "state",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "nuevo leon",
+                    },
+                    {
+                      "name": "zip_code",
+                      "orig": "zip_code",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "67173",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "city",
@@ -682,13 +724,6 @@ def make_config():
                     "zip_code",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "zip_codes",
-                ],
               },
             ],
           },

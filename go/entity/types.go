@@ -1,7 +1,7 @@
 // Typed models for the Sepomex SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,9 +14,6 @@ import (
 
 // City is the typed data model for the city entity.
 type City struct {
-	Id *int `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	StateId *int `json:"state_id,omitempty"`
 }
 
 // CityLoadMatch is the typed request payload for City.LoadTyped.
@@ -32,11 +29,6 @@ type CityListMatch struct {
 
 // Municipality is the typed data model for the municipality entity.
 type Municipality struct {
-	Id *int `json:"id,omitempty"`
-	MunicipalityKey *string `json:"municipality_key,omitempty"`
-	Name *string `json:"name,omitempty"`
-	StateId *int `json:"state_id,omitempty"`
-	ZipCode *string `json:"zip_code,omitempty"`
 }
 
 // MunicipalityLoadMatch is the typed request payload for Municipality.LoadTyped.
@@ -52,9 +44,6 @@ type MunicipalityListMatch struct {
 
 // State is the typed data model for the state entity.
 type State struct {
-	CitiesCount *int `json:"cities_count,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
 }
 
 // StateLoadMatch is the typed request payload for State.LoadTyped.
@@ -70,22 +59,6 @@ type StateListMatch struct {
 
 // ZipCode is the typed data model for the zip_code entity.
 type ZipCode struct {
-	CCp *string `json:"c_cp,omitempty"`
-	CCveCiudad *string `json:"c_cve_ciudad,omitempty"`
-	CEstado *string `json:"c_estado,omitempty"`
-	CMnpio *string `json:"c_mnpio,omitempty"`
-	COficina *string `json:"c_oficina,omitempty"`
-	CTipoAsenta *string `json:"c_tipo_asenta,omitempty"`
-	DAsenta *string `json:"d_asenta,omitempty"`
-	DCiudad *string `json:"d_ciudad,omitempty"`
-	DCodigo *string `json:"d_codigo,omitempty"`
-	DCp *string `json:"d_cp,omitempty"`
-	DEstado *string `json:"d_estado,omitempty"`
-	DMnpio *string `json:"d_mnpio,omitempty"`
-	DTipoAsenta *string `json:"d_tipo_asenta,omitempty"`
-	DZona *string `json:"d_zona,omitempty"`
-	Id *int `json:"id,omitempty"`
-	IdAsentaCpcons *string `json:"id_asenta_cpcons,omitempty"`
 }
 
 // ZipCodeListMatch is the typed request payload for ZipCode.ListTyped.

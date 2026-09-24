@@ -94,18 +94,21 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier for the city",
+						"title": "Id",
 						"type": "`$INTEGER`",
+						"short": "Unique identifier for the city",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "City name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "City name",
 					},
 					map[string]any{
 						"name": "state_id",
-						"short": "ID of the state this city belongs to",
+						"title": "State Id",
 						"type": "`$INTEGER`",
+						"short": "ID of the state this city belongs to",
 					},
 				},
 				"id": map[string]any{
@@ -119,24 +122,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 15,
-											"kind": "query",
-											"name": "per_page",
-											"orig": "per_page",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cities",
@@ -145,18 +130,37 @@ func MakeConfig() map[string]any {
 										"lit": "cities",
 									},
 								},
+								"parts": []any{
+									"cities",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+										map[string]any{
+											"name": "per_page",
+											"orig": "per_page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 15,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"page",
 										"per_page",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"cities",
 								},
 							},
 						},
@@ -166,17 +170,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cities/{id}",
@@ -188,18 +181,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"cities",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.city`",
 								},
-								"parts": []any{
-									"cities",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -213,28 +218,33 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier for the municipality",
+						"title": "Id",
 						"type": "`$INTEGER`",
+						"short": "Unique identifier for the municipality",
 					},
 					map[string]any{
 						"name": "municipality_key",
-						"short": "Municipality key code",
+						"title": "Municipality Key",
 						"type": "`$STRING`",
+						"short": "Municipality key code",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Municipality name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Municipality name",
 					},
 					map[string]any{
 						"name": "state_id",
-						"short": "ID of the state this municipality belongs to",
+						"title": "State Id",
 						"type": "`$INTEGER`",
+						"short": "ID of the state this municipality belongs to",
 					},
 					map[string]any{
 						"name": "zip_code",
-						"short": "Representative zip code for the municipality",
+						"title": "Zip Code",
 						"type": "`$STRING`",
+						"short": "Representative zip code for the municipality",
 					},
 				},
 				"id": map[string]any{
@@ -248,24 +258,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 15,
-											"kind": "query",
-											"name": "per_page",
-											"orig": "per_page",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/municipalities",
@@ -274,18 +266,37 @@ func MakeConfig() map[string]any {
 										"lit": "municipalities",
 									},
 								},
+								"parts": []any{
+									"municipalities",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+										map[string]any{
+											"name": "per_page",
+											"orig": "per_page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 15,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"page",
 										"per_page",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"municipalities",
 								},
 							},
 						},
@@ -295,17 +306,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/municipalities/{id}",
@@ -317,18 +317,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"municipalities",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.municipality`",
 								},
-								"parts": []any{
-									"municipalities",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -342,18 +354,21 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "cities_count",
-						"short": "Number of cities in the state",
+						"title": "Cities Count",
 						"type": "`$INTEGER`",
+						"short": "Number of cities in the state",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier for the state",
+						"title": "Id",
 						"type": "`$INTEGER`",
+						"short": "Unique identifier for the state",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "State name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "State name",
 					},
 				},
 				"id": map[string]any{
@@ -367,24 +382,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 15,
-											"kind": "query",
-											"name": "per_page",
-											"orig": "per_page",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/states",
@@ -393,32 +390,40 @@ func MakeConfig() map[string]any {
 										"lit": "states",
 									},
 								},
+								"parts": []any{
+									"states",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+										map[string]any{
+											"name": "per_page",
+											"orig": "per_page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 15,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"page",
 										"per_page",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"states",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/states/{id}/municipalities",
@@ -433,20 +438,32 @@ func MakeConfig() map[string]any {
 										"lit": "municipalities",
 									},
 								},
+								"parts": []any{
+									"states",
+									"{id}",
+									"municipalities",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.municipalities`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "municipality",
 									"exist": []any{
 										"id",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.municipalities`",
-								},
-								"parts": []any{
-									"states",
-									"{id}",
-									"municipalities",
 								},
 							},
 						},
@@ -456,17 +473,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/states/{id}",
@@ -478,18 +484,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"states",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.state`",
 								},
-								"parts": []any{
-									"states",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -503,83 +521,99 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "c_cp",
-						"short": "Postal code field",
+						"title": "C Cp",
 						"type": "`$STRING`",
+						"short": "Postal code field",
 					},
 					map[string]any{
 						"name": "c_cve_ciudad",
-						"short": "City key",
+						"title": "C Cve Ciudad",
 						"type": "`$STRING`",
+						"short": "City key",
 					},
 					map[string]any{
 						"name": "c_estado",
-						"short": "State code",
+						"title": "C Estado",
 						"type": "`$STRING`",
+						"short": "State code",
 					},
 					map[string]any{
 						"name": "c_mnpio",
-						"short": "Municipality code",
+						"title": "C Mnpio",
 						"type": "`$STRING`",
+						"short": "Municipality code",
 					},
 					map[string]any{
 						"name": "c_oficina",
-						"short": "Office code",
+						"title": "C Oficina",
 						"type": "`$STRING`",
+						"short": "Office code",
 					},
 					map[string]any{
 						"name": "c_tipo_asenta",
-						"short": "Settlement type code",
+						"title": "C Tipo Asenta",
 						"type": "`$STRING`",
+						"short": "Settlement type code",
 					},
 					map[string]any{
 						"name": "d_asenta",
-						"short": "Settlement name (colony)",
+						"title": "D Asenta",
 						"type": "`$STRING`",
+						"short": "Settlement name (colony)",
 					},
 					map[string]any{
 						"name": "d_ciudad",
-						"short": "City name",
+						"title": "D Ciudad",
 						"type": "`$STRING`",
+						"short": "City name",
 					},
 					map[string]any{
 						"name": "d_codigo",
-						"short": "Zip code",
+						"title": "D Codigo",
 						"type": "`$STRING`",
+						"short": "Zip code",
 					},
 					map[string]any{
 						"name": "d_cp",
-						"short": "Postal code",
+						"title": "D Cp",
 						"type": "`$STRING`",
+						"short": "Postal code",
 					},
 					map[string]any{
 						"name": "d_estado",
-						"short": "State name",
+						"title": "D Estado",
 						"type": "`$STRING`",
+						"short": "State name",
 					},
 					map[string]any{
 						"name": "d_mnpio",
-						"short": "Municipality name",
+						"title": "D Mnpio",
 						"type": "`$STRING`",
+						"short": "Municipality name",
 					},
 					map[string]any{
 						"name": "d_tipo_asenta",
-						"short": "Settlement type",
+						"title": "D Tipo Asenta",
 						"type": "`$STRING`",
+						"short": "Settlement type",
 					},
 					map[string]any{
 						"name": "d_zona",
-						"short": "Zone type (Urban/Rural)",
+						"title": "D Zona",
 						"type": "`$STRING`",
+						"short": "Zone type (Urban/Rural)",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier for the zip code record",
+						"title": "Id",
 						"type": "`$INTEGER`",
+						"short": "Unique identifier for the zip code record",
 					},
 					map[string]any{
 						"name": "id_asenta_cpcons",
-						"short": "Settlement ID",
+						"title": "Id Asenta Cpcons",
 						"type": "`$STRING`",
+						"short": "Settlement ID",
 					},
 				},
 				"id": map[string]any{
@@ -593,58 +627,66 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "monterrey",
-											"kind": "query",
-											"name": "city",
-											"orig": "city",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "punta contry",
-											"kind": "query",
-											"name": "colony",
-											"orig": "colony",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 15,
-											"kind": "query",
-											"name": "per_page",
-											"orig": "per_page",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": "nuevo leon",
-											"kind": "query",
-											"name": "state",
-											"orig": "state",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "67173",
-											"kind": "query",
-											"name": "zip_code",
-											"orig": "zip_code",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/zip_codes",
 								"segments": []any{
 									map[string]any{
 										"lit": "zip_codes",
+									},
+								},
+								"parts": []any{
+									"zip_codes",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "city",
+											"orig": "city",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "monterrey",
+										},
+										map[string]any{
+											"name": "colony",
+											"orig": "colony",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "punta contry",
+										},
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+										map[string]any{
+											"name": "per_page",
+											"orig": "per_page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 15,
+										},
+										map[string]any{
+											"name": "state",
+											"orig": "state",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "nuevo leon",
+										},
+										map[string]any{
+											"name": "zip_code",
+											"orig": "zip_code",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "67173",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -656,13 +698,6 @@ func MakeConfig() map[string]any {
 										"state",
 										"zip_code",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"zip_codes",
 								},
 							},
 						},
